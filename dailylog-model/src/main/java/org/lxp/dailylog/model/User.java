@@ -8,18 +8,18 @@ import java.util.Date;
  * @version 1.0
  */
 public class User {
-  private long seqId;
+  private long id;
   private String username;
   private String password;
   private Date lastlogintime;
   private Date createtime;
 
-  public long getSeqId() {
-    return seqId;
+  public long getId() {
+    return id;
   }
 
-  public void setSeqId(long seqId) {
-    this.seqId = seqId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   public String getUsername() {

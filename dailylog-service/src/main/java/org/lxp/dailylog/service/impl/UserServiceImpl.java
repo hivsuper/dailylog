@@ -1,9 +1,13 @@
 package org.lxp.dailylog.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.lxp.dailylog.model.User;
 import org.lxp.dailylog.service.IUserService;
-import org.lxp.dailylog.service.dao.UserDao;
-import org.lxp.dailylog.service.util.ConvertSqlUtil;
+import org.lxp.dailylog.service.mapper.AccountMapper;
+import org.lxp.dailylog.service.mapper.NavigatorMapper;
+import org.lxp.dailylog.service.mapper.UserMapper;
 import org.lxp.dailylog.service.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements IUserService {
   @Autowired
-  private UserDao userDao;
+  private UserMapper userMapper;
+  @Autowired
+  private AccountMapper accountMapper;
+  @Autowired
+  private NavigatorMapper navigatorMapper;
 
   /**
    * 添加一个用户
@@ -28,7 +36,7 @@ public class UserServiceImpl implements IUserService {
   @Override
   public void add(User user) {
     user.setCreatetime(DateUtil.now());
-    userDao.insert(user);
+    userMapper.add(user);
   }
 
   /**
@@ -40,7 +48,15 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   public User queryOneUserByUsername(String username) {
-    return userDao.queryOne("username LIKE ?", "%" + ConvertSqlUtil.convertSql(username) + "%");
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("username", username);
+    Map<String, Object> map2 = new HashMap<String, Object>();
+    Map<String, Object> map3 = new HashMap<String, Object>();
+    map2.put("username", "1");
+    accountMapper.queryOne(map2);
+    map3.put("name", "2");
+    navigatorMapper.queryOne(map3);
+    return userMapper.queryOne(map);
   }
 
 }
