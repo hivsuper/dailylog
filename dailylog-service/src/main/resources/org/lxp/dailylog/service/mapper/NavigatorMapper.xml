@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lxp.dailylog.service.mapper.NavigatorMapper">
+  <insert id="add" parameterType="Navigator" useGeneratedKeys="true" keyProperty="id" statementType="PREPARED">
+    INSERT INTO
+    navigator (name, url, title, createtime) VALUES(#{name},#{url},#{title},#{createtime})
+  </insert>
+  <select id="queryOne" parameterType="java.util.HashMap" resultMap="NavigatorMap" statementType="PREPARED">
+    SELECT seqid AS id, name AS name, url AS url, title AS title, createtime AS createtime FROM navigator
+    <where>
+      <if test="name!=null">
+        AND name LIKE CONCAT('%',#{name},'%')
+      </if>
+      <if test="url!=null">
+        AND url LIKE CONCAT('%',#{url},'%')
+      </if>
+      <if test="title!=null">
+        AND title LIKE CONCAT('%',#{title},'%')
+      </if>
+    </where>
+    LIMIT 0,1
+  </select>
+  <resultMap type="Navigator" id="NavigatorMap">
+    <id property="id" column="seqid" />
+    <result property="name" column="name" />
+    <result property="url" column="url" />
+    <result property="title" column="title" />
+    <result property="createtime" column="createtime" />
+  </resultMap>
+</mapper>

@@ -1,9 +1,11 @@
 package org.lxp.dailylog.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.lxp.dailylog.model.Account;
 import org.lxp.dailylog.service.IAccountService;
-import org.lxp.dailylog.service.dao.AccountDao;
-import org.lxp.dailylog.service.util.ConvertSqlUtil;
+import org.lxp.dailylog.service.mapper.AccountMapper;
 import org.lxp.dailylog.service.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +18,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl implements IAccountService {
   @Autowired
-  private AccountDao accountDao;
+  private AccountMapper accountMapper;
 
   @Override
   public void addAccount(Account account) {
     account.setCreatetime(DateUtil.now());
-    accountDao.add(account);
+    accountMapper.add(account);
   }
 
   @Override
   public Account queryOneLike(String keyword) {
-    StringBuffer whereSql = new StringBuffer(
-        "username LIKE ? OR remail LIKE ? OR phone LIKE ? OR productname LIKE ? OR producturl LIKE ?");
-    keyword = "%" + ConvertSqlUtil.convertSql(keyword) + "%";
-    Object[] params = new Object[] { keyword, keyword, keyword, keyword, keyword };
-    return accountDao.queryOne(whereSql.toString(), params);
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("username", keyword);
+    map.put("remail", keyword);
+    map.put("fpemail", keyword);
+    map.put("productname", keyword);
+    map.put("producturl", keyword);
+    return accountMapper.queryOne(map);
   }
 }

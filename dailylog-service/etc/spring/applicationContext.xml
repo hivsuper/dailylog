@@ -22,9 +22,34 @@
     <property name="minPoolSize" value="${db.minPoolSize}"></property>
     <property name="maxIdleTime" value="${db.maxIdleTime}"></property>
   </bean>
+  <context:property-placeholder />
+  <!-- 使用spring的会话管理 -->
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="configLocation" value="classpath:mybatis-config.xml" />
+  </bean>
+  <bean id='sqlSessionTemplate' class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg ref="sqlSessionFactory" />
+  </bean>
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="org.lxp.dailylog.service.mapper" />
+  </bean>
+
+<!--   <bean id="accountService" class="org.lxp.dailylog.service.impl.AccountServiceImpl"> -->
+<!--     <property name="accountMapper" ref="accountMapper" /> -->
+<!--   </bean> -->
+<!--   <bean id="userService" class="org.lxp.dailylog.service.impl.UserServiceImpl"> -->
+<!--     <property name="userMapper" ref="userMapper" /> -->
+<!--   </bean> -->
+<!--   <bean id="navigatorService" class="org.lxp.dailylog.service.impl.NavigatorServiceImpl"> -->
+<!--     <property name="navigatorMapper" ref="navigatorMapper" /> -->
+<!--   </bean> -->
   <!-- spring自动组件扫描，载入注解的内容 -->
   <context:annotation-config /><!--这个非常重要，没有的时候controller不能注册 -->
   <context:component-scan base-package="org.lxp.dailylog.service.impl" />
-  <context:component-scan base-package="org.lxp.dailylog.service.dao" />
-<!--   <context:component-scan base-package="org.lxp.dailylog.model" /> -->
+  <!-- <context:component-scan base-package="org.lxp.dailylog.service.dao" /> -->
+  <!-- <context:component-scan base-package="org.lxp.dailylog.model" /> -->
 </beans>

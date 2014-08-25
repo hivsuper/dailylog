@@ -8,7 +8,7 @@ import java.util.Date;
  * @version 1.0
  */
 public class Navigator {
-  private long seqid;
+  private long id;
   /**
    * site name
    */
@@ -26,12 +26,12 @@ public class Navigator {
    */
   private Date createtime;
 
-  public long getSeqid() {
-    return seqid;
+  public long getId() {
+    return id;
   }
 
-  public void setSeqid(long seqid) {
-    this.seqid = seqid;
+  public void setId(long id) {
+    this.id = id;
   }
 
   public String getName() {

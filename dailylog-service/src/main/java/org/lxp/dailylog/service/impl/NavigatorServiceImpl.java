@@ -1,9 +1,11 @@
 package org.lxp.dailylog.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.lxp.dailylog.model.Navigator;
 import org.lxp.dailylog.service.INavigatorService;
-import org.lxp.dailylog.service.dao.NavigatorDao;
-import org.lxp.dailylog.service.util.ConvertSqlUtil;
+import org.lxp.dailylog.service.mapper.NavigatorMapper;
 import org.lxp.dailylog.service.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +18,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class NavigatorServiceImpl implements INavigatorService {
   @Autowired
-  private NavigatorDao navigatorDao;
+  private NavigatorMapper navigatorMapper;
 
   @Override
   public void addNavigator(Navigator navigator) {
     navigator.setCreatetime(DateUtil.now());
-    navigatorDao.add(navigator);
+    navigatorMapper.add(navigator);
   }
 
   @Override
   public Navigator queryOneByLike(String keyword) {
-    StringBuffer whereSql = new StringBuffer("name LIKE ? OR url LIKE ? OR title LIKE ?");
-    keyword = "%" + ConvertSqlUtil.convertSql(keyword) + "%";
-    Object[] params = new Object[] { keyword, keyword, keyword };
-    return navigatorDao.queryOne(whereSql.toString(), params);
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("name", keyword);
+    map.put("url", keyword);
+    map.put("title", keyword);
+    return navigatorMapper.queryOne(map);
   }
 
 }

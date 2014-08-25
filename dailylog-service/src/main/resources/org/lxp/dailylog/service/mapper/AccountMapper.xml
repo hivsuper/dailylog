@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lxp.dailylog.service.mapper.AccountMapper">
+  <insert id="add" parameterType="Account" useGeneratedKeys="true" keyProperty="id" statementType="PREPARED">
+    INSERT INTO
+    account (username, remail, fpemail, phone,
+    productname, producturl, joindate, createtime)
+    VALUES(#{username},#{remail},#{fpemail},#{phone},#{productname},#{producturl},#{joindate},#{createtime})
+  </insert>
+  <select id="queryOne" parameterType="java.util.HashMap" resultMap="AccountMap" statementType="PREPARED">
+    SELECT seqid AS id, username AS username, remail AS remail, fpemail AS fpemail, phone AS phone, productname AS
+    productname, producturl AS producturl, joindate AS joindate, createtime AS createtime FROM account
+    <where>
+      <if test="username!=null">
+        AND username LIKE CONCAT('%',#{username},'%')
+      </if>
+      <if test="remail!=null">
+        AND remail LIKE CONCAT('%',#{remail},'%')
+      </if>
+      <if test="fpemail!=null">
+        AND fpemail LIKE CONCAT('%',#{fpemail},'%')
+      </if>
+      <if test="productname!=null">
+        AND productname LIKE CONCAT('%',#{productname},'%')
+      </if>
+      <if test="producturl!=null">
+        AND producturl CONCAT('%',#{producturl},'%')
+      </if>
+    </where>
+    LIMIT 0,1
+  </select>
+  <resultMap type="Account" id="AccountMap">
+    <id property="id" column="seqid" />
+    <result property="username" column="username" />
+    <result property="remail" column="remail" />
+    <result property="fpemail" column="fpemail" />
+    <result property="phone" column="phone" />
+    <result property="productname" column="productname" />
+    <result property="producturl" column="producturl" />
+    <result property="joindate" column="joindate" />
+    <result property="createtime" column="createtime" />
+  </resultMap>
+</mapper>
