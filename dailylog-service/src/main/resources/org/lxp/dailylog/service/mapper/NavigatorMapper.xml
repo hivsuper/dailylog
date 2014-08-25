@@ -7,7 +7,7 @@
     navigator (name, url, title, createtime) VALUES(#{name},#{url},#{title},#{createtime})
   </insert>
   <select id="queryOne" parameterType="java.util.HashMap" resultMap="NavigatorMap" statementType="PREPARED">
-    SELECT seqid AS id, name AS name, url AS url, title AS title, createtime AS createtime FROM navigator
+    SELECT seqid, name, url, title, createtime FROM navigator
     <where>
       <if test="name!=null">
         AND name LIKE CONCAT('%',#{name},'%')

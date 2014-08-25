@@ -7,8 +7,7 @@
     user(username, password, createtime) VALUES(#{username}, #{password}, #{createtime})
   </insert>
   <select id="queryOne" parameterType="java.util.HashMap" resultMap="UserMap" statementType="PREPARED">
-    SELECT seqid AS id, username AS username, password AS password, lastlogintime AS lastlogintime, createtime AS
-    createtime FROM user
+    SELECT seqid, username, password, lastlogintime, createtime FROM user
     <where>
       <if test="username!=null">
         username=#{username}

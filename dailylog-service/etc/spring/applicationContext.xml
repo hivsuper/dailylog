@@ -34,19 +34,11 @@
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource" />
   </bean>
+  <!-- enable autowired for mapper -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" value="org.lxp.dailylog.service.mapper" />
   </bean>
 
-<!--   <bean id="accountService" class="org.lxp.dailylog.service.impl.AccountServiceImpl"> -->
-<!--     <property name="accountMapper" ref="accountMapper" /> -->
-<!--   </bean> -->
-<!--   <bean id="userService" class="org.lxp.dailylog.service.impl.UserServiceImpl"> -->
-<!--     <property name="userMapper" ref="userMapper" /> -->
-<!--   </bean> -->
-<!--   <bean id="navigatorService" class="org.lxp.dailylog.service.impl.NavigatorServiceImpl"> -->
-<!--     <property name="navigatorMapper" ref="navigatorMapper" /> -->
-<!--   </bean> -->
   <!-- spring自动组件扫描，载入注解的内容 -->
   <context:annotation-config /><!--这个非常重要，没有的时候controller不能注册 -->
   <context:component-scan base-package="org.lxp.dailylog.service.impl" />

@@ -9,8 +9,7 @@
     VALUES(#{username},#{remail},#{fpemail},#{phone},#{productname},#{producturl},#{joindate},#{createtime})
   </insert>
   <select id="queryOne" parameterType="java.util.HashMap" resultMap="AccountMap" statementType="PREPARED">
-    SELECT seqid AS id, username AS username, remail AS remail, fpemail AS fpemail, phone AS phone, productname AS
-    productname, producturl AS producturl, joindate AS joindate, createtime AS createtime FROM account
+    SELECT seqid, username, remail, fpemail, phone, productname, producturl, joindate, createtime FROM account
     <where>
       <if test="username!=null">
         AND username LIKE CONCAT('%',#{username},'%')
@@ -25,7 +24,7 @@
         AND productname LIKE CONCAT('%',#{productname},'%')
       </if>
       <if test="producturl!=null">
-        AND producturl CONCAT('%',#{producturl},'%')
+        AND producturl LIKE CONCAT('%',#{producturl},'%')
       </if>
     </where>
     LIMIT 0,1
