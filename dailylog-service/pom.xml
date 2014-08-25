@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.lxp</groupId>
     <artifactId>dailylog-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>mybatis-SNAPSHOT</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>dailylog-service</artifactId>
@@ -52,10 +52,10 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-    </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+      </dependency>    
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
@@ -84,6 +84,14 @@
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
