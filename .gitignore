@@ -1,6 +1,6 @@
 bin/
 target/
-log/
+logs/
 .settings/
 
 # Package Files #

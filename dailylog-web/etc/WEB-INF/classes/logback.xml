@@ -2,10 +2,10 @@
 <configuration>
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <Encoding>UTF-8</Encoding>
-    <File>log/dailylog.log</File>
+    <File>logs/dailylog.log</File>
     <Prudent>true</Prudent>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <FileNamePattern>log/dailylog-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+      <FileNamePattern>logs/dailylog-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
       <MaxHistory>30</MaxHistory>
       <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
         <MaxFileSize>100MB</MaxFileSize>
