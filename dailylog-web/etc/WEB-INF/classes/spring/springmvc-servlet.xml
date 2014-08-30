@@ -21,7 +21,7 @@
         </bean>
       </list>
     </property>
-  </bean>                        
+  </bean>
   <context:component-scan base-package="org.lxp.dailylog.web.ctrl" />
 
   <mvc:annotation-driven />
@@ -29,15 +29,26 @@
   <mvc:resources mapping="/js/**" location="/page/static/js/" />
   <mvc:resources mapping="/css/**" location="/page/static/css/" />
   <mvc:resources mapping="/img/**" location="/page/static/img/" />
-  <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor"></bean>
-  <!-- 登录拦截器 -->
-  <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-    <property name="interceptors">
-      <list>
-        <ref bean="loginInterceptor" />
-      </list>
-    </property>
-  </bean>
+  <mvc:interceptors>
+    <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor">
+      <property name="excludes">
+        <set>
+          <value>/login</value>
+          <value>/index</value>
+        </set>
+      </property>
+      <property name="excludePaths">
+        <set>
+          <value>/login/</value>
+          <value>/result/</value>
+          <value>/js/</value>
+          <value>/css/</value>
+          <value>/img/</value>
+        </set>
+      </property>
+      <property name="ajaxPath" value="/ajax" />
+    </bean>
+  </mvc:interceptors>
   <!-- 处理全局未被捕获的异常 -->
   <bean id="exceptionHandlerCtrl" class="org.lxp.dailylog.web.ctrl.exception.ExceptionHandlerCtrl" />
 </beans>    
