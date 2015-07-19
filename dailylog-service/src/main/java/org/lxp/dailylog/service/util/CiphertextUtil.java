@@ -1,5 +1,7 @@
 package org.lxp.dailylog.service.util;
 
+import static org.lxp.dailylog.service.util.StringHolder.SEMICOLON;
+
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.util.StringUtils;
 
@@ -9,41 +11,29 @@ import org.springframework.util.StringUtils;
  */
 public class CiphertextUtil {
 
-  private static final String splitString = StringHolder.SPLIT_STRING;
+  private static final String SEPARATOR = SEMICOLON;
 
-  /**
-   * 解密信息
-   * 
-   * @param value
-   * @return
-   */
   public static String[] decode(String value) {
     StringBuilder sb = new StringBuilder(value.length() + 3).append(value);
-    for (int j = 0; j < sb.length() % 4; j++) {// 解开密码的salt，把去掉的=加上去
+    for (int j = 0; j < sb.length() % 4; j++) {
       sb.append("=");
     }
     value = sb.toString();
     String cookieAsPlainText = new String(Base64.decodeBase64(value.getBytes()));
-    return StringUtils.delimitedListToStringArray(cookieAsPlainText, splitString);
+    return StringUtils.delimitedListToStringArray(cookieAsPlainText, SEPARATOR);
   }
 
-  /**
-   * 加密信息
-   * 
-   * @param tokens
-   * @return
-   */
   public static String encode(String[] tokens) {
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < tokens.length; i++) {
       sb.append(tokens[i]);
       if (i < tokens.length - 1) {
-        sb.append(splitString);
+        sb.append(SEPARATOR);
       }
     }
     String value = sb.toString();
     sb = new StringBuilder(new String(Base64.encodeBase64(value.getBytes())));
-    while (sb.charAt(sb.length() - 1) == '=') {// 为密码加salt，去掉密文最后的=
+    while (sb.charAt(sb.length() - 1) == '=') {
       sb.deleteCharAt(sb.length() - 1);
     }
     return sb.toString();
