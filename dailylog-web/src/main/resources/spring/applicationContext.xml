@@ -39,7 +39,7 @@
   </bean>
   <!-- enable autowired for mapper -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="org.lxp.dailylog.service.mapper" />
+    <property name="basePackage" value="org.lxp.dailylog.dao.mapper" />
   </bean>
 
   <!-- spring自动组件扫描，载入注解的内容 -->
