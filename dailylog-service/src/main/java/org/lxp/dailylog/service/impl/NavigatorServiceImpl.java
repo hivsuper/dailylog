@@ -3,11 +3,12 @@ package org.lxp.dailylog.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.lxp.dailylog.model.Navigator;
-import org.lxp.dailylog.service.INavigatorService;
+import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.service.mapper.NavigatorMapper;
 import org.lxp.dailylog.service.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  */
 @Service
-public class NavigatorServiceImpl implements INavigatorService {
-  @Autowired
+public class NavigatorServiceImpl implements NavigatorService {
+  @Resource
   private NavigatorMapper navigatorMapper;
 
   @Override

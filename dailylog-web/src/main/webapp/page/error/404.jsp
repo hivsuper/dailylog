@@ -8,7 +8,7 @@
 </head>
 <body>
 	<% 
-	response.sendRedirect(request.getContextPath()+"/result/ERROR");
+	response.sendRedirect(request.getContextPath()+"/404");
 	%>
 </body>
 </html>

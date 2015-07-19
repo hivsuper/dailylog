@@ -5,14 +5,36 @@
   <parent>
     <groupId>org.lxp</groupId>
     <artifactId>dailylog-parent</artifactId>
-    <version>0.0.1-RELEASE</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>dailylog-web</artifactId>
   <packaging>war</packaging>
   <name>dailylog-web</name>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <properties>
+        <env></env>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>live</id>
+      <properties>
+        <env>live</env>
+      </properties>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+    </profile>
+  </profiles>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    <timestamp>${maven.build.timestamp}</timestamp>
   </properties>
   <dependencies>
     <dependency>
@@ -28,10 +50,6 @@
       <artifactId>junit</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-    </dependency>
-    <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
     </dependency>
@@ -44,6 +62,10 @@
       <artifactId>logback-core</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.logback-extensions</groupId>
+      <artifactId>logback-ext-spring</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
     </dependency>
@@ -51,6 +73,16 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -63,8 +95,23 @@
       <groupId>com.github.axet</groupId>
       <artifactId>kaptcha</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.mangofactory</groupId>
+      <artifactId>swagger-springmvc</artifactId>
+    </dependency>
   </dependencies>
   <build>
+    <finalName>dailylog</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources/${env}</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -84,26 +131,12 @@
               </archive>
               <webResources>
                 <resource>
-                  <directory>../dailylog-service/etc/</directory>
-                  <targetPath>WEB-INF/classes/</targetPath>
-                  <includes>
-                    <include>spring/applicationContext.xml</include>
-                    <include>mybatis-config.xml</include>
-                  </includes>
-                  <filtering>false</filtering>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
                 </resource>
                 <resource>
-                  <directory>etc</directory>
-                  <targetPath>/</targetPath>
-                  <filtering>false</filtering>
-                </resource>
-                <resource>
-                  <directory>etc-dev</directory>
-                  <targetPath>/</targetPath>
-                  <excludes>
-                    <exclude>WEB-INF/classes/logback.xml</exclude>
-                  </excludes>
-                  <filtering>false</filtering>
+                  <directory>src/main/resources/${env}</directory>
+                  <filtering>true</filtering>
                 </resource>
               </webResources>
             </configuration>
@@ -123,26 +156,12 @@
               </archive>
               <webResources>
                 <resource>
-                  <directory>../dailylog-service/etc</directory>
-                  <targetPath>WEB-INF/classes/</targetPath>
-                  <includes>
-                    <include>spring/applicationContext.xml</include>
-                    <include>mybatis-config.xml</include>
-                  </includes>
-                  <filtering>false</filtering>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
                 </resource>
                 <resource>
-                  <directory>etc</directory>
-                  <targetPath>/</targetPath>
-                  <excludes>
-                    <exclude>WEB-INF/classes/logback.xml</exclude>
-                  </excludes>
-                  <filtering>false</filtering>
-                </resource>
-                <resource>
-                  <directory>etc-dev</directory>
-                  <targetPath>/</targetPath>
-                  <filtering>false</filtering>
+                  <directory>src/main/resources/${env}</directory>
+                  <filtering>true</filtering>
                 </resource>
               </webResources>
             </configuration>

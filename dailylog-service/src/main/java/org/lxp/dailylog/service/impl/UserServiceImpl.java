@@ -3,11 +3,12 @@ package org.lxp.dailylog.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.lxp.dailylog.model.User;
-import org.lxp.dailylog.service.IUserService;
+import org.lxp.dailylog.service.UserService;
 import org.lxp.dailylog.service.mapper.UserMapper;
 import org.lxp.dailylog.service.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,30 +17,16 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  */
 @Service
-public class UserServiceImpl implements IUserService {
-  @Autowired
+public class UserServiceImpl implements UserService {
+  @Resource
   private UserMapper userMapper;
 
-  /**
-   * 添加一个用户
-   * 
-   * @param user
-   *          待添加用户对象
-   * @return
-   */
   @Override
   public void add(User user) {
     user.setCreatetime(DateUtil.now());
     userMapper.add(user);
   }
 
-  /**
-   * 按用户名查询用户
-   * 
-   * @param username
-   *          用户名
-   * @return
-   */
   @Override
   public User queryOneUserByUsername(String username) {
     Map<String, Object> map = new HashMap<String, Object>();

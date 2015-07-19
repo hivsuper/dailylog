@@ -3,11 +3,12 @@ package org.lxp.dailylog.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.lxp.dailylog.model.Account;
-import org.lxp.dailylog.service.IAccountService;
+import org.lxp.dailylog.service.AccountService;
 import org.lxp.dailylog.service.mapper.AccountMapper;
 import org.lxp.dailylog.service.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  */
 @Service
-public class AccountServiceImpl implements IAccountService {
-  @Autowired
+public class AccountServiceImpl implements AccountService {
+  @Resource
   private AccountMapper accountMapper;
 
   @Override

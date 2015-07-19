@@ -12,8 +12,4 @@ public class DateUtil {
   public static Date now() {
     return Calendar.getInstance().getTime();
   }
-
-  public static void main(String[] args) {
-    System.out.println(DateUtil.now());
-  }
 }
