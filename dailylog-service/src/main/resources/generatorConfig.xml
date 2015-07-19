@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <classPathEntry
+    location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar" />
+  <context id="mysql" defaultModelType="flat">
+    <property name="autoDelimitKeywords" value="true" />
+    <property name="beginningDelimiter" value="`" />
+    <property name="endingDelimiter" value="`" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dailylog?characterEncoding=UTF-8"
+      userId="root" password="" />
+    <javaModelGenerator targetPackage="org.lxp.dailylog.model" targetProject="src/main/java" />
+    <sqlMapGenerator targetPackage="org.lxp.dailylog.service.mapper" targetProject="src/main/resources" />
+    <javaClientGenerator targetPackage="org.lxp.dailylog.service.mapper" targetProject="src/main/java"
+      type="XMLMAPPER" />
+
+    <table tableName="account" domainObjectName="AccountBase" alias="account">
+      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+    </table>
+    <table tableName="navigator" domainObjectName="NavigatorBase" alias="navigator">
+      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+    </table>
+    <table tableName="user" domainObjectName="UserBase" alias="user">
+      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+    </table>
+  </context>
+</generatorConfiguration>

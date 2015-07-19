@@ -1,13 +1,13 @@
 package org.lxp.dailylog.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.lxp.dailylog.model.Account;
+import org.lxp.dailylog.model.AccountBase;
+import org.lxp.dailylog.model.AccountBaseExample;
 import org.lxp.dailylog.service.AccountService;
-import org.lxp.dailylog.service.mapper.AccountMapper;
+import org.lxp.dailylog.service.mapper.AccountBaseMapper;
 import org.lxp.dailylog.service.util.DateUtil;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +19,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl implements AccountService {
   @Resource
-  private AccountMapper accountMapper;
+  private AccountBaseMapper accountBaseMapper;
 
   @Override
-  public void addAccount(Account account) {
+  public void addAccount(AccountBase account) {
     account.setCreatetime(DateUtil.now());
-    accountMapper.add(account);
+    accountBaseMapper.insertSelective(account);
   }
 
   @Override
-  public Account queryOneLike(String keyword) {
-    Map<String, Object> map = new HashMap<String, Object>();
-    map.put("username", keyword);
-    map.put("remail", keyword);
-    map.put("fpemail", keyword);
-    map.put("productname", keyword);
-    map.put("producturl", keyword);
-    return accountMapper.queryOne(map);
+  public AccountBase queryOneLike(String keyword) {
+    AccountBaseExample example = new AccountBaseExample();
+    keyword = String.format("%%%s%%", keyword);
+    example.createCriteria().andUsernameLike(keyword);
+    example.or(example.createCriteria().andRemailLike(keyword));
+    example.or(example.createCriteria().andFpemailLike(keyword));
+    example.or(example.createCriteria().andProductnameLike(keyword));
+    example.or(example.createCriteria().andProducturlLike(keyword));
+    List<AccountBase> list = accountBaseMapper.selectByExample(example);
+    return (list != null && !list.isEmpty()) ? list.get(0) : null;
   }
 }

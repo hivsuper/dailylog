@@ -3,9 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="org.lxp.dailylog.model.Account" alias="Account" />
-    <typeAlias type="org.lxp.dailylog.model.Navigator" alias="Navigator" />
-    <typeAlias type="org.lxp.dailylog.model.User" alias="User" />
+    <typeAlias type="org.lxp.dailylog.model.AccountBase" alias="Account" />
+    <typeAlias type="org.lxp.dailylog.model.NavigatorBase" alias="Navigator" />
+    <typeAlias type="org.lxp.dailylog.model.UserBase" alias="User" />
   </typeAliases>
   <mappers>
     <package name="org.lxp.dailylog.service.mapper" />

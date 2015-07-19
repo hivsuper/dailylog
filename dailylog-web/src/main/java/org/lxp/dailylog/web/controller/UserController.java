@@ -6,7 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.lxp.dailylog.model.User;
+import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class UserController {
   @ApiOperation(value = "用户主页")
   public ModelAndView home() {
     ModelAndView mav = new ModelAndView("/page/user/home.jsp");
-    User user = (User) session.getAttribute(USER);
+    UserBase user = (UserBase) session.getAttribute(USER);
     mav.addObject(USER, user);
     LOG.debug("home page");
     return mav;

@@ -1,6 +1,6 @@
 package org.lxp.dailylog.service;
 
-import org.lxp.dailylog.model.Account;
+import org.lxp.dailylog.model.AccountBase;
 
 /**
  * @author super
@@ -8,7 +8,7 @@ import org.lxp.dailylog.model.Account;
  * @version 1.0
  */
 public interface AccountService {
-  public void addAccount(Account account);
+  public void addAccount(AccountBase account);
 
-  public Account queryOneLike(String keyword);
+  public AccountBase queryOneLike(String keyword);
 }
