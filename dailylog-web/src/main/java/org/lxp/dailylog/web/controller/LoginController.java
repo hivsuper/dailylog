@@ -42,7 +42,7 @@ public class LoginController {
   @RequestMapping(value = "/", method = GET)
   @ApiOperation(value = "主页")
   public ModelAndView index() {
-    ModelAndView mav = new ModelAndView("/page/login/login.jsp");
+    ModelAndView mav = new ModelAndView("/page/index/index.jsp");
     return mav;
   }
 
@@ -54,7 +54,7 @@ public class LoginController {
   }
 
   @ResponseBody
-  @RequestMapping(value = "/login/ajaxLogin", method = POST, produces = APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
   @ApiOperation(value = "登录")
   public JsonVo<Void> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
       @ApiParam(value = "密码") @RequestParam(required = true) String password,
@@ -74,7 +74,7 @@ public class LoginController {
     return jsonVo;
   }
 
-  @RequestMapping(value = "/login/logout", method = GET)
+  @RequestMapping(value = "/logout", method = GET)
   @ApiOperation(value = "登出")
   public String logout() {
     session.removeAttribute(USER);

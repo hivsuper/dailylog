@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
   @Override
   public UserBase login(String account, String password) throws CredentialNotMatchException {
     UserBase user = userService.queryOneUserByUsername(account);
-    if (!encode(password).equals(user.getPassword())) {
+    if (user == null || !encode(password).equals(user.getPassword())) {
       throw new CredentialNotMatchException(String.format("%s%s", account, "用户名或密码不正确"));
     }
     return user;

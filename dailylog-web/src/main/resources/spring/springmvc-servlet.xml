@@ -35,6 +35,7 @@
   <mvc:resources mapping="/css/**" location="/static/css/" />
   <mvc:resources mapping="/img/**" location="/static/img/" />
   <mvc:resources mapping="/swagger/**" location="/swagger/" />
+  <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
   <bean id="swaggerFilter" class="org.lxp.dailylog.web.swagger.SwaggerFilter">
     <constructor-arg value="${dailylog.swagger.enabled}" />
   </bean>
@@ -55,22 +56,23 @@
       <property name="excludes">
         <set>
           <value>/login</value>
-          <value>/index</value>
+          <value>/login.json</value>
+          <value>/logout</value>
           <value>/version</value>
         </set>
       </property>
       <property name="excludePaths">
         <set>
-          <value>/login/</value>
           <value>/404</value>
           <value>/js/</value>
           <value>/css/</value>
           <value>/img/</value>
           <value>/swagger/</value>
+          <value>/bootstrap/</value>
           <value>/api-docs</value>
         </set>
       </property>
-      <property name="ajaxPath" value="/ajax" />
+      <property name="ajaxPath" value=".json" />
     </bean>
   </mvc:interceptors>
 </beans>    

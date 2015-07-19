@@ -9,17 +9,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/login.css' />" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录页</title>
+<!-- Bootstrap core CSS -->
+<link href="<c:url value='/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="<c:url value='/bootstrap/css/signin.css' />" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="<c:url value='/bootstrap/js/html5shiv.min.js' />"></script>
+  <script src="<c:url value='/bootstrap/js/respond.min.js' />"></script>
+<![endif]-->
 <script type="text/javascript" src="<c:url value='/js/jquery-1.11.3.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/md5.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/tools.js' />"></script>
 <script type="text/javascript">
   $(function() {
-    var loginUrl = basePath + '/login/ajaxLogin';
-    alert(loginUrl);
+    $(document).off('.btn.data-api');
+    $('#submit-btn').on(
+        'click',
+        function() {
+          var param = 'account=' + $.trim($('#inputEmail').val()) + '&password='
+              + $.md5($.trim($('#inputPassword').val()));
+          $.ajax({
+            type : 'POST',
+            url : basePath + '/login.json',
+            data : param,
+            success : function(data) {
+              if (data.code == 0) {
+                alert('登录成功');
+              } else {
+                alert('登录失败');
+                window.location.href = basePath + '/';
+              }
+            }
+          });
+          return false;
+        });
   });
 </script>
 </head>
-<body></body>
+<body>
+  <div class="container">
+    <form class="form-signin">
+      <h2 class="form-signin-heading">请登录</h2>
+      <label for="inputEmail" class="sr-only">用户名</label> <input type="email" id="inputEmail" class="form-control"
+        placeholder="Email address" required autofocus /> <label for="inputPassword" class="sr-only">密码</label> <input
+        type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+      <div class="checkbox">
+        <label> <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit-btn">确定</button>
+    </form>
+  </div>
+</body>
 </html>

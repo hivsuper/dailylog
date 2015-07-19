@@ -20,27 +20,30 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
   private Set<String> excludes;
   private Set<String> excludePaths;
   private String ajaxPath;
+  private static final String SLASH = "/";
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     boolean result = true;
-    HttpSession session = request.getSession();
     String uri = request.getServletPath();
-    if (uri.endsWith("/")) {
-      response.sendRedirect(request.getContextPath() + uri.substring(0, uri.length() - 1));
-    } else if (this.exclude(uri)) {
-      result = true;
-    } else {
-      boolean isLogin = session.getAttribute(USER) != null;
-      if (uri.contains(ajaxPath) && !isLogin) {
-        PrintWriter out = response.getWriter();
-        out.write("403");
-        out.flush();
+    if (!SLASH.equals(uri)) {
+      HttpSession session = request.getSession();
+      if (uri.endsWith(SLASH)) {
+        response.sendRedirect(request.getContextPath() + uri.substring(0, uri.length() - 1));
+      } else if (this.exclude(uri)) {
+        result = true;
       } else {
-        if (!isLogin) {
-          response.sendRedirect(request.getContextPath() + "/404");
+        boolean isLogin = session.getAttribute(USER) != null;
+        if (uri.endsWith(ajaxPath) && !isLogin) {
+          PrintWriter out = response.getWriter();
+          out.write("403");
+          out.flush();
         } else {
-          result = isLogin;
+          if (!isLogin) {
+            response.sendRedirect(request.getContextPath() + "/404");
+          } else {
+            result = isLogin;
+          }
         }
       }
     }
