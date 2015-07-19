@@ -12,8 +12,8 @@
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dailylog?characterEncoding=UTF-8"
       userId="root" password="" />
     <javaModelGenerator targetPackage="org.lxp.dailylog.model" targetProject="src/main/java" />
-    <sqlMapGenerator targetPackage="org.lxp.dailylog.service.mapper" targetProject="src/main/resources" />
-    <javaClientGenerator targetPackage="org.lxp.dailylog.service.mapper" targetProject="src/main/java"
+    <sqlMapGenerator targetPackage="org.lxp.dailylog.dao.mapper" targetProject="src/main/resources" />
+    <javaClientGenerator targetPackage="org.lxp.dailylog.dao.mapper" targetProject="src/main/java"
       type="XMLMAPPER" />
 
     <table tableName="account" domainObjectName="AccountBase" alias="account">

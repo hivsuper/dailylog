@@ -8,6 +8,6 @@
     <typeAlias type="org.lxp.dailylog.model.UserBase" alias="User" />
   </typeAliases>
   <mappers>
-    <package name="org.lxp.dailylog.service.mapper" />
+    <package name="org.lxp.dailylog.dao.mapper" />
   </mappers>
 </configuration>

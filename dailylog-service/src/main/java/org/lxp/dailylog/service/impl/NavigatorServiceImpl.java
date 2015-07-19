@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.lxp.dailylog.dao.mapper.NavigatorBaseMapper;
 import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.model.NavigatorBaseExample;
 import org.lxp.dailylog.service.NavigatorService;
-import org.lxp.dailylog.service.mapper.NavigatorBaseMapper;
 import org.lxp.dailylog.service.util.DateUtil;
 import org.springframework.stereotype.Service;
 
