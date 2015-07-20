@@ -5,12 +5,11 @@
   <parent>
     <groupId>org.lxp</groupId>
     <artifactId>dailylog-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-RELEASE</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>dailylog-web</artifactId>
   <packaging>war</packaging>
-  <name>dailylog-web</name>
   <profiles>
     <profile>
       <id>default</id>

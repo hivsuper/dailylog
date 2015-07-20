@@ -1,6 +1,6 @@
 package org.lxp.dailylog.service;
 
-import org.lxp.dailylog.model.User;
+import org.lxp.dailylog.model.UserBase;
 
 /**
  * @author super
@@ -8,21 +8,7 @@ import org.lxp.dailylog.model.User;
  * @version 1.0
  */
 public interface UserService {
-  /**
-   * 添加一个用户
-   * 
-   * @param user
-   *          待添加用户对象
-   * @return
-   */
-  public void add(User user);
+  public void add(UserBase user);
 
-  /**
-   * 按用户名查询用户
-   * 
-   * @param username
-   *          用户名
-   * @return
-   */
-  public User queryOneUserByUsername(String username);
+  public UserBase queryOneUserByUsername(String username);
 }

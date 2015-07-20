@@ -1,14 +1,14 @@
 package org.lxp.dailylog.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.lxp.dailylog.model.User;
+import org.lxp.dailylog.dao.mapper.UserBaseMapper;
+import org.lxp.dailylog.model.UserBase;
+import org.lxp.dailylog.model.UserBaseExample;
 import org.lxp.dailylog.service.UserService;
-import org.lxp.dailylog.service.mapper.UserMapper;
-import org.lxp.dailylog.service.util.DateUtil;
+import org.lxp.dailylog.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,19 +19,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
   @Resource
-  private UserMapper userMapper;
+  private UserBaseMapper userBaseMapper;
 
   @Override
-  public void add(User user) {
+  public void add(UserBase user) {
     user.setCreatetime(DateUtil.now());
-    userMapper.add(user);
+    userBaseMapper.insertSelective(user);
   }
 
   @Override
-  public User queryOneUserByUsername(String username) {
-    Map<String, Object> map = new HashMap<String, Object>();
-    map.put("username", username);
-    return userMapper.queryOne(map);
+  public UserBase queryOneUserByUsername(String username) {
+    UserBaseExample example = new UserBaseExample();
+    example.createCriteria().andUsernameEqualTo(username);
+    List<UserBase> list = userBaseMapper.selectByExample(example);
+    return (list != null && !list.isEmpty()) ? list.get(0) : null;
   }
 
 }

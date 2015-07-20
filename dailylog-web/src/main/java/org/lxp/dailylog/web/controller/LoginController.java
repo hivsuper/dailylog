@@ -1,7 +1,7 @@
 package org.lxp.dailylog.web.controller;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
-import static org.lxp.dailylog.service.util.StringHolder.USER;
+import static org.lxp.dailylog.web.util.StringHolder.USER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.lxp.dailylog.exception.DailylogException;
 import org.lxp.dailylog.exception.VerificationCodeNotMatchException;
-import org.lxp.dailylog.model.User;
+import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.LoginService;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.slf4j.Logger;
@@ -42,7 +42,7 @@ public class LoginController {
   @RequestMapping(value = "/", method = GET)
   @ApiOperation(value = "主页")
   public ModelAndView index() {
-    ModelAndView mav = new ModelAndView("/page/login/login.jsp");
+    ModelAndView mav = new ModelAndView("/page/index/index.jsp");
     return mav;
   }
 
@@ -54,17 +54,17 @@ public class LoginController {
   }
 
   @ResponseBody
-  @RequestMapping(value = "/login/ajaxLogin", method = POST, produces = APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
   @ApiOperation(value = "登录")
   public JsonVo<Void> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
-      @ApiParam(value = "密码") @RequestParam(required = true) String passwd,
+      @ApiParam(value = "密码") @RequestParam(required = true) String password,
       @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode) {
     JsonVo<Void> jsonVo = new JsonVo<>();
     try {
       if (hasText(verifycode) && !verifycode.equals(session.getAttribute(KAPTCHA_SESSION_KEY))) {
         throw new VerificationCodeNotMatchException(verifycode);
       } else {
-        User user = loginService.login(account, passwd);
+        UserBase user = loginService.login(account, password);
         session.setAttribute(USER, user);
       }
     } catch (DailylogException e) {
@@ -74,7 +74,7 @@ public class LoginController {
     return jsonVo;
   }
 
-  @RequestMapping(value = "/login/logout", method = GET)
+  @RequestMapping(value = "/logout", method = GET)
   @ApiOperation(value = "登出")
   public String logout() {
     session.removeAttribute(USER);

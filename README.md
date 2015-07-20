@@ -1,9 +1,11 @@
 dailylogv2
 ==========
 
-split dailylog into several modules
+Q: How to run the project?
+A:1. Run command `mvn clean install` on dailylog-parent
+2. Run command `mvn clean tomcat7:run` on dailylog-web
+3. Visit in web browser: http://127.0.0.1:8080/dailylog/login
 
-1. Run in Eclipse(Kepler) with cammand: clean tomcat7:run-war -Dmaven.tomcat.port=8080
-2. Visit in web browser: http://127.0.0.1:8080/dailylog/login
-3. Since it must be run after packaging war is finished, javascript/css/jsp amend will never be reloaded unless being redeployed.
-4. Double click on dailylog-web module->Build Path->JavaScript->Include Path->Source->Excluded->Edit, add ext-all.js into `Exclusion patterns` to avoid build this file every time when build automatically.
+
+Q: How to generate mapper.xml and mapper classes?
+A: Run command `mvn mybatis-generator:generate` on dailylog-service

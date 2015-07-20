@@ -1,6 +1,6 @@
 package org.lxp.dailylog.service;
 
-import org.lxp.dailylog.model.Navigator;
+import org.lxp.dailylog.model.NavigatorBase;
 
 /**
  * @author super
@@ -8,7 +8,7 @@ import org.lxp.dailylog.model.Navigator;
  * @version 1.0
  */
 public interface NavigatorService {
-  public void addNavigator(Navigator navigator);
+  public void addNavigator(NavigatorBase navigator);
 
-  public Navigator queryOneByLike(String keyword);
+  public NavigatorBase queryOneByLike(String keyword);
 }
