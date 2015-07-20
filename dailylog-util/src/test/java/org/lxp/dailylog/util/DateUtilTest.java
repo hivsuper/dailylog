@@ -1,8 +1,9 @@
-package org.lxp.dailylog.service.util;
+package org.lxp.dailylog.util;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.lxp.dailylog.util.DateUtil;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**

@@ -8,7 +8,7 @@ import org.lxp.dailylog.dao.mapper.UserBaseMapper;
 import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.model.UserBaseExample;
 import org.lxp.dailylog.service.UserService;
-import org.lxp.dailylog.service.util.DateUtil;
+import org.lxp.dailylog.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 /**

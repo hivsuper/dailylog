@@ -1,7 +1,7 @@
 package org.lxp.dailylog.web.controller;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
-import static org.lxp.dailylog.service.util.StringHolder.USER;
+import static org.lxp.dailylog.web.util.StringHolder.USER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;

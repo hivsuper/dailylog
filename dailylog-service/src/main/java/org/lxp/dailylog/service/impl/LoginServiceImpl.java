@@ -1,6 +1,6 @@
 package org.lxp.dailylog.service.impl;
 
-import static org.lxp.dailylog.service.util.CiphertextUtil.encode;
+import static org.lxp.dailylog.util.CiphertextUtil.encode;
 
 import javax.annotation.Resource;
 

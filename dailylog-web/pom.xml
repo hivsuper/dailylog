@@ -10,7 +10,6 @@
   </parent>
   <artifactId>dailylog-web</artifactId>
   <packaging>war</packaging>
-  <name>dailylog-web</name>
   <profiles>
     <profile>
       <id>default</id>

@@ -8,7 +8,7 @@ import org.lxp.dailylog.dao.mapper.NavigatorBaseMapper;
 import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.model.NavigatorBaseExample;
 import org.lxp.dailylog.service.NavigatorService;
-import org.lxp.dailylog.service.util.DateUtil;
+import org.lxp.dailylog.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 /**

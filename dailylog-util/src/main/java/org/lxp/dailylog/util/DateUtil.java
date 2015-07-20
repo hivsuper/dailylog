@@ -1,4 +1,4 @@
-package org.lxp.dailylog.service.util;
+package org.lxp.dailylog.util;
 
 import java.util.Calendar;
 import java.util.Date;

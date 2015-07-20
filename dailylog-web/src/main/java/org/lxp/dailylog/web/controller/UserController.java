@@ -1,6 +1,6 @@
 package org.lxp.dailylog.web.controller;
 
-import static org.lxp.dailylog.service.util.StringHolder.USER;
+import static org.lxp.dailylog.web.util.StringHolder.USER;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import javax.annotation.Resource;

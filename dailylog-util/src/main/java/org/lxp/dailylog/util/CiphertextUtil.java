@@ -1,8 +1,7 @@
-package org.lxp.dailylog.service.util;
+package org.lxp.dailylog.util;
 
 import static org.apache.commons.codec.binary.Base64.decodeBase64;
 import static org.apache.commons.codec.binary.Base64.encodeBase64;
-import static org.lxp.dailylog.service.util.StringHolder.SEMICOLON;
 import static org.springframework.util.StringUtils.delimitedListToStringArray;
 
 /**
@@ -11,7 +10,7 @@ import static org.springframework.util.StringUtils.delimitedListToStringArray;
  */
 public class CiphertextUtil {
 
-  private static final String SEPARATOR = SEMICOLON;
+  private static final String SEPARATOR = ";";
   private static final String SALT = "lee";
 
   public static String[] decode(String token) {

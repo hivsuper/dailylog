@@ -1,6 +1,6 @@
 package org.lxp.dailylog.web.util;
 
-import static org.lxp.dailylog.service.util.CiphertextUtil.encode;
+import static org.lxp.dailylog.util.CiphertextUtil.encode;
 
 import java.util.Calendar;
 
@@ -10,7 +10,7 @@ import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.AccountService;
 import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.service.UserService;
-import org.lxp.dailylog.service.util.DateUtil;
+import org.lxp.dailylog.util.DateUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

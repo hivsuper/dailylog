@@ -1,6 +1,6 @@
 package org.lxp.dailylog.web.interceptor;
 
-import static org.lxp.dailylog.service.util.StringHolder.USER;
+import static org.lxp.dailylog.web.util.StringHolder.USER;
 
 import java.io.PrintWriter;
 import java.util.Set;
