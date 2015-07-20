@@ -112,6 +112,7 @@
         <configuration>
           <verbose>true</verbose>
           <overwrite>true</overwrite>
+          <configurationFile>${basedir}/etc-dev/generatorConfig.xml</configurationFile>
         </configuration>
         <dependencies>
           <dependency>
