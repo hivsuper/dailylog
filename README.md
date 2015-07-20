@@ -1,8 +1,11 @@
 dailylogv2
 ==========
 
-How to run the project?
-
-1. Run in Eclipse(Kepler) on dailylog-parent with command `clean install`
-2. Run in Eclipse(Kepler) on dailylog-web with command `clean tomcat7:run`
+Q: How to run the project?
+A:
+1. Run command `mvn clean install` on dailylog-parent
+2. Run command `mvn clean tomcat7:run` on dailylog-web
 3. Visit in web browser: http://127.0.0.1:8080/dailylog/login
+
+Q: How to generate mapper.xml and mapper classes?
+A: Run command `mvn mybatis-generator:generate` on dailylog-service
