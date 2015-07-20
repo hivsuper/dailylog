@@ -52,27 +52,24 @@
     </security:filter-chain-map>
   </bean>
   <mvc:interceptors>
-    <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor">
-      <property name="excludes">
-        <set>
-          <value>/login</value>
-          <value>/login.json</value>
-          <value>/logout</value>
-          <value>/version</value>
-        </set>
-      </property>
-      <property name="excludePaths">
-        <set>
-          <value>/404</value>
-          <value>/js/</value>
-          <value>/css/</value>
-          <value>/img/</value>
-          <value>/swagger/</value>
-          <value>/bootstrap/</value>
-          <value>/api-docs</value>
-        </set>
-      </property>
-      <property name="ajaxPath" value=".json" />
-    </bean>
+    <mvc:interceptor>
+      <mvc:mapping path="/**" />
+      <mvc:exclude-mapping path="/" />
+      <mvc:exclude-mapping path="/login" />
+      <mvc:exclude-mapping path="/login.json" />
+      <mvc:exclude-mapping path="/logout" />
+      <mvc:exclude-mapping path="/version" />
+      <mvc:exclude-mapping path="/404" />
+      <mvc:exclude-mapping path="/js/**" />
+      <mvc:exclude-mapping path="/css/**" />
+      <mvc:exclude-mapping path="/img/**" />
+      <mvc:exclude-mapping path="/swagger/**" />
+      <mvc:exclude-mapping path="/bootstrap/**" />
+      <mvc:exclude-mapping path="/api-docs" />
+      <mvc:exclude-mapping path="/api-docs/**" />
+      <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor">
+        <property name="ajaxPath" value=".json" />
+      </bean>
+    </mvc:interceptor>
   </mvc:interceptors>
 </beans>    
