@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.lxp</groupId>
     <artifactId>dailylog-parent</artifactId>
-    <version>develop-SNAPSHOT</version>
+    <version>0.0.3-RELEASE</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>dailylog-service</artifactId>
@@ -123,7 +123,7 @@
           <dependency>
             <groupId>org.lxp</groupId>
             <artifactId>dailylog-util</artifactId>
-            <version>develop-SNAPSHOT</version>
+            <version>0.0.3-RELEASE</version>
           </dependency>
         </dependencies>
       </plugin>
