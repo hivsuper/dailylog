@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.lxp</groupId>
     <artifactId>dailylog-parent</artifactId>
-    <version>0.0.3-RELEASE</version>
+    <version>develop-SNAPSHOT</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>dailylog-service</artifactId>
@@ -112,6 +112,7 @@
         <configuration>
           <verbose>true</verbose>
           <overwrite>true</overwrite>
+          <configurationFile>${basedir}/etc-dev/generatorConfig.xml</configurationFile>
         </configuration>
         <dependencies>
           <dependency>
@@ -122,7 +123,7 @@
           <dependency>
             <groupId>org.lxp</groupId>
             <artifactId>dailylog-util</artifactId>
-            <version>0.0.3-RELEASE</version>
+            <version>develop-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
