@@ -35,7 +35,7 @@ public class UserController {
   @RequestMapping(value = "/home", method = GET)
   @ApiOperation(value = "用户主页")
   public ModelAndView home() {
-    ModelAndView mav = new ModelAndView("/page/user/home.jsp");
+    ModelAndView mav = new ModelAndView("/WEB-INF/page/user/home.jsp");
     UserBase user = (UserBase) session.getAttribute(USER);
     mav.addObject(USER, user);
     LOG.debug("home page");

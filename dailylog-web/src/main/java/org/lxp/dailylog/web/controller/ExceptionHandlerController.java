@@ -36,6 +36,6 @@ public class ExceptionHandlerController implements HandlerExceptionResolver {
   @RequestMapping(value = "/404", method = GET)
   @ApiOperation(value = "404")
   public ModelAndView _404() {
-    return new ModelAndView("/page/error/exception.jsp");
+    return new ModelAndView("/WEB-INF/page/error/exception.jsp");
   }
 }

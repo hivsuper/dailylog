@@ -42,14 +42,14 @@ public class LoginController {
   @RequestMapping(value = "/", method = GET)
   @ApiOperation(value = "主页")
   public ModelAndView index() {
-    ModelAndView mav = new ModelAndView("/page/index/index.jsp");
+    ModelAndView mav = new ModelAndView("/WEB-INF/page/index/index.jsp");
     return mav;
   }
 
   @RequestMapping(value = "/login", method = GET)
   @ApiOperation(value = "登录页")
   public ModelAndView toLogin() {
-    ModelAndView mav = new ModelAndView("/page/login/login.jsp");
+    ModelAndView mav = new ModelAndView("/WEB-INF/page/login/login.jsp");
     return mav;
   }
 
