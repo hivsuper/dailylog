@@ -1,57 +1,39 @@
 package org.lxp.dailylog.web.swagger;
 
-import javax.servlet.ServletContext;
+import static springfox.documentation.builders.PathSelectors.regex;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
-import org.springframework.web.context.ServletContextAware;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StopWatch;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.paths.RelativeSwaggerPathProvider;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Super.Li
- * @since Apr 16, 2015
+ * @since May 31, 2016
  */
 @Configuration
-@EnableSwagger
-public class SwaggerConfig implements ServletContextAware {
-  private SpringSwaggerConfig springSwaggerConfig;
-  private ServletContext servletContext;
-  private String basePath;
-
-  @Autowired
-  public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-    this.springSwaggerConfig = springSwaggerConfig;
-  }
+@EnableSwagger2
+public class SwaggerConfig {
 
   @Bean
-  public SwaggerSpringMvcPlugin customImplementation() {
-    RelativeSwaggerPathProvider swaggerPathProvider = new RelativeSwaggerPathProvider(this.servletContext);
-    if (!StringUtils.isEmpty(basePath)) {
-      swaggerPathProvider.setApiResourcePrefix(basePath);
-    }
-    return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?")
-        .pathProvider(swaggerPathProvider).swaggerGroup(this.basePath);
+  public Docket swaggerSpringfoxDocket() {
+    StopWatch watch = new StopWatch();
+    watch.start();
+    Docket swaggerSpringMvcPlugin = new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+        .genericModelSubstitutes(ResponseEntity.class).select().paths(regex(".*?")).build();
+    watch.stop();
+    return swaggerSpringMvcPlugin;
   }
 
   private ApiInfo apiInfo() {
-    ApiInfo apiInfo = new ApiInfo("Dailylog API Title", "Dailylog API Description", "Dailylog API terms of service",
-        "Dailylog API Contact Email", "Dailylog API Licence Type", "Dailylog API License URL");
+    ApiInfo apiInfo = new ApiInfo("dailylog API Title", "dailylog API Description",
+        "dailylog API terms of service", "dailylog API Contact Email", "dailylog API Licence Type",
+        "dailylog API License", "dailylog API License URL");
     return apiInfo;
-  }
-
-  @Override
-  public void setServletContext(ServletContext servletContext) {
-    this.servletContext = servletContext;
-  }
-
-  public void setBasePath(String basePath) {
-    this.basePath = basePath;
   }
 }

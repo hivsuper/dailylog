@@ -11,9 +11,7 @@
                         http://www.springframework.org/schema/security  
                         http://www.springframework.org/schema/security/spring-security-4.0.xsd">
   <context:component-scan base-package="org.lxp.dailylog.web.controller" />
-  <bean class="org.lxp.dailylog.web.swagger.SwaggerConfig">
-    <property name="basePath" value="${dailylog.basePath}" />
-  </bean>
+  <bean class="org.lxp.dailylog.web.swagger.SwaggerConfig" />
 
   <mvc:annotation-driven />
 
@@ -31,8 +29,7 @@
   </bean>
   <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
     <security:filter-chain-map request-matcher="ant">
-      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/api-docs" />
-      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/api-docs/**" />
+      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/v2/api-docs" />
       <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/swagger/**" />
       <security:filter-chain filters="encodingFilter" pattern="/**" />
     </security:filter-chain-map>
@@ -51,8 +48,7 @@
       <mvc:exclude-mapping path="/img/**" />
       <mvc:exclude-mapping path="/swagger/**" />
       <mvc:exclude-mapping path="/bootstrap/**" />
-      <mvc:exclude-mapping path="/api-docs" />
-      <mvc:exclude-mapping path="/api-docs/**" />
+      <mvc:exclude-mapping path="/v2/api-docs" />
       <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor">
         <property name="ajaxPath" value=".json" />
       </bean>

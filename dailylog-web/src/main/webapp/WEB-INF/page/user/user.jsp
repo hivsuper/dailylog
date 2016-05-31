@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<link rel="stylesheet" type="text/css" href="<s:url value='/page/static/js/flexigrid/flexigrid.pack.css' />" /> 
-<script type="text/javascript" src="<s:url value="/page/static/js/flexigrid/flexigrid.pack.js"/>"></script>
+<link rel="stylesheet" type="text/css" href="<s:url value='/js/flexigrid/flexigrid.pack.css' />" /> 
+<script type="text/javascript" src="<s:url value="/js/flexigrid/flexigrid.pack.js"/>"></script>
 <table class="flexme3" style="display: none"></table>
 <script type="text/javascript">
 $("#flex1").flexigrid({

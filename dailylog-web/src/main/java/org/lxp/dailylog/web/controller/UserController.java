@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author sli13
@@ -35,7 +35,7 @@ public class UserController {
   @RequestMapping(value = "/home", method = GET)
   @ApiOperation(value = "用户主页")
   public ModelAndView home() {
-    ModelAndView mav = new ModelAndView("/page/user/home.jsp");
+    ModelAndView mav = new ModelAndView("/WEB-INF/page/user/home.jsp");
     UserBase user = (UserBase) session.getAttribute(USER);
     mav.addObject(USER, user);
     LOG.debug("home page");
