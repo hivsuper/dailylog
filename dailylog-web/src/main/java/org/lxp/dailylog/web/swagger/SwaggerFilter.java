@@ -13,7 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * @author Super.Li
- * @since Apr 17, 2015
+ * @since May 31, 2016
  */
 public class SwaggerFilter extends OncePerRequestFilter {
   private static final Logger LOG = LoggerFactory.getLogger(SwaggerFilter.class);
@@ -27,12 +27,11 @@ public class SwaggerFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
-    LOG.info("uri={}, swaggerAllowed={}", request.getServletPath(), swaggerAllowed);
+    LOG.info("path={}, swaggerAllowed={}", request.getServletPath(), swaggerAllowed);
     if (!swaggerAllowed) {
       response.sendError(HttpServletResponse.SC_NOT_FOUND, "Swagger is not enabled in this environment");
       return;
     }
     filterChain.doFilter(request, response);
   }
-
 }

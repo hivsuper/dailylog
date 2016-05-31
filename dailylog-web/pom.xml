@@ -95,8 +95,8 @@
       <artifactId>kaptcha</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.mangofactory</groupId>
-      <artifactId>swagger-springmvc</artifactId>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
     </dependency>
   </dependencies>
   <build>
