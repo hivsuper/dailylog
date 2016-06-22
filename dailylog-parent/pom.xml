@@ -18,7 +18,7 @@
 
   <properties>
     <spring-version>4.1.6.RELEASE</spring-version>
-    <springfox.version>2.3.0</springfox.version>
+    <springfox.version>2.5.0</springfox.version>
     <jackson-version>2.5.2</jackson-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -218,6 +218,11 @@
       <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>
+        <version>${springfox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
         <version>${springfox.version}</version>
       </dependency>
     </dependencies>

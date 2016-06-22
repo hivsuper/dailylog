@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
 
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -31,9 +32,8 @@ public class SwaggerConfig {
   }
 
   private ApiInfo apiInfo() {
-    ApiInfo apiInfo = new ApiInfo("dailylog API Title", "dailylog API Description",
-        "dailylog API terms of service", "dailylog API Contact Email", "dailylog API Licence Type",
-        "dailylog API License", "dailylog API License URL");
-    return apiInfo;
+    return new ApiInfoBuilder().title("dailylog API Title").description("dailylog API Description")
+        .termsOfServiceUrl("dailylog API terms of service").license("dailylog API Licence")
+        .licenseUrl("dailylog API License URL").build();
   }
 }
