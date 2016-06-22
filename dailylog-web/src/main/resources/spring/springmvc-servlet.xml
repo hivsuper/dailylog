@@ -18,8 +18,9 @@
   <mvc:resources mapping="/js/**" location="/static/js/" />
   <mvc:resources mapping="/css/**" location="/static/css/" />
   <mvc:resources mapping="/img/**" location="/static/img/" />
-  <mvc:resources mapping="/swagger/**" location="/swagger/" />
   <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
+  <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+  <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
   <bean id="swaggerFilter" class="org.lxp.dailylog.web.swagger.SwaggerFilter">
     <constructor-arg value="${dailylog.swagger.enabled}" />
   </bean>
@@ -29,8 +30,10 @@
   </bean>
   <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
     <security:filter-chain-map request-matcher="ant">
+      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/swagger-ui.html" />
+      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/swagger-resources/**" />
       <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/v2/api-docs" />
-      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/swagger/**" />
+      <security:filter-chain filters="swaggerFilter,encodingFilter" pattern="/webjars/**" />
       <security:filter-chain filters="encodingFilter" pattern="/**" />
     </security:filter-chain-map>
   </bean>
@@ -46,9 +49,11 @@
       <mvc:exclude-mapping path="/js/**" />
       <mvc:exclude-mapping path="/css/**" />
       <mvc:exclude-mapping path="/img/**" />
-      <mvc:exclude-mapping path="/swagger/**" />
       <mvc:exclude-mapping path="/bootstrap/**" />
+      <mvc:exclude-mapping path="/swagger-ui.html" />
+      <mvc:exclude-mapping path="/swagger-resources/**" />
       <mvc:exclude-mapping path="/v2/api-docs" />
+      <mvc:exclude-mapping path="/webjars/**" />
       <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor">
         <property name="ajaxPath" value=".json" />
       </bean>
