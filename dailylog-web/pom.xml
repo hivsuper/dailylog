@@ -154,6 +154,7 @@
         <configuration>
           <warDirectory>${project.build.directory}/dailylog-local</warDirectory>
           <path>/dailylog</path>
+          <contextReloadable>true</contextReloadable>
         </configuration>
       </plugin>
     </plugins>
