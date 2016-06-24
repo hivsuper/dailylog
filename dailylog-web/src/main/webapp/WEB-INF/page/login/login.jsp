@@ -23,7 +23,7 @@
 <![endif]-->
 <script type="text/javascript" src="<c:url value='/js/jquery-1.11.3.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/md5.js' />"></script>
-<script type="text/javascript" src="<c:url value='/js/tools.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/tools.js?t=${initParam.buildTimeStamp}' />"></script>
 <script type="text/javascript">
   $(function() {
     $(document).off('.btn.data-api');
