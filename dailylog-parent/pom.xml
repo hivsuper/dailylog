@@ -4,7 +4,7 @@
 
   <groupId>org.lxp</groupId>
   <artifactId>dailylog-parent</artifactId>
-  <version>0.0.3-RELEASE</version>
+  <version>develop-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>dailylog-parent</name>
