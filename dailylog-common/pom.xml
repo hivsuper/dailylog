@@ -8,7 +8,7 @@
     <version>0.0.3-RELEASE</version>
     <relativePath>../dailylog-parent/pom.xml</relativePath>
   </parent>
-  <artifactId>dailylog-service</artifactId>
+  <artifactId>dailylog-common</artifactId>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
