@@ -8,7 +8,7 @@ A:1. Run command `mvn clean install` on dailylog-parent
 
 
 Q: How to generate mapper.xml and mapper classes?
-A: Run command `mvn mybatis-generator:generate` on dailylog-service
+A: Run command `mvn mybatis-generator:generate` on dailylog-common
 
 Q: What is the api overview?
 A: http://127.0.0.1:8080/dailylog/swagger-ui.html
