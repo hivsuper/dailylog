@@ -3,7 +3,6 @@ package org.lxp.dailylog.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.lxp.dailylog.util.Page;
 
 public class AccountBaseExample {
     protected String orderByClause;
@@ -12,7 +11,9 @@ public class AccountBaseExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Page<AccountBase> page;
+    private Integer limit;
+
+    private Integer offset;
 
     public AccountBaseExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -67,12 +68,20 @@ public class AccountBaseExample {
         distinct = false;
     }
 
-    public void setPage(Page<AccountBase> page) {
-        this.page=page;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
-    public Page<AccountBase> getPage() {
-        return page;
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {

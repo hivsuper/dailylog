@@ -3,7 +3,6 @@ package org.lxp.dailylog.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.lxp.dailylog.util.Page;
 
 public class UserBaseExample {
     protected String orderByClause;
@@ -12,7 +11,9 @@ public class UserBaseExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Page<UserBase> page;
+    private Integer limit;
+
+    private Integer offset;
 
     public UserBaseExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -67,12 +68,20 @@ public class UserBaseExample {
         distinct = false;
     }
 
-    public void setPage(Page<UserBase> page) {
-        this.page=page;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
-    public Page<UserBase> getPage() {
-        return page;
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -247,72 +256,72 @@ public class UserBaseExample {
         }
 
         public Criteria andPasswordIsNull() {
-            addCriterion("user.`password` is null");
+            addCriterion("user.password is null");
             return (Criteria) this;
         }
 
         public Criteria andPasswordIsNotNull() {
-            addCriterion("user.`password` is not null");
+            addCriterion("user.password is not null");
             return (Criteria) this;
         }
 
         public Criteria andPasswordEqualTo(String value) {
-            addCriterion("user.`password` =", value, "password");
+            addCriterion("user.password =", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordNotEqualTo(String value) {
-            addCriterion("user.`password` <>", value, "password");
+            addCriterion("user.password <>", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordGreaterThan(String value) {
-            addCriterion("user.`password` >", value, "password");
+            addCriterion("user.password >", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("user.`password` >=", value, "password");
+            addCriterion("user.password >=", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordLessThan(String value) {
-            addCriterion("user.`password` <", value, "password");
+            addCriterion("user.password <", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordLessThanOrEqualTo(String value) {
-            addCriterion("user.`password` <=", value, "password");
+            addCriterion("user.password <=", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordLike(String value) {
-            addCriterion("user.`password` like", value, "password");
+            addCriterion("user.password like", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordNotLike(String value) {
-            addCriterion("user.`password` not like", value, "password");
+            addCriterion("user.password not like", value, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordIn(List<String> values) {
-            addCriterion("user.`password` in", values, "password");
+            addCriterion("user.password in", values, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordNotIn(List<String> values) {
-            addCriterion("user.`password` not in", values, "password");
+            addCriterion("user.password not in", values, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordBetween(String value1, String value2) {
-            addCriterion("user.`password` between", value1, value2, "password");
+            addCriterion("user.password between", value1, value2, "password");
             return (Criteria) this;
         }
 
         public Criteria andPasswordNotBetween(String value1, String value2) {
-            addCriterion("user.`password` not between", value1, value2, "password");
+            addCriterion("user.password not between", value1, value2, "password");
             return (Criteria) this;
         }
 

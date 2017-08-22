@@ -1,16 +1,21 @@
 package org.lxp.dailylog.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 public class NavigatorBase {
     private Long seqid;
 
+    @ApiModelProperty(value = "site name")
     private String name;
 
+    @ApiModelProperty(value = "site link")
     private String url;
 
+    @ApiModelProperty(value = "site title used for a label")
     private String title;
 
+    @ApiModelProperty(value = "record creation time")
     private Date createtime;
 
     public Long getSeqid() {
@@ -26,7 +31,7 @@ public class NavigatorBase {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getUrl() {
@@ -34,7 +39,7 @@ public class NavigatorBase {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.url = url == null ? null : url.trim();
     }
 
     public String getTitle() {
@@ -42,7 +47,7 @@ public class NavigatorBase {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public Date getCreatetime() {

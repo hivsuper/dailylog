@@ -1,24 +1,33 @@
 package org.lxp.dailylog.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 public class AccountBase {
     private Long seqid;
 
+    @ApiModelProperty(value = "user logon name")
     private String username;
 
+    @ApiModelProperty(value = "email Address on Account")
     private String remail;
 
+    @ApiModelProperty(value = "forget password email")
     private String fpemail;
 
+    @ApiModelProperty(value = "phone number")
     private String phone;
 
+    @ApiModelProperty(value = "product name")
     private String productname;
 
+    @ApiModelProperty(value = "product url")
     private String producturl;
 
+    @ApiModelProperty(value = "registration date")
     private Date joindate;
 
+    @ApiModelProperty(value = "record creation time")
     private Date createtime;
 
     public Long getSeqid() {
@@ -34,7 +43,7 @@ public class AccountBase {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getRemail() {
@@ -42,7 +51,7 @@ public class AccountBase {
     }
 
     public void setRemail(String remail) {
-        this.remail = remail;
+        this.remail = remail == null ? null : remail.trim();
     }
 
     public String getFpemail() {
@@ -50,7 +59,7 @@ public class AccountBase {
     }
 
     public void setFpemail(String fpemail) {
-        this.fpemail = fpemail;
+        this.fpemail = fpemail == null ? null : fpemail.trim();
     }
 
     public String getPhone() {
@@ -58,7 +67,7 @@ public class AccountBase {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getProductname() {
@@ -66,7 +75,7 @@ public class AccountBase {
     }
 
     public void setProductname(String productname) {
-        this.productname = productname;
+        this.productname = productname == null ? null : productname.trim();
     }
 
     public String getProducturl() {
@@ -74,7 +83,7 @@ public class AccountBase {
     }
 
     public void setProducturl(String producturl) {
-        this.producturl = producturl;
+        this.producturl = producturl == null ? null : producturl.trim();
     }
 
     public Date getJoindate() {

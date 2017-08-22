@@ -3,21 +3,30 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-  <context id="mysql" defaultModelType="flat">
-    <property name="autoDelimitKeywords" value="true" />
-    <property name="beginningDelimiter" value="`" />
-    <property name="endingDelimiter" value="`" />
-    <plugin type="org.lxp.dailylog.mybatis.plugins.PaginationPlugin" />
+  <context id="mysql" targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.plugin.MySQLLimitPlugin" />
+    <plugin type="org.mybatis.plugin.CommentPlugin" />
     <commentGenerator>
       <property name="suppressDate" value="true" />
+      <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
       <property name="suppressAllComments" value="true" />
     </commentGenerator>
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.121:3306/dailylog?characterEncoding=UTF-8"
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.121:3306/dailylog?characterEncoding=UTF-8"
       userId="dev" password="dev" />
-    <javaModelGenerator targetPackage="org.lxp.dailylog.model" targetProject="src/main/java" />
-    <sqlMapGenerator targetPackage="org.lxp.dailylog.dao.mapper" targetProject="src/main/resources" />
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+    <javaModelGenerator targetPackage="org.lxp.dailylog.model" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="org.lxp.dailylog.dao.mapper" targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
     <javaClientGenerator targetPackage="org.lxp.dailylog.dao.mapper" targetProject="src/main/java"
-      type="XMLMAPPER" />
+      type="XMLMAPPER">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
 
     <table tableName="account" domainObjectName="AccountBase" alias="account">
       <generatedKey column="seqid" sqlStatement="MySql" identity="true" />

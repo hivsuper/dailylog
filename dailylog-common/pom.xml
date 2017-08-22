@@ -14,10 +14,6 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.lxp</groupId>
-      <artifactId>dailylog-util</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
@@ -103,6 +99,14 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -118,11 +122,11 @@
           <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
+            <version>${mysql-version}</version>
           </dependency>
           <dependency>
             <groupId>org.lxp</groupId>
-            <artifactId>dailylog-util</artifactId>
+            <artifactId>dailylog-common</artifactId>
             <version>develop-SNAPSHOT</version>
           </dependency>
         </dependencies>

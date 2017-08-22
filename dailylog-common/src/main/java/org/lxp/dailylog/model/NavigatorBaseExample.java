@@ -3,7 +3,6 @@ package org.lxp.dailylog.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.lxp.dailylog.util.Page;
 
 public class NavigatorBaseExample {
     protected String orderByClause;
@@ -12,7 +11,9 @@ public class NavigatorBaseExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Page<NavigatorBase> page;
+    private Integer limit;
+
+    private Integer offset;
 
     public NavigatorBaseExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -67,12 +68,20 @@ public class NavigatorBaseExample {
         distinct = false;
     }
 
-    public void setPage(Page<NavigatorBase> page) {
-        this.page=page;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
-    public Page<NavigatorBase> getPage() {
-        return page;
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -177,72 +186,72 @@ public class NavigatorBaseExample {
         }
 
         public Criteria andNameIsNull() {
-            addCriterion("navigator.`name` is null");
+            addCriterion("navigator.name is null");
             return (Criteria) this;
         }
 
         public Criteria andNameIsNotNull() {
-            addCriterion("navigator.`name` is not null");
+            addCriterion("navigator.name is not null");
             return (Criteria) this;
         }
 
         public Criteria andNameEqualTo(String value) {
-            addCriterion("navigator.`name` =", value, "name");
+            addCriterion("navigator.name =", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotEqualTo(String value) {
-            addCriterion("navigator.`name` <>", value, "name");
+            addCriterion("navigator.name <>", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameGreaterThan(String value) {
-            addCriterion("navigator.`name` >", value, "name");
+            addCriterion("navigator.name >", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("navigator.`name` >=", value, "name");
+            addCriterion("navigator.name >=", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLessThan(String value) {
-            addCriterion("navigator.`name` <", value, "name");
+            addCriterion("navigator.name <", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("navigator.`name` <=", value, "name");
+            addCriterion("navigator.name <=", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameLike(String value) {
-            addCriterion("navigator.`name` like", value, "name");
+            addCriterion("navigator.name like", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotLike(String value) {
-            addCriterion("navigator.`name` not like", value, "name");
+            addCriterion("navigator.name not like", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameIn(List<String> values) {
-            addCriterion("navigator.`name` in", values, "name");
+            addCriterion("navigator.name in", values, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotIn(List<String> values) {
-            addCriterion("navigator.`name` not in", values, "name");
+            addCriterion("navigator.name not in", values, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("navigator.`name` between", value1, value2, "name");
+            addCriterion("navigator.name between", value1, value2, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("navigator.`name` not between", value1, value2, "name");
+            addCriterion("navigator.name not between", value1, value2, "name");
             return (Criteria) this;
         }
 

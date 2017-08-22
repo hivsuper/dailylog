@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.lxp.dailylog.dao.mapper.NavigatorBaseMapper">
-  <resultMap id="BaseResultMap" type="org.lxp.dailylog.model.NavigatorBase">
-    <id column="navigator_seqid" jdbcType="BIGINT" property="seqid" />
-    <result column="navigator_name" jdbcType="VARCHAR" property="name" />
-    <result column="navigator_url" jdbcType="VARCHAR" property="url" />
-    <result column="navigator_title" jdbcType="VARCHAR" property="title" />
-    <result column="navigator_createtime" jdbcType="TIMESTAMP" property="createtime" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lxp.dailylog.dao.mapper.NavigatorBaseMapper" >
+  <resultMap id="BaseResultMap" type="org.lxp.dailylog.model.NavigatorBase" >
+    <id column="navigator_seqid" property="seqid" jdbcType="BIGINT" />
+    <result column="navigator_name" property="name" jdbcType="VARCHAR" />
+    <result column="navigator_url" property="url" jdbcType="VARCHAR" />
+    <result column="navigator_title" property="title" jdbcType="VARCHAR" />
+    <result column="navigator_createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -37,25 +37,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -66,147 +66,152 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
-    navigator.seqid as navigator_seqid, navigator.`name` as `navigator_name`, navigator.url as navigator_url, 
+  <sql id="Base_Column_List" >
+    navigator.seqid as navigator_seqid, navigator.name as navigator_name, navigator.url as navigator_url, 
     navigator.title as navigator_title, navigator.createtime as navigator_createtime
   </sql>
-  <select id="selectByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from navigator navigator
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
-    <if test="page != null">
-      limit #{page.offset} , #{page.pageSize}
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from navigator navigator
     where navigator.seqid = #{seqid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from navigator
     where seqid = #{seqid,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample">
+  <delete id="deleteByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" >
     delete from navigator navigator
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.lxp.dailylog.model.NavigatorBase">
-    <selectKey keyProperty="seqid" order="AFTER" resultType="java.lang.Long">
+  <insert id="insert" parameterType="org.lxp.dailylog.model.NavigatorBase" >
+    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into navigator (`name`, url, title, 
+    insert into navigator (name, url, title, 
       createtime)
     values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.lxp.dailylog.model.NavigatorBase">
-    <selectKey keyProperty="seqid" order="AFTER" resultType="java.lang.Long">
+  <insert id="insertSelective" parameterType="org.lxp.dailylog.model.NavigatorBase" >
+    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into navigator
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="name != null">
-        `name`,
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
       </if>
-      <if test="url != null">
+      <if test="url != null" >
         url,
       </if>
-      <if test="title != null">
+      <if test="title != null" >
         title,
       </if>
-      <if test="createtime != null">
+      <if test="createtime != null" >
         createtime,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="name != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="url != null">
+      <if test="url != null" >
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
+      <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
+      <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" resultType="java.lang.Integer" >
     select count(*) from navigator navigator
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update navigator navigator
-    <set>
-      <if test="record.seqid != null">
+    <set >
+      <if test="record.seqid != null" >
         navigator.seqid = #{record.seqid,jdbcType=BIGINT},
       </if>
-      <if test="record.name != null">
-        navigator.`name` = #{record.name,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        navigator.name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.url != null">
+      <if test="record.url != null" >
         navigator.url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.title != null">
+      <if test="record.title != null" >
         navigator.title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null">
+      <if test="record.createtime != null" >
         navigator.createtime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update navigator navigator
     set navigator.seqid = #{record.seqid,jdbcType=BIGINT},
-      navigator.`name` = #{record.name,jdbcType=VARCHAR},
+      navigator.name = #{record.name,jdbcType=VARCHAR},
       navigator.url = #{record.url,jdbcType=VARCHAR},
       navigator.title = #{record.title,jdbcType=VARCHAR},
       navigator.createtime = #{record.createtime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.lxp.dailylog.model.NavigatorBase">
+  <update id="updateByPrimaryKeySelective" parameterType="org.lxp.dailylog.model.NavigatorBase" >
     update navigator
-    <set>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="url != null">
+      <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
+      <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
+      <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where seqid = #{seqid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.lxp.dailylog.model.NavigatorBase">
+  <update id="updateByPrimaryKey" parameterType="org.lxp.dailylog.model.NavigatorBase" >
     update navigator
-    set `name` = #{name,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP}
