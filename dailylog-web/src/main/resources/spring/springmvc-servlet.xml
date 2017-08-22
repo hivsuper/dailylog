@@ -44,6 +44,7 @@
       <mvc:exclude-mapping path="/login" />
       <mvc:exclude-mapping path="/login.json" />
       <mvc:exclude-mapping path="/logout" />
+      <mvc:exclude-mapping path="/verifyCode.json" />
       <mvc:exclude-mapping path="/version" />
       <mvc:exclude-mapping path="/404" />
       <mvc:exclude-mapping path="/js/**" />
