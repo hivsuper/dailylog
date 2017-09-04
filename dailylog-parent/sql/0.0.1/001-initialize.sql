@@ -27,7 +27,7 @@ create table account
    primary key (seqid),
    unique key AK_Key_2 (remail, productname)
 )
-ENGINE = MYISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
@@ -37,13 +37,13 @@ create table navigator
 (
    seqid                bigint(20) not null auto_increment,
    name                 varchar(20) not null comment 'site name',
-   url                  varchar(300) not null comment 'site link',
+   url                  varchar(100) not null comment 'site link',
    title                varchar(100) default '' comment 'site title used for a label',
    createtime           datetime not null comment 'record creation time',
    primary key (seqid),
    unique key AK_Key_2 (url)
 )
-ENGINE = MYISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
@@ -59,6 +59,6 @@ create table user
    primary key (seqId),
    unique key AK_Key_2 (username)
 )
-ENGINE = MYISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
