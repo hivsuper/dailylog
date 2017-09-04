@@ -34,39 +34,14 @@
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.servicemix.bundles</groupId>
-        <artifactId>org.apache.servicemix.bundles.aopalliance</artifactId>
-        <version>1.0_6</version>
-      </dependency>
-      <dependency>
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>2.4.7</version>
       </dependency>
       <dependency>
-        <groupId>com.mchange</groupId>
-        <artifactId>mchange-commons-java</artifactId>
-        <version>0.2.7</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>1.8.0</version>
-      </dependency>
-      <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.6</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-digester</groupId>
-        <artifactId>commons-digester</artifactId>
-        <version>2.0</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>2.2</version>
       </dependency>
       <dependency>
         <groupId>jstl</groupId>

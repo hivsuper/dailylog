@@ -23,10 +23,6 @@
     </dependency>
     <!-- srping start -->
     <dependency>
-      <groupId>org.apache.servicemix.bundles</groupId>
-      <artifactId>org.apache.servicemix.bundles.aopalliance</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
     </dependency>
@@ -58,22 +54,6 @@
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.mchange</groupId>
-      <artifactId>mchange-commons-java</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-digester</groupId>
-      <artifactId>commons-digester</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
