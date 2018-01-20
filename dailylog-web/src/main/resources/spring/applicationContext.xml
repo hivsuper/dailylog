@@ -63,4 +63,6 @@
     <aop:pointcut id="pc" expression="execution(public * org.lxp.dailylog.service.impl.*.*(..))" />
     <aop:advisor pointcut-ref="pc" advice-ref="txAdvice" />
   </aop:config>
+  <!-- 启用AspectJ对Annotation的支持 -->
+  <aop:aspectj-autoproxy/>
 </beans>

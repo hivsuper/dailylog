@@ -66,4 +66,5 @@
       <bean id="loginInterceptor" class="org.lxp.dailylog.web.interceptor.LoginInterceptor" />
     </mvc:interceptor>
   </mvc:interceptors>
+  <bean class="org.lxp.dailylog.web.interceptor.LoggerAspect"/>
 </beans>    
