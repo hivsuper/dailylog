@@ -1,6 +1,6 @@
 package org.lxp.dailylog.web.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import javax.annotation.Resource;
 
@@ -25,7 +25,7 @@ public class AccountController {
     private AccountService accountService;
 
     @ResponseBody
-    @RequestMapping(value = "/add.json", method = GET)
+    @RequestMapping(value = "/add.json", method = POST)
     @ApiOperation(value = "添加帐号")
     public JsonVo<AccountBase> add(@RequestParam(required = true) String sessionId,
             @ModelAttribute AccountDto accountDto) {
