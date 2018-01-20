@@ -88,7 +88,7 @@ public class LoggerAspect {
         if (StringUtils.hasText(sessionId)) {
             sb.append(", [sessionId=");
             sb.append(sessionId);
-            sb.append(", teacherId=").append(SessionHelper.getUserId(sessionId));
+            sb.append(", userId=").append(SessionHelper.getUserId(sessionId));
             sb.append("]");
         }
         return sb;
