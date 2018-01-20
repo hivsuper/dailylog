@@ -1,58 +1,31 @@
 package org.lxp.dailylog.web.interceptor;
 
+import static org.lxp.dailylog.exception.CodeEnum.NOT_LOGIN;
 import static org.lxp.dailylog.web.util.StringHolder.USER;
-
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
+import org.lxp.dailylog.web.util.JsonHelper;
+import org.lxp.dailylog.web.util.JsonVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-/**
- * @author super
- * @version 17 Feb 2012
- */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-  private String ajaxPath;
-  private static final String SLASH = "/";
+    private static final Logger LOG = LoggerFactory.getLogger(LoginInterceptor.class);
 
-  @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    boolean result = true;
-    String uri = request.getServletPath();
-    HttpSession session = request.getSession();
-    if (uri.endsWith(SLASH)) {
-      response.sendRedirect(request.getContextPath() + uri.substring(0, uri.length() - 1));
-    } else {
-      boolean isLogin = session.getAttribute(USER) != null;
-      if (uri.endsWith(ajaxPath) && !isLogin) {
-        PrintWriter out = response.getWriter();
-        out.write("403");
-        out.flush();
-      } else {
-        if (!isLogin) {
-          response.sendRedirect(request.getContextPath() + "/404");
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        boolean isLogin = request.getSession().getAttribute(USER) != null;
+        if (isLogin) {
+            LOG.debug("heart beat");
+            return true;
         } else {
-          result = isLogin;
+            LOG.error("{} need login", request.getRequestURL());
+            response.getWriter().print(JsonHelper.toString(new JsonVo<String>(NOT_LOGIN, "not login")));
+            return false;
         }
-      }
     }
-    return result;
-  }
-
-  @Override
-  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav)
-      throws Exception {
-  }
-
-  public String getAjaxPath() {
-    return ajaxPath;
-  }
-
-  public void setAjaxPath(String ajaxPath) {
-    this.ajaxPath = ajaxPath;
-  }
 }

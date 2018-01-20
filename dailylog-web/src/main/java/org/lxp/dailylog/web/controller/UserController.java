@@ -8,37 +8,26 @@ import javax.servlet.http.HttpSession;
 
 import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.lxp.dailylog.web.util.JsonVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-/**
- * @author sli13
- * @date Aug 18, 2014 2:36:44 AM
- * @version 1.0
- */
-@Api(value = "/user", description = "用户模块")
+@Api(value = "/user")
 @Controller
 @RequestMapping("/user")
 public class UserController {
-  private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
-  @Resource
-  private UserService userService;
-  @Resource
-  private HttpSession session;
+    @Resource
+    private UserService userService;
+    @Resource
+    private HttpSession session;
 
-  @RequestMapping(value = "/home", method = GET)
-  @ApiOperation(value = "用户主页")
-  public ModelAndView home() {
-    ModelAndView mav = new ModelAndView("/WEB-INF/page/user/home.jsp");
-    UserBase user = (UserBase) session.getAttribute(USER);
-    mav.addObject(USER, user);
-    LOG.debug("home page");
-    return mav;
-  }
+    @RequestMapping(value = "/home.json", method = GET)
+    @ApiOperation(value = "用户主页")
+    public JsonVo<String> home() {
+        UserBase user = (UserBase) session.getAttribute(USER);
+        return JsonVo.success(String.format("Welcome, %s!", user.getUsername()));
+    }
 }

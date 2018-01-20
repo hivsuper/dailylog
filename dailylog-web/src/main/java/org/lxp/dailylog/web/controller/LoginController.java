@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.lxp.dailylog.exception.DailylogException;
+import org.lxp.dailylog.exception.CredentialNotMatchException;
 import org.lxp.dailylog.exception.VerificationCodeNotMatchException;
 import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.LoginService;
@@ -26,16 +26,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-/**
- * @author super
- * @since 2012-10-20 下午05:49:06
- * @version 1.0
- */
 @Controller
 public class LoginController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
@@ -45,37 +39,28 @@ public class LoginController {
     @Resource
     private HttpSession session;
 
+    @ResponseBody
     @RequestMapping(value = "/", method = GET)
     @ApiOperation(value = "主页")
-    public ModelAndView index() {
-        ModelAndView mav = new ModelAndView("/WEB-INF/page/index/index.jsp");
-        return mav;
-    }
-
-    @RequestMapping(value = "/login", method = GET)
-    @ApiOperation(value = "登录页")
-    public ModelAndView toLogin() {
-        ModelAndView mav = new ModelAndView("/WEB-INF/page/login/login.jsp");
-        return mav;
+    public String index() {
+        return "Hello!";
     }
 
     @ResponseBody
     @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "登录")
-    public JsonVo<Void> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
+    public JsonVo<UserBase> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
             @ApiParam(value = "密码") @RequestParam(required = true) String password,
-            @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode) {
-        JsonVo<Void> jsonVo = new JsonVo<>();
-        try {
-            if (hasText(verifycode) && !verifycode.equals(session.getAttribute(KAPTCHA_SESSION_KEY))) {
-                throw new VerificationCodeNotMatchException(verifycode);
-            } else {
-                UserBase user = loginService.login(account, password);
-                session.setAttribute(USER, user);
-            }
-        } catch (DailylogException e) {
-            jsonVo.setRtn(e);
-            LOG.error(e.getMessage(), e);
+            @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode)
+            throws VerificationCodeNotMatchException, CredentialNotMatchException {
+        JsonVo<UserBase> jsonVo;
+        if (hasText(verifycode) && !verifycode.equals(session.getAttribute(KAPTCHA_SESSION_KEY))) {
+            throw new VerificationCodeNotMatchException(verifycode);
+        } else {
+            UserBase user = loginService.login(account, password);
+            session.setAttribute(USER, user);
+            jsonVo = JsonVo.success(user);
+            LOG.info("{} login successfully.", user.getSeqid());
         }
         return jsonVo;
     }

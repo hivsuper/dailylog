@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.swagger.annotations.ApiOperation;
 
-/**
- * @author Super.Li
- * @since 2015年7月19日
- */
 @Controller
 public class VersionController {
     @Value("${project.version}")

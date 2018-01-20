@@ -11,28 +11,23 @@ import org.lxp.dailylog.service.UserService;
 import org.lxp.dailylog.util.DateUtil;
 import org.springframework.stereotype.Service;
 
-/**
- * @author super
- * @since 2013-4-22 下午5:50:56
- * @version 1.0
- */
 @Service
 public class UserServiceImpl implements UserService {
-  @Resource
-  private UserBaseMapper userBaseMapper;
+    @Resource
+    private UserBaseMapper userBaseMapper;
 
-  @Override
-  public void add(UserBase user) {
-    user.setCreatetime(DateUtil.now());
-    userBaseMapper.insertSelective(user);
-  }
+    @Override
+    public void add(UserBase user) {
+        user.setCreatetime(DateUtil.now());
+        userBaseMapper.insertSelective(user);
+    }
 
-  @Override
-  public UserBase queryOneUserByUsername(String username) {
-    UserBaseExample example = new UserBaseExample();
-    example.createCriteria().andUsernameEqualTo(username);
-    List<UserBase> list = userBaseMapper.selectByExample(example);
-    return (list != null && !list.isEmpty()) ? list.get(0) : null;
-  }
+    @Override
+    public UserBase queryOneUserByUsername(String username) {
+        UserBaseExample example = new UserBaseExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        List<UserBase> list = userBaseMapper.selectByExample(example);
+        return (list != null && !list.isEmpty()) ? list.get(0) : null;
+    }
 
 }

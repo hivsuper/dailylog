@@ -1,9 +1,7 @@
 package org.lxp.dailylog.web.util;
 
 public class Verify {
-
     private String code;// 如 1 + 2
-
     private Integer value;// 如 3
 
     public String getCode() {

@@ -1,41 +1,60 @@
 package org.lxp.dailylog.web.controller;
 
+import static org.lxp.dailylog.exception.CodeEnum.INTERNAL_SERVER_ERROR;
+import static org.lxp.dailylog.exception.CodeEnum.PAGE_NOT_FOUND;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import org.lxp.dailylog.exception.CodeEnum;
+import org.lxp.dailylog.exception.DailylogException;
+import org.lxp.dailylog.web.util.JsonVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import io.swagger.annotations.ApiOperation;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * @author super
- * @version 22 Apr 2012
- */
 @Controller
-public class ExceptionHandlerController implements HandlerExceptionResolver {
-  private static final Logger LOG = LoggerFactory.getLogger(ExceptionHandlerController.class);
-  @Resource
-  private HttpSession session;
+@ControllerAdvice
+public class ExceptionHandlerController {
+    private static final Logger LOG = LoggerFactory.getLogger(ExceptionHandlerController.class);
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+    static {
+        MAPPER.setSerializationInclusion(Include.NON_NULL);
+    }
 
-  @Override
-  public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
-      Exception exception) {
-    LOG.error(exception.getMessage(), exception);
-    return new ModelAndView("redirect:/404");
-  }
+    @ResponseBody
+    @RequestMapping(value = "/404", method = { GET, POST })
+    public JsonVo<String> _404() {
+        return new JsonVo<>(PAGE_NOT_FOUND, "Page Not Found");
+    }
 
-  @RequestMapping(value = "/404", method = GET)
-  @ApiOperation(value = "404")
-  public ModelAndView _404() {
-    return new ModelAndView("/WEB-INF/page/error/exception.jsp");
-  }
+    @ExceptionHandler(DailylogException.class)
+    public ModelAndView resolveException(DailylogException e) {
+        return resolveException(e, e.getCodeEnum(), e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView resolveException(Exception e) {
+        return resolveException(e, INTERNAL_SERVER_ERROR, "Internal Server Error");
+    }
+
+    private ModelAndView resolveException(Exception e, CodeEnum codeEnum, String msg) {
+        ModelAndView mav = new ModelAndView();
+        MappingJackson2JsonView view = new MappingJackson2JsonView();
+        view.setExtractValueFromSingleKeyModel(true);
+        mav.setView(view);
+        view.setObjectMapper(MAPPER);
+        JsonVo<String> returnVO = new JsonVo<>(codeEnum, msg);
+        mav.addObject(returnVO);
+        LOG.error(e.getMessage(), e);
+        return mav;
+    }
 }

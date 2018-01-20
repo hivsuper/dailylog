@@ -13,27 +13,22 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * @author Super.Li
- * @since May 31, 2016
- */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+    @Bean
+    public Docket swaggerSpringfoxDocket() {
+        StopWatch watch = new StopWatch();
+        watch.start();
+        Docket swaggerSpringMvcPlugin = new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+                .genericModelSubstitutes(ResponseEntity.class).select().paths(regex(".*?")).build();
+        watch.stop();
+        return swaggerSpringMvcPlugin;
+    }
 
-  @Bean
-  public Docket swaggerSpringfoxDocket() {
-    StopWatch watch = new StopWatch();
-    watch.start();
-    Docket swaggerSpringMvcPlugin = new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
-        .genericModelSubstitutes(ResponseEntity.class).select().paths(regex(".*?")).build();
-    watch.stop();
-    return swaggerSpringMvcPlugin;
-  }
-
-  private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("dailylog API Title").description("dailylog API Description")
-        .termsOfServiceUrl("dailylog API terms of service").license("dailylog API Licence")
-        .licenseUrl("dailylog API License URL").build();
-  }
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("dailylog API Title").description("dailylog API Description")
+                .termsOfServiceUrl("dailylog API terms of service").license("dailylog API Licence")
+                .licenseUrl("dailylog API License URL").build();
+    }
 }

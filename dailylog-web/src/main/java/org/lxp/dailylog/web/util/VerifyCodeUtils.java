@@ -79,7 +79,8 @@ public class VerifyCodeUtils {
      * @return
      * @throws IOException
      */
-    public static String outputVerifyImage(int width, int height, OutputStream outputStream, int verifySize) throws IOException {
+    public static String outputVerifyImage(int width, int height, OutputStream outputStream, int verifySize)
+            throws IOException {
         String verifyCode = generateVerifyCode(verifySize);
         outputImage(width, height, outputStream, verifyCode, true);
         return verifyCode;

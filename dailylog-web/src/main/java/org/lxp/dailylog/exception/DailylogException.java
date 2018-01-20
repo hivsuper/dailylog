@@ -1,15 +1,15 @@
 package org.lxp.dailylog.exception;
 
-/**
- * @author Super.Li
- * @since 2015年7月19日
- */
 public abstract class DailylogException extends Exception {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private CodeEnum codeEnum;
 
-  public DailylogException(String msg) {
-    super(msg);
-  }
+    public DailylogException(CodeEnum codeEnum, String msg) {
+        super(msg);
+        this.codeEnum = codeEnum;
+    }
 
-  public abstract int getCode();
+    public CodeEnum getCodeEnum() {
+        return codeEnum;
+    }
 }
