@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,7 +23,8 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 /** disable auto web security **/
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @MapperScan("org.lxp.dailylog.dao.mapper")
-public class WebApplication {
+@EnableAspectJAutoProxy
+public class Bootstarp {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;
 
@@ -56,6 +58,6 @@ public class WebApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(WebApplication.class, args);
+        SpringApplication.run(Bootstarp.class, args);
     }
 }

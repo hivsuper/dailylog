@@ -16,14 +16,17 @@ import org.lxp.dailylog.web.util.JsonHelper;
 import org.lxp.dailylog.web.util.SessionHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
  * http://blog.csdn.net/xiaoxian8023/article/details/17285809<br/>
+ * https://stackoverflow.com/questions/30335563/spring-boot-logger-aspects<br/>
  * 
  * @Description: 全局日志类
  */
 @Aspect
+@Component
 public class LoggerAspect {
     private static final Logger LOG = LoggerFactory.getLogger("apiLog");
     private static final String HOSTNAME = IpUtil.getHostName(IpUtil.getInetAddress());
@@ -31,7 +34,7 @@ public class LoggerAspect {
     private HttpServletRequest request;
 
     // http://stackoverflow.com/questions/29653664/how-to-correctly-use-spring-aop-to-select-the-execution-of-a-method-annotated-wi
-    @Pointcut("within(@org.springframework.stereotype.Controller *) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     private void logController() {
     };
 
