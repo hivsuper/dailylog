@@ -9,17 +9,22 @@ import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.model.NavigatorBaseExample;
 import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.util.DateUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NavigatorServiceImpl implements NavigatorService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorServiceImpl.class);
     @Resource
     private NavigatorBaseMapper navigatorBaseMapper;
 
     @Override
-    public void addNavigator(NavigatorBase navigator) {
+    public NavigatorBase addNavigator(NavigatorBase navigator) {
         navigator.setCreatetime(DateUtil.now());
         navigatorBaseMapper.insertSelective(navigator);
+        LOGGER.info("add navigator id={}", navigator.getSeqid());
+        return navigator;
     }
 
     @Override

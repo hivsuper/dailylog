@@ -1,15 +1,18 @@
 package org.lxp.dailylog.util;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
-/**
- * @author super
- * @since 2013年11月8日上午12:51:21
- * @version 1.0
- */
 public class DateUtil {
-  public static Date now() {
-    return Calendar.getInstance().getTime();
-  }
+    public static Date now() {
+        LocalDate localDate = LocalDate.now();
+        ZonedDateTime zdt = localDate.atStartOfDay(ZoneId.systemDefault());
+        return Date.from(zdt.toInstant());
+    }
+
+    public static String format(ZonedDateTime zonedDateTime) {
+        return ZonedDateTime.ofInstant(zonedDateTime.toInstant(), ZoneId.of("Asia/Shanghai")).toString();
+    }
 }

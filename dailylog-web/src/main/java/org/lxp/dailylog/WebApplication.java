@@ -3,8 +3,6 @@ package org.lxp.dailylog;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-
 import org.lxp.dailylog.web.swagger.SwaggerFilter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,13 +21,13 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 /** disable auto web security **/
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@MapperScan("org.lxp.springboot.dao")
+@MapperScan("org.lxp.dailylog.dao.mapper")
 public class WebApplication {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;
 
     @Bean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
-    public FilterChainProxy getFilterChainProxy() throws ServletException, Exception {
+    public FilterChainProxy getFilterChainProxy() throws Exception {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter("UTF-8", true);
         SwaggerFilter swaggerFilter = new SwaggerFilter(swaggerAllowed);
 

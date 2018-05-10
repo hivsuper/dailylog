@@ -14,7 +14,7 @@
     <profile>
       <id>default</id>
       <properties>
-        <env></env>
+        <env>dev</env>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -64,7 +64,7 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>

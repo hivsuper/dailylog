@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        List<String> excludePaths = Arrays.asList("/", "/login.json", "/logout", "/verifyCode.json", "/version", "/404",
-//                "/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
-//        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns(excludePaths).addPathPatterns("/**");
+        List<String> excludePaths = Arrays.asList("/", "/mockTestData", "/login.json", "/logout", "/verifyCode.json", "/version",
+                "/error", "/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
+        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns(excludePaths).addPathPatterns("/**");
     }
 }

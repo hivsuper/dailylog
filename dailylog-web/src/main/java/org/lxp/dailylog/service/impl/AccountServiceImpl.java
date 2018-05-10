@@ -20,9 +20,11 @@ public class AccountServiceImpl implements AccountService {
     private AccountBaseMapper accountBaseMapper;
 
     @Override
-    public void addAccount(AccountBase account) {
+    public AccountBase addAccount(AccountBase account) {
         account.setCreatetime(DateUtil.now());
         accountBaseMapper.insertSelective(account);
+        LOG.info("add accountId={}", account.getSeqid());
+        return account;
     }
 
     @Override
