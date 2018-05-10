@@ -8,3 +8,5 @@ logs/
 *.war
 *.ear
 *.versionsBackup
+*.classpath
+*.project
