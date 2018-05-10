@@ -24,7 +24,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @MapperScan("org.lxp.dailylog.dao.mapper")
 @EnableAspectJAutoProxy
-public class Bootstarp {
+public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;
 
@@ -58,6 +58,6 @@ public class Bootstarp {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Bootstarp.class, args);
+        SpringApplication.run(Bootstrap.class, args);
     }
 }

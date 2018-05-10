@@ -67,7 +67,7 @@
           <dependency>
             <groupId>org.lxp</groupId>
             <artifactId>dailylog-common</artifactId>
-            <version>develop-SNAPSHOT</version>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
       </plugin>
