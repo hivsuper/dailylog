@@ -21,15 +21,15 @@ import org.lxp.dailylog.web.util.Verify;
 import org.lxp.dailylog.web.util.VerifyCodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@Controller
+@RestController
 public class LoginController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 

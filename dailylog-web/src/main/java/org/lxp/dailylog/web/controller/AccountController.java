@@ -8,17 +8,15 @@ import org.lxp.dailylog.dto.AccountDto;
 import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.service.AccountService;
 import org.lxp.dailylog.web.util.JsonVo;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "/account")
-@Controller
+@RestController
 @RequestMapping("/account")
 public class AccountController {
     @Resource

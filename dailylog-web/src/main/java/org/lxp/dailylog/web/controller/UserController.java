@@ -8,15 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.lxp.dailylog.service.UserService;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.lxp.dailylog.web.util.SessionHelper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "/user")
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
     @Resource

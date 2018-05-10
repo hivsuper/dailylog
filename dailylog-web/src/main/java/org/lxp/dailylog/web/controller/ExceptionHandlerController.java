@@ -10,19 +10,19 @@ import org.lxp.dailylog.exception.DailylogException;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Controller
-@ControllerAdvice
+@RestController
+@RestControllerAdvice
 public class ExceptionHandlerController {
     private static final Logger LOG = LoggerFactory.getLogger(ExceptionHandlerController.class);
     private static final ObjectMapper MAPPER = new ObjectMapper();

@@ -32,8 +32,8 @@
   </profiles>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
-    <timestamp>${maven.build.timestamp}</timestamp>
+    <maven.build.timestamp.format>yyyyMMddHHmmssZ</maven.build.timestamp.format>
+    <project.build.time>${maven.build.timestamp}</project.build.time>
   </properties>
   <dependencies>
     <dependency>
@@ -41,55 +41,30 @@
       <artifactId>dailylog-common</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>hibernate-validator</artifactId>
+          <groupId>org.hibernate</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.logback-extensions</groupId>
-      <artifactId>logback-ext-spring</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-    </dependency>
+    
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
@@ -111,45 +86,5 @@
         <filtering>true</filtering>
       </resource>
     </resources>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>artifact-package</id>
-            <phase>package</phase>
-            <goals>
-              <goal>war</goal>
-            </goals>
-            <configuration>
-              <archiveClasses>true</archiveClasses>
-              <warSourceExcludes>WEB-INF/lib/servlet-*</warSourceExcludes>
-              <webResources>
-                <resource>
-                  <directory>src/main/webapp/WEB-INF</directory>
-                  <filtering>true</filtering>
-                  <targetPath>WEB-INF</targetPath>
-                  <includes>
-                    <include>**/web.xml</include>
-                  </includes>
-                </resource>
-              </webResources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.1</version>
-        <configuration>
-          <path>/dailylog</path>
-          <port>8080</port>
-          <uriEncoding>UTF-8</uriEncoding>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>
