@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.lxp.dailylog.config.DataSourceConfig;
 import org.lxp.dailylog.dao.mapper.AccountBaseMapper;
 import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.model.AccountBaseExample;
@@ -13,7 +12,6 @@ import org.lxp.dailylog.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -22,7 +20,6 @@ public class AccountServiceImpl implements AccountService {
     private AccountBaseMapper accountBaseMapper;
 
     @Override
-    @Transactional(transactionManager = DataSourceConfig.TRANSACTION_MANAGER)
     public AccountBase addAccount(AccountBase account, boolean rollback) {
         account.setCreatetime(DateUtil.now());
         accountBaseMapper.insertSelective(account);
