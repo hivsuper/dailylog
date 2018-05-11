@@ -4,11 +4,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.lxp.dailylog.model.UserBase;
+import org.springframework.util.StringUtils;
 
 public class SessionHelper {
+    public static final String SESSION_ID = "sessionId";
     private static final Map<String, UserBase> USER_MAP = new ConcurrentHashMap<>();
     private static final Map<String, Verify> VERIFY_MAP = new ConcurrentHashMap<>();
+
+    public static String getRequestId(HttpServletRequest request) {
+        String requestId = request.getParameter(SESSION_ID);
+        return StringUtils.hasText(requestId) ? requestId : request.getSession().getId();
+    }
 
     public static long getUserId(String sessionId) {
         UserBase user = USER_MAP.get(sessionId);

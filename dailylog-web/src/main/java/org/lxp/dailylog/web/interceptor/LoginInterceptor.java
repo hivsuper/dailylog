@@ -14,12 +14,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private static final Logger LOG = LoggerFactory.getLogger(LoginInterceptor.class);
-    private static final String SESSION_ID_TOKEN = "sessionId";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        String sessionIdFromClient = request.getParameter(SESSION_ID_TOKEN);
+        String sessionIdFromClient = request.getParameter(SessionHelper.SESSION_ID);
         boolean isLogin = SessionHelper.getUser(sessionIdFromClient) != null;
         if (isLogin) {
             LOG.debug("heart beat");

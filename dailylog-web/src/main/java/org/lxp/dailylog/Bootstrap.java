@@ -3,6 +3,7 @@ package org.lxp.dailylog;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lxp.dailylog.filter.LogFilter;
 import org.lxp.dailylog.web.swagger.SwaggerFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +31,7 @@ public class Bootstrap {
     public FilterChainProxy getFilterChainProxy() throws Exception {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter("UTF-8", true);
         SwaggerFilter swaggerFilter = new SwaggerFilter(swaggerAllowed);
+        LogFilter logFilter = new LogFilter();
 
         List<SecurityFilterChain> listOfFilterChains = new ArrayList<>();
         listOfFilterChains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/swagger-ui.html"),
@@ -40,7 +42,8 @@ public class Bootstrap {
                 encodingFilter));
         listOfFilterChains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/webjars/**"), swaggerFilter,
                 encodingFilter));
-        listOfFilterChains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"), encodingFilter));
+        listOfFilterChains
+                .add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"), encodingFilter, logFilter));
         return new FilterChainProxy(listOfFilterChains);
     }
 

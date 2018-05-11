@@ -3,7 +3,8 @@
   <include resource="org/springframework/boot/logging/logback/defaults.xml" />
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
   <property name="COMMON_PATTERN"
-    value="%d{ISO8601,UTC} %-5p class=%logger{36} thread=%thread %X{request_id:-}%X{session_id:-} event_description=&quot;%m&quot;%n" />
+    value="%d{ISO8601,UTC} %-5p class=%logger{36} thread=%thread %X{request_id:-}event_description=&quot;%m&quot;%n" />
+  <property name="APILOG_PATTERN" value="%d{ISO8601,UTC} %-5p class=%logger{36} thread=%thread - %msg%n" />
 
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <File>logs/dailylog.log</File>
@@ -19,7 +20,7 @@
       <Pattern>${COMMON_PATTERN}</Pattern>
     </layout>
   </appender>
-  
+
   <appender name="apiLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <File>logs/apiLog.log</File>
     <Prudent>true</Prudent>
@@ -31,7 +32,7 @@
       </TimeBasedFileNamingAndTriggeringPolicy>
     </rollingPolicy>
     <layout class="ch.qos.logback.classic.PatternLayout">
-      <Pattern>${COMMON_PATTERN}</Pattern>
+      <Pattern>${APILOG_PATTERN}</Pattern>
     </layout>
   </appender>
 
@@ -45,7 +46,7 @@
   <logger name="com.lxp.dailylog" level="info" additivity="false">
     <appender-ref ref="FILE" />
   </logger>
-  
+
   <logger name="apiLog" level="info" additivity="false">
     <appender-ref ref="apiLogAppender" />
   </logger>
