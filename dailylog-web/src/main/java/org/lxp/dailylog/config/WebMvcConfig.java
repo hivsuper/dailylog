@@ -1,4 +1,4 @@
-package org.lxp.dailylog;
+package org.lxp.dailylog.config;
 
 import java.util.Arrays;
 import java.util.List;

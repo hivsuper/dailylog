@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lxp.dailylog.web.swagger.SwaggerFilter;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +21,6 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 /** disable auto web security **/
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@MapperScan("org.lxp.dailylog.dao.mapper")
 @EnableAspectJAutoProxy
 public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
