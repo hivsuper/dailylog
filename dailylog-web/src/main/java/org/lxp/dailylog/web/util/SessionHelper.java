@@ -1,6 +1,7 @@
 package org.lxp.dailylog.web.util;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.lxp.dailylog.model.UserBase;
@@ -31,6 +32,6 @@ public class SessionHelper {
     }
 
     public static String getVerify(String sessionId) {
-        return String.valueOf(VERIFY_MAP.get(sessionId).getValue());
+        return Optional.ofNullable(VERIFY_MAP.get(sessionId)).map(String::valueOf).orElse(null);
     }
 }

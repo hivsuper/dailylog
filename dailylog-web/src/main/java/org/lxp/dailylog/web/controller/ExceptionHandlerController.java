@@ -35,8 +35,8 @@ public class ExceptionHandlerController implements ErrorController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = ERROR_PATH, method = { GET, POST })
     public ModelAndView handleError() {
-        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
-        return resolveException(CodeEnum.PAGE_NOT_FOUND, httpStatus.getReasonPhrase());
+        CodeEnum codeEnum = CodeEnum.PAGE_NOT_FOUND;
+        return resolveException(codeEnum);
     }
 
     /**
@@ -49,27 +49,26 @@ public class ExceptionHandlerController implements ErrorController {
 
     @ExceptionHandler(DailylogException.class)
     public ModelAndView resolveException(DailylogException e) {
-        return resolveException(e, e.getCodeEnum(), e.getMessage());
+        return resolveException(e, e.getCodeEnum());
     }
 
     @ExceptionHandler(Exception.class)
     public ModelAndView resolveException(Exception e) {
-        return resolveException(e, INTERNAL_SERVER_ERROR, "Internal Server Error");
+        return resolveException(e, INTERNAL_SERVER_ERROR);
     }
 
-    private ModelAndView resolveException(Exception e, CodeEnum codeEnum, String msg) {
+    private ModelAndView resolveException(Exception e, CodeEnum codeEnum) {
         LOG.error(e.getMessage(), e);
-        return resolveException(codeEnum, msg);
+        return resolveException(codeEnum);
     }
 
-    private ModelAndView resolveException(CodeEnum codeEnum, String msg) {
+    private ModelAndView resolveException(CodeEnum codeEnum) {
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView();
         view.setExtractValueFromSingleKeyModel(true);
-        mav.setView(view);
         view.setObjectMapper(MAPPER);
-        JsonVo<String> returnVO = new JsonVo<>(codeEnum, msg);
-        mav.addObject(returnVO);
+        mav.setView(view);
+        mav.addObject(new JsonVo<>(codeEnum, codeEnum.getMessage()));
         return mav;
     }
 }
