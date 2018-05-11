@@ -10,6 +10,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DataSourceConfig {
     public static final String BASE_PACKAGES = "org.lxp.dailylog.dao.mapper";
     public static final String SQL_SESSION_TEMPLATE = "sqlSessionTemplate";
+    public static final String TRANSACTION_MANAGER = "transactionManager";
     private static final String SQL_SESSION_FACTORY = "sqlSessionFactory";
     @Resource
     private DataSource dataSource;
@@ -27,6 +30,11 @@ public class DataSourceConfig {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         return bean.getObject();
+    }
+
+    @Bean(name = TRANSACTION_MANAGER)
+    public PlatformTransactionManager transactionManagerSecondary() {
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean(name = SQL_SESSION_TEMPLATE)

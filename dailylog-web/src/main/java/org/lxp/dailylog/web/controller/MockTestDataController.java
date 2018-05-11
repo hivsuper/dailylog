@@ -18,6 +18,7 @@ import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.service.UserService;
 import org.lxp.dailylog.util.DateUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,15 +37,15 @@ public class MockTestDataController {
     @ResponseBody
     @RequestMapping(method = POST)
     @ApiOperation(value = "添加测试数据")
-    public Map<String, Object> index(HttpServletRequest request) {
+    public Map<String, Object> index(HttpServletRequest request, @RequestParam(required = true) boolean rollback) {
         Map<String, Object> map = new HashMap<>();
-        map.put("account", createAccount());
+        map.put("account", createAccount(rollback));
         map.put("navigator", createNavigator());
         map.put("user", createUser());
         return map;
     }
 
-    private AccountBase createAccount() {
+    private AccountBase createAccount(boolean rollback) {
         AccountBase account = new AccountBase();
         account.setUsername("11");
         account.setRemail("11@11.com");
@@ -54,7 +55,7 @@ public class MockTestDataController {
         account.setProducturl("http://11.com");
         account.setJoindate(DateUtil.now());
         account.setCreatetime(DateUtil.now());
-        return accountService.addAccount(account);
+        return accountService.addAccount(account, rollback);
     }
 
     private NavigatorBase createNavigator() {
