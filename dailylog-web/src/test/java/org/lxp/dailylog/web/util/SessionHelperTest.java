@@ -13,13 +13,21 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class SessionHelperTest {
 
     @Test
-    public void getRequestId() throws Exception {
+    public void shouldRetrunSessionIdWhenSessionIdParameterIsNull() throws Exception {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpSession session = Mockito.mock(HttpSession.class);
         Mockito.doReturn(null).when(request).getParameter(SessionHelper.SESSION_ID);
         Mockito.doReturn(session).when(request).getSession();
-        Mockito.doReturn("sessionId").when(session).getId();
+        final String sessionId = "sessionId";
+        Mockito.doReturn(sessionId).when(session).getId();
+        Assert.assertEquals(sessionId, SessionHelper.getRequestId(request));
+    }
 
-        Assert.assertEquals("sessionId", SessionHelper.getRequestId(request));
+    @Test
+    public void shouldRetrunSessionIdWhenSessionIdParameterNotNull() throws Exception {
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+        final String requestId = "requestId";
+        Mockito.doReturn(requestId).when(request).getParameter(SessionHelper.SESSION_ID);
+        Assert.assertEquals(requestId, SessionHelper.getRequestId(request));
     }
 }
