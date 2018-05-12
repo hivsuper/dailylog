@@ -22,6 +22,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 /** disable auto web security **/
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+/** enable org.lxp.dailylog.web.interceptor.LoggerAspect **/
 @EnableAspectJAutoProxy
 public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
