@@ -18,8 +18,7 @@ public class IpUtil {
 
     /**
      * 获取IP
-     * 
-     * @param request
+     *
      * @return 返回地址
      */
     public static String getIpAddress(HttpServletRequest request) {

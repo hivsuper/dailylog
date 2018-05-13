@@ -20,7 +20,7 @@ public class JsonHelper {
         OBJECT_MAPPER.setSerializationInclusion(NON_NULL);
     }
 
-    public static final String toString(Object obj) {
+    public static String toString(Object obj) {
         String rtn = null;
         try {
             rtn = OBJECT_MAPPER.writeValueAsString(obj);
@@ -30,7 +30,7 @@ public class JsonHelper {
         return rtn;
     }
 
-    public static final <T> T toObject(Class<T> clazz, String content) {
+    public static <T> T toObject(Class<T> clazz, String content) {
         T rtn = null;
         try {
             rtn = OBJECT_MAPPER.readValue(content, clazz);
