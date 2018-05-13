@@ -20,10 +20,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-/** disable auto web security **/
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-/** enable org.lxp.dailylog.web.interceptor.LoggerAspect **/
-@EnableAspectJAutoProxy
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})// disable auto web security
+@EnableAspectJAutoProxy// enable org.lxp.dailylog.web.interceptor.LoggerAspect
 public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;

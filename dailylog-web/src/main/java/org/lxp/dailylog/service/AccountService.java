@@ -3,10 +3,10 @@ package org.lxp.dailylog.service;
 import org.lxp.dailylog.model.AccountBase;
 
 public interface AccountService {
-    public AccountBase addAccount(AccountBase account, boolean rollback);
+    AccountBase addAccount(AccountBase account, boolean rollback);
 
-    public AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
+    AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
             String productUrl);
 
-    public AccountBase queryOneLike(String keyword);
+    AccountBase queryOneLike(String keyword);
 }

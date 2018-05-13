@@ -10,3 +10,4 @@ logs/
 *.versionsBackup
 *.classpath
 *.project
+dailylog-parent/.idea/
