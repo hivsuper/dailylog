@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,8 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})// disable auto web security
-@EnableAspectJAutoProxy// enable org.lxp.dailylog.web.interceptor.LoggerAspect
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class }) // disable auto web security
 public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;
