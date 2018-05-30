@@ -88,7 +88,7 @@ public class LoggerAspect {
             sb.delete(sb.length() - 2, sb.length()).append("]");
         }
         String sessionId = request.getParameter(SessionHelper.SESSION_ID);
-        sb.append(", [request_id=");
+        sb.append(", [sessionId=");
         sb.append(SessionHelper.getRequestId(request));
         if (StringUtils.hasText(sessionId)) {
             sb.append(", user_id=").append(SessionHelper.getUserId(sessionId));

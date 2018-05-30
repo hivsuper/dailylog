@@ -12,15 +12,15 @@ import org.slf4j.MDC;
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
 public class LogFilter extends AbstractRequestLoggingFilter {
-    private static final String REQUESTID_KEY = "request_id";
+    private static final String SESSION_ID_KEY = "sessionId";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String requestId = SessionHelper.getRequestId(request);
         try {
-            MDC.put(REQUESTID_KEY, String.format("%s=\"%s\" ", REQUESTID_KEY, requestId));
-            response.setHeader(REQUESTID_KEY, requestId);
+            MDC.put(SESSION_ID_KEY, String.format("%s=\"%s\" ", SESSION_ID_KEY, requestId));
+            response.setHeader(SESSION_ID_KEY, requestId);
             filterChain.doFilter(request, response);
         } finally {
             MDC.clear();
