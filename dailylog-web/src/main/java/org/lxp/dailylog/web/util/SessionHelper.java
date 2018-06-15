@@ -41,6 +41,6 @@ public class SessionHelper {
     }
 
     public static String getVerify(String sessionId) {
-        return Optional.ofNullable(VERIFY_MAP.get(sessionId)).map(String::valueOf).orElse(null);
+        return Optional.ofNullable(VERIFY_MAP.get(sessionId)).map(Verify::getValue).map(String::valueOf).orElse(null);
     }
 }
