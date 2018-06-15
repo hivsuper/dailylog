@@ -1,8 +1,11 @@
 package org.lxp.dailylog.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserBase {
+public class UserBase implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Long seqid;
 
     private String username;

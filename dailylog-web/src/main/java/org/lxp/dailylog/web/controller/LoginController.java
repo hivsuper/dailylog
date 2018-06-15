@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.lxp.dailylog.exception.CredentialNotMatchException;
 import org.lxp.dailylog.exception.VerificationCodeNotMatchException;
@@ -36,7 +37,7 @@ public class LoginController {
     @Resource
     private LoginService loginService;
     @Resource
-    private SessionHelper sessionHelper;
+    private HttpSession session;
 
     @ResponseBody
     @RequestMapping(value = "/", method = GET)
@@ -48,17 +49,16 @@ public class LoginController {
     @ResponseBody
     @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "登录")
-    public JsonVo<UserBase> login(@RequestParam(required = true) String sessionId,
-            @ApiParam(value = "账号") @RequestParam(required = true) String account,
+    public JsonVo<UserBase> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
             @ApiParam(value = "密码") @RequestParam(required = true) String password,
             @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode)
             throws VerificationCodeNotMatchException, CredentialNotMatchException {
         JsonVo<UserBase> jsonVo;
-        if (hasText(verifycode) && !verifycode.equals(sessionHelper.getVerify(sessionId))) {
+        if (hasText(verifycode) && !verifycode.equals(SessionHelper.getVerify(session))) {
             throw new VerificationCodeNotMatchException(verifycode);
         } else {
             UserBase user = loginService.login(account, password);
-            sessionHelper.addUser(sessionId, user);
+            SessionHelper.addUser(session, user);
             jsonVo = JsonVo.success(user);
             LOG.info("{} login successfully.", user.getSeqid());
         }
@@ -67,18 +67,17 @@ public class LoginController {
 
     @RequestMapping(value = "/logout", method = GET)
     @ApiOperation(value = "登出")
-    public String logout(@RequestParam(required = true) String sessionId) {
-        sessionHelper.removeUser(sessionId);
+    public String logout() {
+        SessionHelper.removeUser(session);
         return "redirect:/";
     }
 
     @ResponseBody
     @RequestMapping(value = "/verifyCode.json", method = GET)
     @ApiOperation(value = "生成验证码")
-    public void getVerifyCode(@RequestParam(required = true) String sessionId, HttpServletResponse response)
-            throws IOException {
+    public void getVerifyCode(HttpServletResponse response) throws IOException {
         Verify verify = VerifyCodeUtils.generateVerify();
-        sessionHelper.setVerify(sessionId, verify);
+        SessionHelper.setVerify(session, verify);
         VerifyCodeUtils.outputImage(120, 40, response.getOutputStream(), verify.getCode());
     }
 }

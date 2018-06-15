@@ -1,56 +1,46 @@
 package org.lxp.dailylog.web.util;
 
-import java.util.Collections;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.lxp.dailylog.config.JedisConfig;
 import org.lxp.dailylog.model.UserBase;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-@Component
 public class SessionHelper {
     public static final String SESSION_ID = "sessionId";
-    private final String USER_KEY = "user";
-    private final String VERIFY_KEY = "verify";
-    private final JedisHelper JEDIS_HELPER;
-
-    @Autowired
-    public SessionHelper(JedisConfig jedisConfig) {
-        JEDIS_HELPER = new JedisHelper(jedisConfig.getJedisPool());
-    }
+    private static final String USER_KEY = "user";
+    private static final String VERIFY_KEY = "verify";
 
     public static String getRequestId(HttpServletRequest request) {
         String requestId = request.getParameter(SESSION_ID);
         return StringUtils.hasText(requestId) ? requestId : request.getSession().getId();
     }
 
-    public long getUserId(String sessionId) {
-        UserBase user = JsonHelper.toObject(UserBase.class, JEDIS_HELPER.hget(USER_KEY, sessionId));
+    public static long getUserId(HttpSession session) {
+        UserBase user = (UserBase) session.getAttribute(USER_KEY);
         return user == null ? 0 : user.getSeqid();
     }
 
-    public UserBase getUser(String sessionId) {
-        return JsonHelper.toObject(UserBase.class, JEDIS_HELPER.hget(USER_KEY, sessionId));
+    public static UserBase getUser(HttpSession session) {
+        return (UserBase) session.getAttribute(USER_KEY);
     }
 
-    public void addUser(String sessionId, UserBase userBase) {
-        JEDIS_HELPER.hmset(USER_KEY, Collections.singletonMap(sessionId, JsonHelper.toString(userBase)));
+    public static void addUser(HttpSession session, UserBase userBase) {
+        session.setAttribute(USER_KEY, userBase);
     }
 
-    public void removeUser(String sessionId) {
-        JEDIS_HELPER.hdel(USER_KEY, sessionId);
+    public static void removeUser(HttpSession session) {
+        session.removeAttribute(USER_KEY);
     }
 
-    public void setVerify(String sessionId, Verify verify) {
-        JEDIS_HELPER.hmset(VERIFY_KEY, Collections.singletonMap(sessionId, JsonHelper.toString(verify)));
+    public static void setVerify(HttpSession session, Verify verify) {
+        session.setAttribute(VERIFY_KEY, verify);
     }
 
-    public String getVerify(String sessionId) {
-        return Optional.ofNullable(JsonHelper.toObject(Verify.class, JEDIS_HELPER.hget(VERIFY_KEY, sessionId)))
-                .map(Verify::getValue).map(String::valueOf).orElse(null);
+    public static String getVerify(HttpSession session) {
+        return Optional.ofNullable(session.getAttribute(VERIFY_KEY))
+                .map(object -> String.valueOf(((Verify) object).getValue())).orElse(null);
     }
 }
