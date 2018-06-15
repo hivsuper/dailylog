@@ -19,12 +19,12 @@ public class SessionHelper {
     }
 
     public static long getUserId(HttpSession session) {
-        UserVo user = (UserVo) session.getAttribute(USER_KEY);
+        UserVo user = getUser(session);
         return user == null ? 0 : user.getSeqid();
     }
 
     public static UserVo getUser(HttpSession session) {
-        return (UserVo) session.getAttribute(USER_KEY);
+        return JsonHelper.toObject(UserVo.class, JsonHelper.toString(session.getAttribute(USER_KEY)));
     }
 
     public static void addUser(HttpSession session, UserVo userVo) {
@@ -40,7 +40,8 @@ public class SessionHelper {
     }
 
     public static String getVerify(HttpSession session) {
-        return Optional.ofNullable(session.getAttribute(VERIFY_KEY))
-                .map(object -> String.valueOf(((Verify) object).getValue())).orElse(null);
+        return Optional.ofNullable(session.getAttribute(VERIFY_KEY)).map(
+                object -> String.valueOf(JsonHelper.toObject(Verify.class, JsonHelper.toString(object)).getValue()))
+                .orElse(null);
     }
 }

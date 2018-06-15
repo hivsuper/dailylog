@@ -15,6 +15,9 @@ public class UserVo implements Serializable {
 
     private Date createtime;
 
+    public UserVo() {
+    }
+
     public UserVo(UserBase userBase) {
         this.seqid = userBase.getSeqid();
         this.username = userBase.getUsername();
