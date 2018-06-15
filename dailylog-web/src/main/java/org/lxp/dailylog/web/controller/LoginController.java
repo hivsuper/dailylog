@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.lxp.dailylog.exception.CredentialNotMatchException;
 import org.lxp.dailylog.exception.VerificationCodeNotMatchException;
-import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.LoginService;
+import org.lxp.dailylog.vo.UserVo;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.lxp.dailylog.web.util.SessionHelper;
 import org.lxp.dailylog.web.util.Verify;
@@ -49,15 +49,15 @@ public class LoginController {
     @ResponseBody
     @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "登录")
-    public JsonVo<UserBase> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
+    public JsonVo<UserVo> login(@ApiParam(value = "账号") @RequestParam(required = true) String account,
             @ApiParam(value = "密码") @RequestParam(required = true) String password,
             @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode)
             throws VerificationCodeNotMatchException, CredentialNotMatchException {
-        JsonVo<UserBase> jsonVo;
+        JsonVo<UserVo> jsonVo;
         if (hasText(verifycode) && !verifycode.equals(SessionHelper.getVerify(session))) {
             throw new VerificationCodeNotMatchException(verifycode);
         } else {
-            UserBase user = loginService.login(account, password);
+            UserVo user = new UserVo(loginService.login(account, password));
             SessionHelper.addUser(session, user);
             jsonVo = JsonVo.success(user);
             LOG.info("{} login successfully.", user.getSeqid());

@@ -5,7 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.lxp.dailylog.model.UserBase;
+import org.lxp.dailylog.vo.UserVo;
 import org.springframework.util.StringUtils;
 
 public class SessionHelper {
@@ -19,16 +19,16 @@ public class SessionHelper {
     }
 
     public static long getUserId(HttpSession session) {
-        UserBase user = (UserBase) session.getAttribute(USER_KEY);
+        UserVo user = (UserVo) session.getAttribute(USER_KEY);
         return user == null ? 0 : user.getSeqid();
     }
 
-    public static UserBase getUser(HttpSession session) {
-        return (UserBase) session.getAttribute(USER_KEY);
+    public static UserVo getUser(HttpSession session) {
+        return (UserVo) session.getAttribute(USER_KEY);
     }
 
-    public static void addUser(HttpSession session, UserBase userBase) {
-        session.setAttribute(USER_KEY, userBase);
+    public static void addUser(HttpSession session, UserVo userVo) {
+        session.setAttribute(USER_KEY, userVo);
     }
 
     public static void removeUser(HttpSession session) {
