@@ -3,7 +3,10 @@ package org.lxp.dailylog.config;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.lxp.dailylog.web.interceptor.LoginInterceptor;
+import org.lxp.dailylog.web.util.SessionHelper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,10 +16,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+    @Resource
+    private SessionHelper sessionHelper;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        List<String> excludePaths = Arrays.asList("/", "/mockTestData", "/login.json", "/logout", "/verifyCode.json", "/version",
-                "/error", "/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
-        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns(excludePaths).addPathPatterns("/**");
+        List<String> excludePaths = Arrays.asList("/", "/mockTestData", "/login.json", "/logout", "/verifyCode.json",
+                "/version", "/error", "/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
+        registry.addInterceptor(new LoginInterceptor(sessionHelper)).excludePathPatterns(excludePaths)
+                .addPathPatterns("/**");
     }
 }

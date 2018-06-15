@@ -35,6 +35,8 @@ public class LoginController {
 
     @Resource
     private LoginService loginService;
+    @Resource
+    private SessionHelper sessionHelper;
 
     @ResponseBody
     @RequestMapping(value = "/", method = GET)
@@ -52,11 +54,11 @@ public class LoginController {
             @ApiParam(value = "验证码") @RequestParam(required = false) String verifycode)
             throws VerificationCodeNotMatchException, CredentialNotMatchException {
         JsonVo<UserBase> jsonVo;
-        if (hasText(verifycode) && !verifycode.equals(SessionHelper.getVerify(sessionId))) {
+        if (hasText(verifycode) && !verifycode.equals(sessionHelper.getVerify(sessionId))) {
             throw new VerificationCodeNotMatchException(verifycode);
         } else {
             UserBase user = loginService.login(account, password);
-            SessionHelper.addUser(sessionId, user);
+            sessionHelper.addUser(sessionId, user);
             jsonVo = JsonVo.success(user);
             LOG.info("{} login successfully.", user.getSeqid());
         }
@@ -66,7 +68,7 @@ public class LoginController {
     @RequestMapping(value = "/logout", method = GET)
     @ApiOperation(value = "登出")
     public String logout(@RequestParam(required = true) String sessionId) {
-        SessionHelper.removeUser(sessionId);
+        sessionHelper.removeUser(sessionId);
         return "redirect:/";
     }
 
@@ -76,7 +78,7 @@ public class LoginController {
     public void getVerifyCode(@RequestParam(required = true) String sessionId, HttpServletResponse response)
             throws IOException {
         Verify verify = VerifyCodeUtils.generateVerify();
-        SessionHelper.setVerify(sessionId, verify);
+        sessionHelper.setVerify(sessionId, verify);
         VerifyCodeUtils.outputImage(120, 40, response.getOutputStream(), verify.getCode());
     }
 }
