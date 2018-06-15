@@ -24,7 +24,7 @@ public class SessionHelper {
     }
 
     public static UserVo getUser(HttpSession session) {
-        return JsonHelper.toObject(UserVo.class, JsonHelper.toString(session.getAttribute(USER_KEY)));
+        return JsonHelper.convertValue(UserVo.class, session.getAttribute(USER_KEY));
     }
 
     public static void addUser(HttpSession session, UserVo userVo) {
@@ -39,9 +39,12 @@ public class SessionHelper {
         session.setAttribute(VERIFY_KEY, verify);
     }
 
+    public static void removeVerify(HttpSession session) {
+        session.removeAttribute(VERIFY_KEY);
+    }
+
     public static String getVerify(HttpSession session) {
-        return Optional.ofNullable(session.getAttribute(VERIFY_KEY)).map(
-                object -> String.valueOf(JsonHelper.toObject(Verify.class, JsonHelper.toString(object)).getValue()))
-                .orElse(null);
+        return Optional.ofNullable(session.getAttribute(VERIFY_KEY))
+                .map(object -> String.valueOf(JsonHelper.convertValue(Verify.class, object).getValue())).orElse(null);
     }
 }

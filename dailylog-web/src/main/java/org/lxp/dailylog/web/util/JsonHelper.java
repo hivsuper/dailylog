@@ -20,6 +20,10 @@ public class JsonHelper {
         OBJECT_MAPPER.setSerializationInclusion(NON_NULL);
     }
 
+    public static <T> T convertValue(Class<T> clazz, Object obj) {
+        return OBJECT_MAPPER.convertValue(obj, clazz);
+    }
+
     public static String toString(Object obj) {
         String rtn = null;
         try {

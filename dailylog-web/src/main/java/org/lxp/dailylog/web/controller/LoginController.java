@@ -60,6 +60,7 @@ public class LoginController {
             UserVo user = new UserVo(loginService.login(account, password));
             SessionHelper.addUser(session, user);
             jsonVo = JsonVo.success(user);
+            SessionHelper.removeVerify(session);
             LOG.info("{} login successfully.", user.getSeqid());
         }
         return jsonVo;
