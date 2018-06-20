@@ -1,12 +1,10 @@
 package org.lxp.dailylog.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.lxp.dailylog.model.UserBase;
 
-public class UserVo implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class UserVo {
     private Long seqid;
 
     private String username;
@@ -23,10 +21,6 @@ public class UserVo implements Serializable {
         this.username = userBase.getUsername();
         this.lastlogintime = userBase.getLastlogintime();
         this.createtime = userBase.getCreatetime();
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
     public Long getSeqid() {

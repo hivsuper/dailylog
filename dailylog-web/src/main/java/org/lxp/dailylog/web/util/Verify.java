@@ -1,9 +1,6 @@
 package org.lxp.dailylog.web.util;
 
-import java.io.Serializable;
-
-public class Verify implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Verify {
     private String code;// 如 1 + 2
     private Integer value;// 如 3
 
