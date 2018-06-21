@@ -55,4 +55,13 @@ public class UserBase implements Serializable {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserBase [seqid=").append(seqid).append(", username=").append(username).append(", password=")
+                .append(password).append(", lastlogintime=").append(lastlogintime).append(", createtime=")
+                .append(createtime).append("]");
+        return builder.toString();
+    }
 }

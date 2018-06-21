@@ -57,4 +57,12 @@ public class NavigatorBase {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("NavigatorBase [seqid=").append(seqid).append(", name=").append(name).append(", url=")
+                .append(url).append(", title=").append(title).append(", createtime=").append(createtime).append("]");
+        return builder.toString();
+    }
 }

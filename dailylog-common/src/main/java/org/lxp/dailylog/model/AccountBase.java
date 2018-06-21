@@ -101,4 +101,14 @@ public class AccountBase {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("AccountBase [seqid=").append(seqid).append(", username=").append(username).append(", remail=")
+                .append(remail).append(", fpemail=").append(fpemail).append(", phone=").append(phone)
+                .append(", productname=").append(productname).append(", producturl=").append(producturl)
+                .append(", joindate=").append(joindate).append(", createtime=").append(createtime).append("]");
+        return builder.toString();
+    }
 }
