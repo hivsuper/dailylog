@@ -1,11 +1,8 @@
 package org.lxp.dailylog.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class UserBase implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class UserBase {
     private Long seqid;
 
     private String username;
@@ -58,10 +55,16 @@ public class UserBase implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("UserBase [seqid=").append(seqid).append(", username=").append(username).append(", password=")
-                .append(password).append(", lastlogintime=").append(lastlogintime).append(", createtime=")
-                .append(createtime).append("]");
-        return builder.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", seqid=").append(seqid);
+        sb.append(", username=").append(username);
+        sb.append(", password=").append(password);
+        sb.append(", lastlogintime=").append(lastlogintime);
+        sb.append(", createtime=").append(createtime);
+        sb.append("]");
+        return sb.toString();
     }
 }

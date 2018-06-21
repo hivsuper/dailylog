@@ -104,11 +104,20 @@ public class AccountBase {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("AccountBase [seqid=").append(seqid).append(", username=").append(username).append(", remail=")
-                .append(remail).append(", fpemail=").append(fpemail).append(", phone=").append(phone)
-                .append(", productname=").append(productname).append(", producturl=").append(producturl)
-                .append(", joindate=").append(joindate).append(", createtime=").append(createtime).append("]");
-        return builder.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", seqid=").append(seqid);
+        sb.append(", username=").append(username);
+        sb.append(", remail=").append(remail);
+        sb.append(", fpemail=").append(fpemail);
+        sb.append(", phone=").append(phone);
+        sb.append(", productname=").append(productname);
+        sb.append(", producturl=").append(producturl);
+        sb.append(", joindate=").append(joindate);
+        sb.append(", createtime=").append(createtime);
+        sb.append("]");
+        return sb.toString();
     }
 }

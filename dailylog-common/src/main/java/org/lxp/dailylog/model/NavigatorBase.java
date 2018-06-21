@@ -60,9 +60,16 @@ public class NavigatorBase {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("NavigatorBase [seqid=").append(seqid).append(", name=").append(name).append(", url=")
-                .append(url).append(", title=").append(title).append(", createtime=").append(createtime).append("]");
-        return builder.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", seqid=").append(seqid);
+        sb.append(", name=").append(name);
+        sb.append(", url=").append(url);
+        sb.append(", title=").append(title);
+        sb.append(", createtime=").append(createtime);
+        sb.append("]");
+        return sb.toString();
     }
 }
