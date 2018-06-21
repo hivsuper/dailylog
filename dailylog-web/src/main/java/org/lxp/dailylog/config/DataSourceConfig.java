@@ -12,6 +12,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -20,9 +21,11 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = DataSourceConfig.BASE_PACKAGES, sqlSessionTemplateRef = DataSourceConfig.SQL_SESSION_TEMPLATE)
+@ComponentScan(basePackages = { DataSourceConfig.BASE_PACKAGES })
+@MapperScan(basePackages = DataSourceConfig.MAPPER_PACKAGES, sqlSessionTemplateRef = DataSourceConfig.SQL_SESSION_TEMPLATE)
 public class DataSourceConfig {
-    public static final String BASE_PACKAGES = "org.lxp.dailylog.dao.mapper";
+    public static final String BASE_PACKAGES = "org.lxp.dailylog";
+    public static final String MAPPER_PACKAGES = "org.lxp.dailylog.dao.mapper";
     public static final String SQL_SESSION_TEMPLATE = "sqlSessionTemplate";
     public static final String TRANSACTION_MANAGER = "transactionManager";
     private static final String SQL_SESSION_FACTORY = "sqlSessionFactory";
