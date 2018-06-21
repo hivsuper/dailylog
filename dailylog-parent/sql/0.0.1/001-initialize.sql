@@ -25,7 +25,7 @@ create table account
    joindate             datetime comment 'registration date',
    createtime           datetime not null comment 'record creation time',
    primary key (seqid),
-   unique key AK_Key_2 (remail, productname)
+   unique key remail_productname_unique_key (remail, productname)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -41,7 +41,7 @@ create table navigator
    title                varchar(100) default '' comment 'site title used for a label',
    createtime           datetime not null comment 'record creation time',
    primary key (seqid),
-   unique key AK_Key_2 (url)
+   unique key url_unique_key (url)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -57,7 +57,7 @@ create table user
    lastlogintime        datetime,
    createtime           datetime not null,
    primary key (seqId),
-   unique key AK_Key_2 (username)
+   unique key username_unique_key (username)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
