@@ -4,6 +4,7 @@
 2) Run `org.lxp.dailylog.Bootstrap` in dailylog-web  
 
 *How to generate mapper.xml and mapper classes?*
++ Run command `mvn install` on dailylog-common  
 + Run command `mvn mybatis-generator:generate` on dailylog-common  
 
 *What is the api overview?*
