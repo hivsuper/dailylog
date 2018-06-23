@@ -10,6 +10,7 @@ import org.lxp.dailylog.config.MemoryDBTest;
 import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.util.DateUtil;
+import org.lxp.dailylog.web.util.JsonHelper;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,16 +27,16 @@ public class NavigatorServiceImplTest {
         navigator.setUrl("http://33.com");
         navigator.setCreatetime(DateUtil.now());
         navigator = navigatorService.addNavigator(navigator);
-        navigator.setCreatetime(null);
-        assertEquals("NavigatorBase [Hash = " + navigator.hashCode()
-                + ", seqid=2, name=333, url=http://33.com, title=3333, createtime=null]", navigator.toString());
+        assertEquals(
+                "{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\",\"createtime\":1529683200000}",
+                JsonHelper.toString(navigator));
     }
 
     @Test
     public void testQueryOneByLike() {
         NavigatorBase navigator = navigatorService.queryOneByLike("222");
-        assertEquals("NavigatorBase [Hash = " + navigator.hashCode()
-                + ", seqid=1, name=222, url=http://22.com, title=2222, createtime=Wed May 30 00:00:00 CDT 2018]",
-                navigator.toString());
+        assertEquals(
+                "{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\",\"createtime\":1527609600000}",
+                JsonHelper.toString(navigator));
     }
 }
