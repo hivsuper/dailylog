@@ -6,12 +6,12 @@ import org.junit.Test;
 public class CiphertextUtilTest {
 
     @Test
-    public void testDecode() throws Exception {
+    public void testDecode() {
         Assert.assertEquals("YWFhO2xlZQ", CiphertextUtil.encode("aaa"));
     }
 
     @Test
-    public void testEncode() throws Exception {
+    public void testEncode() {
         Assert.assertEquals("aaa,lee", String.join(",", CiphertextUtil.decode("YWFhO2xlZQ")));
     }
 
