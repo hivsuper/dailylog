@@ -3,7 +3,8 @@ package org.lxp.dailylog.service.impl;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -28,7 +29,8 @@ public class NavigatorServiceImplTest {
         navigator.setName("333");
         navigator.setTitle("3333");
         navigator.setUrl("http://33.com");
-        navigator.setCreatetime(Date.from(LocalDateTime.of(2018, 06, 24, 0, 0, 0).toInstant(ZoneOffset.UTC)));
+        LocalDateTime localDateTime = LocalDateTime.of(2018, 06, 24, 0, 0, 0);
+        navigator.setCreatetime(Date.from(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant()));
         navigator = navigatorService.addNavigator(navigator);
         assertEquals(
                 "{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\",\"createtime\":1529769600000}",
