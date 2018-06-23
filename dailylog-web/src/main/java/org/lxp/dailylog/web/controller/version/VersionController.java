@@ -32,7 +32,7 @@ public class VersionController {
         Map<String, String> map = new HashMap<>();
         map.put("version", version);
         map.put("env", env);
-        map.put("builtAt", DateUtil.format(ZonedDateTime.parse(builtAt, DateTimeFormatter.ofPattern(format))));
+        map.put("builtAt", DateUtil.zonedDateTimeToString(ZonedDateTime.parse(builtAt, DateTimeFormatter.ofPattern(format))));
         return map;
     }
 
