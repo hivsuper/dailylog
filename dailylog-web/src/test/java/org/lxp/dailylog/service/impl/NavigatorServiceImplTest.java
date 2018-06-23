@@ -2,6 +2,10 @@ package org.lxp.dailylog.service.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -9,7 +13,6 @@ import org.junit.runner.RunWith;
 import org.lxp.dailylog.config.MemoryDBTest;
 import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.service.NavigatorService;
-import org.lxp.dailylog.util.DateUtil;
 import org.lxp.dailylog.web.util.JsonHelper;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,10 +28,10 @@ public class NavigatorServiceImplTest {
         navigator.setName("333");
         navigator.setTitle("3333");
         navigator.setUrl("http://33.com");
-        navigator.setCreatetime(DateUtil.now());
+        navigator.setCreatetime(Date.from(LocalDateTime.of(2018, 06, 24, 0, 0, 0).toInstant(ZoneOffset.UTC)));
         navigator = navigatorService.addNavigator(navigator);
         assertEquals(
-                "{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\",\"createtime\":1529683200000}",
+                "{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\",\"createtime\":1529769600000}",
                 JsonHelper.toString(navigator));
     }
 
