@@ -16,7 +16,7 @@ public class SessionHelperTest {
     public void shouldRetrunSessionIdWhenSessionIdParameterIsNull() {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         HttpSession session = Mockito.mock(HttpSession.class);
-        Mockito.doReturn(null).when(request).getParameter(SessionHelper.SESSION_ID);
+        Mockito.doReturn(null).when(request).getHeader(SessionHelper.SESSION_ID);
         Mockito.doReturn(session).when(request).getSession();
         final String sessionId = "sessionId";
         Mockito.doReturn(sessionId).when(session).getId();
@@ -27,7 +27,7 @@ public class SessionHelperTest {
     public void shouldRetrunSessionIdWhenSessionIdParameterNotNull() {
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
         final String requestId = "requestId";
-        Mockito.doReturn(requestId).when(request).getParameter(SessionHelper.SESSION_ID);
+        Mockito.doReturn(requestId).when(request).getHeader(SessionHelper.SESSION_ID);
         Assert.assertEquals(requestId, SessionHelper.getRequestId(request));
     }
 }

@@ -9,8 +9,8 @@ import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.service.AccountService;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +25,7 @@ public class AccountController {
     @ResponseBody
     @RequestMapping(value = "/add.json", method = POST)
     @ApiOperation(value = "添加帐号")
-    public JsonVo<AccountBase> add(@RequestParam(required = true) String sessionId,
+    public JsonVo<AccountBase> add(@RequestHeader(required = true) String sessionId,
             @ModelAttribute AccountDto accountDto) {
         return JsonVo.success(
                 accountService.addAccount(accountDto.getUsername(), accountDto.getRemail(), accountDto.getFpemail(),

@@ -14,7 +14,7 @@ public class SessionHelper {
     private static final String VERIFY_KEY = "verify";
 
     public static String getRequestId(HttpServletRequest request) {
-        String requestId = request.getParameter(SESSION_ID);
+        String requestId = request.getHeader(SESSION_ID);
         return StringUtils.hasText(requestId) ? requestId : request.getSession().getId();
     }
 
