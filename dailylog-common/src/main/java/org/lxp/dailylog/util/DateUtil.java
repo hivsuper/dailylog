@@ -7,7 +7,8 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class DateUtil {
-    private static final ZoneId DEFAULT_ZONEID = ZoneId.of("Asia/Shanghai");
+    public static final String TIMEZONE = "Asia/Shanghai";
+    private static final ZoneId DEFAULT_ZONEID = ZoneId.of(TIMEZONE);
 
     public static Date now() {
         return localDateToDate(LocalDate.now());

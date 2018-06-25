@@ -1,5 +1,6 @@
 package org.lxp.dailylog.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -32,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
-            String productUrl) {
+            String productUrl, Date joinDate) {
         AccountBase account = new AccountBase();
         account.setUsername(userName);
         account.setRemail(rEmail);
@@ -40,8 +41,7 @@ public class AccountServiceImpl implements AccountService {
         account.setPhone(phone);
         account.setProductname(productName);
         account.setProducturl(productUrl);
-        account.setJoindate(DateUtil.now());
-        account.setCreatetime(DateUtil.now());
+        account.setJoindate(joinDate);
         account.setCreatetime(DateUtil.now());
         accountBaseMapper.insertSelective(account);
         LOG.info("add accountId={}", account.getSeqid());

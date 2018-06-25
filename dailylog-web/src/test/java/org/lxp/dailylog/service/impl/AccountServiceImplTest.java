@@ -38,7 +38,7 @@ public class AccountServiceImplTest {
     @Test
     public void testAddAccount() {
         AccountBase account = accountService.addAccount("33", "33@33.com", "333@33.com", "33333", "aaaa",
-                "http://33.com");
+                "http://33.com", DateUtil.now());
         assertTrue(account.getSeqid() > 0);
     }
 

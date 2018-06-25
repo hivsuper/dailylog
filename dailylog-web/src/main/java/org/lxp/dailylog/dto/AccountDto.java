@@ -7,10 +7,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import io.swagger.annotations.ApiModelProperty;
 
 public class AccountDto {
-    @ApiModelProperty(value = "user logon name")
+    @ApiModelProperty(value = "user logon name", required = true)
     private String username;
 
-    @ApiModelProperty(value = "email Address on Account")
+    @ApiModelProperty(value = "email Address on Account", required = true)
     private String remail;
 
     @ApiModelProperty(value = "forget password email")
@@ -22,10 +22,10 @@ public class AccountDto {
     @ApiModelProperty(value = "product name")
     private String productname;
 
-    @ApiModelProperty(value = "product url")
+    @ApiModelProperty(value = "product url", required = true)
     private String producturl;
 
-    @ApiModelProperty(value = "registration date")
+    @ApiModelProperty(value = "registration date", required = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date joindate;
 

@@ -5,7 +5,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.lxp.dailylog.service.UserService;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.lxp.dailylog.web.util.SessionHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,6 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Resource
-    private UserService userService;
     @Resource
     private HttpSession session;
 
