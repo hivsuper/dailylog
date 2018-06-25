@@ -1,6 +1,11 @@
 package org.lxp.dailylog.model;
 
+import static org.lxp.dailylog.util.DateUtil.TIMEZONE;
+import static org.lxp.dailylog.util.DateUtil.yyyyMMddHHmm;
+
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserBase {
     private Long seqid;
@@ -9,8 +14,10 @@ public class UserBase {
 
     private String password;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = yyyyMMddHHmm, timezone = TIMEZONE)
     private Date lastlogintime;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = yyyyMMddHHmm, timezone = TIMEZONE)
     private Date createtime;
 
     public Long getSeqid() {

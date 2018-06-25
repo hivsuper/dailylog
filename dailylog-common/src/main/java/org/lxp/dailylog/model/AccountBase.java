@@ -1,6 +1,7 @@
 package org.lxp.dailylog.model;
 
 import static org.lxp.dailylog.util.DateUtil.TIMEZONE;
+import static org.lxp.dailylog.util.DateUtil.yyyyMMddHHmm;
 
 import java.util.Date;
 
@@ -9,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 
 public class AccountBase {
-    private static final String FORMAT = "yyyy-MM-dd HH:mm";
     private Long seqid;
 
     @ApiModelProperty(value = "user logon name")
@@ -31,11 +31,11 @@ public class AccountBase {
     private String producturl;
 
     @ApiModelProperty(value = "registration date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMAT, timezone = TIMEZONE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = yyyyMMddHHmm, timezone = TIMEZONE)
     private Date joindate;
 
     @ApiModelProperty(value = "record creation time")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMAT, timezone = TIMEZONE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = yyyyMMddHHmm, timezone = TIMEZONE)
     private Date createtime;
 
     public Long getSeqid() {

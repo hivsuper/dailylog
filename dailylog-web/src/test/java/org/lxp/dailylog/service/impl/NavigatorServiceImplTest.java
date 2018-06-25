@@ -1,6 +1,7 @@
 package org.lxp.dailylog.service.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,16 +33,15 @@ public class NavigatorServiceImplTest {
         LocalDateTime localDateTime = LocalDateTime.of(2018, 06, 24, 0, 0, 0);
         navigator.setCreatetime(Date.from(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant()));
         navigator = navigatorService.addNavigator(navigator);
-        assertEquals(
-                "{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\",\"createtime\":1529769600000}",
-                JsonHelper.toString(navigator));
+        assertTrue(JsonHelper.toString(navigator)
+                .startsWith("{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\""));
     }
 
     @Test
     public void testQueryOneByLike() {
         NavigatorBase navigator = navigatorService.queryOneByLike("222");
         assertEquals(
-                "{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\",\"createtime\":1527609600000}",
+                "{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\",\"createtime\":\"2018-05-30 00:00\"}",
                 JsonHelper.toString(navigator));
     }
 }
