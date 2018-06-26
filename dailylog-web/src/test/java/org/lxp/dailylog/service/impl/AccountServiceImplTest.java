@@ -3,6 +3,8 @@ package org.lxp.dailylog.service.impl;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+
 import javax.annotation.Resource;
 
 import org.hamcrest.Matchers;
@@ -38,7 +40,7 @@ public class AccountServiceImplTest {
     @Test
     public void testAddAccount() {
         AccountBase account = accountService.addAccount("33", "33@33.com", "333@33.com", "33333", "aaaa",
-                "http://33.com", DateUtil.now());
+                "http://33.com", LocalDate.now());
         assertTrue(account.getSeqid() > 0);
     }
 

@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 public class SessionHelper {
     public static final String SESSION_ID = "sessionId";
-    private static final String USER_KEY = "user";
+    public static final String USER_KEY = "user";
     private static final String VERIFY_KEY = "verify";
 
     public static String getRequestId(HttpServletRequest request) {

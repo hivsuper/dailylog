@@ -1,6 +1,6 @@
 package org.lxp.dailylog.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,7 +27,7 @@ public class AccountDto {
 
     @ApiModelProperty(value = "registration date", required = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date joindate;
+    private LocalDate joindate;
 
     public String getUsername() {
         return username;
@@ -77,11 +77,11 @@ public class AccountDto {
         this.producturl = producturl == null ? null : producturl.trim();
     }
 
-    public Date getJoindate() {
+    public LocalDate getJoindate() {
         return joindate;
     }
 
-    public void setJoindate(Date joindate) {
+    public void setJoindate(LocalDate joindate) {
         this.joindate = joindate;
     }
 

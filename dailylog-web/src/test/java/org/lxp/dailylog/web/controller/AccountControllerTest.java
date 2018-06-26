@@ -1,38 +1,29 @@
 package org.lxp.dailylog.web.controller;
 
-import static org.junit.Assert.assertTrue;
-import static org.lxp.dailylog.config.PowerMockHelper.MANAGEMENT_PACKAGE;
-import static org.lxp.dailylog.config.PowerMockHelper.SSL_PACKAGE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.lxp.dailylog.config.MemoryDBTest;
 import org.lxp.dailylog.vo.UserVo;
 import org.lxp.dailylog.web.util.SessionHelper;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@RunWith(PowerMockRunner.class)
-@PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@PowerMockIgnore({ MANAGEMENT_PACKAGE, SSL_PACKAGE })
-@PrepareForTest(SessionHelper.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
+@MemoryDBTest
 public class AccountControllerTest {
     @Resource
     private WebApplicationContext context;
@@ -46,18 +37,23 @@ public class AccountControllerTest {
     @Test
     public void testAdd() throws Exception {
         // given
-        PowerMockito.mockStatic(SessionHelper.class);
-        PowerMockito.when(SessionHelper.getUser(Mockito.any(HttpSession.class))).thenReturn(new UserVo());
+        MockHttpSession session = new MockHttpSession();
+        session.putValue(SessionHelper.USER_KEY, new UserVo());
         // execute
-        String responseString = mockMvc
-                .perform(post("/account/add.json").header("sessionId", "1").param("username", "username")
-                        .param("remail", "remail").param("fpemail", "fpemail").param("phone", "phone")
-                        .param("productname", "productname").param("producturl", "producturl")
-                        .param("joindate", "2018-06-24"))
-                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        ResultActions action = mockMvc.perform(post("/account/add.json").header("sessionId", "1111")
+                .param("username", "1").param("remail", "2").param("fpemail", "3").param("phone", "4")
+                .param("productname", "5").param("producturl", "6").param("joindate", "2018-06-24").session(session));
         // verify
-        assertTrue(responseString.contains(
-                "\"username\":\"username\",\"remail\":\"remail\",\"fpemail\":\"fpemail\",\"phone\":\"phone\",\"productname\":\"productname\",\"producturl\":\"producturl\",\"joindate\":\"2018-06-24 00:00\""));
+        action.andExpect(status().isOk());
+        action.andExpect(jsonPath("$.code").value(Matchers.is(200)));
+        action.andExpect(jsonPath("$.content").exists());
+        action.andExpect(jsonPath("$.content.username").value(Matchers.is("1")));
+        action.andExpect(jsonPath("$.content.remail").value(Matchers.is("2")));
+        action.andExpect(jsonPath("$.content.fpemail").value(Matchers.is("3")));
+        action.andExpect(jsonPath("$.content.phone").value(Matchers.is("4")));
+        action.andExpect(jsonPath("$.content.productname").value(Matchers.is("5")));
+        action.andExpect(jsonPath("$.content.producturl").value(Matchers.is("6")));
+        action.andExpect(jsonPath("$.content.joindate").value(Matchers.is("2018-06-24 00:00")));
     }
 
 }
