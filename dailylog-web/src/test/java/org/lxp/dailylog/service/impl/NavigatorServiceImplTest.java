@@ -30,7 +30,7 @@ public class NavigatorServiceImplTest {
         navigator.setName("333");
         navigator.setTitle("3333");
         navigator.setUrl("http://33.com");
-        LocalDateTime localDateTime = LocalDateTime.of(2018, 06, 24, 0, 0, 0);
+        LocalDateTime localDateTime = LocalDateTime.of(2018, 6, 24, 0, 0, 0);
         navigator.setCreatetime(Date.from(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant()));
         navigator = navigatorService.addNavigator(navigator);
         assertTrue(JsonHelper.toString(navigator)
