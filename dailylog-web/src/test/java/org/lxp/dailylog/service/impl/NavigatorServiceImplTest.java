@@ -40,8 +40,8 @@ public class NavigatorServiceImplTest {
     @Test
     public void testQueryOneByLike() {
         NavigatorBase navigator = navigatorService.queryOneByLike("222");
-        assertEquals(
-                "{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\",\"createtime\":\"2018-05-30 00:00\"}",
+        navigator.setCreatetime(null);
+        assertEquals("{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\"}",
                 JsonHelper.toString(navigator));
     }
 }

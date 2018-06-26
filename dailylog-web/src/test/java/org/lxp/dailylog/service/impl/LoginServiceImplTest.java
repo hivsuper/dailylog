@@ -27,8 +27,10 @@ public class LoginServiceImplTest {
     @Test
     public void testLogin() throws CredentialNotMatchException {
         UserBase userBase = loginService.login("super@1.com", "727dfbdc1a4ee249f3f08c247a5669d5");
+        userBase.setLastlogintime(null);
+        userBase.setCreatetime(null);
         assertEquals(
-                "{\"seqid\":1,\"username\":\"super@1.com\",\"password\":\"NzI3ZGZiZGMxYTRlZTI0OWYzZjA4YzI0N2E1NjY5ZDU7bGVl\",\"lastlogintime\":\"2018-05-30 00:01\",\"createtime\":\"2018-05-30 00:00\"}",
+                "{\"seqid\":1,\"username\":\"super@1.com\",\"password\":\"NzI3ZGZiZGMxYTRlZTI0OWYzZjA4YzI0N2E1NjY5ZDU7bGVl\"}",
                 JsonHelper.toString(userBase));
     }
 }
