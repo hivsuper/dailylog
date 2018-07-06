@@ -1,4 +1,4 @@
-# dailylogv2
+# dailylog-backend
 *How to run the project?*
 1) Run command `mvn clean install` on dailylog-parent  
 2) Run `org.lxp.dailylog.Bootstrap` in dailylog-web  
