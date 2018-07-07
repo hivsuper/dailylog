@@ -1,8 +1,5 @@
 package org.lxp.dailylog;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.lxp.dailylog.filter.LogFilter;
 import org.lxp.dailylog.web.swagger.SwaggerFilter;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,13 +16,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class }) // disable auto web security
+import java.util.ArrayList;
+import java.util.List;
+
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // disable auto web security
 public class Bootstrap {
     @Value("${dailylog.swagger.enabled}")
     private boolean swaggerAllowed;
 
     @Bean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
-    public FilterChainProxy getFilterChainProxy() throws Exception {
+    public FilterChainProxy getFilterChainProxy() {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter("UTF-8", true);
         SwaggerFilter swaggerFilter = new SwaggerFilter(swaggerAllowed);
         LogFilter logFilter = new LogFilter();

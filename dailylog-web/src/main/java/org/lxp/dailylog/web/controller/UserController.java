@@ -1,16 +1,15 @@
 package org.lxp.dailylog.web.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
+import io.swagger.annotations.ApiOperation;
 import org.lxp.dailylog.web.util.JsonVo;
 import org.lxp.dailylog.web.util.SessionHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.ApiOperation;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping("/user")

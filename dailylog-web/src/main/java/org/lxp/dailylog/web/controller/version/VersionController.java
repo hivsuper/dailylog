@@ -3,9 +3,9 @@ package org.lxp.dailylog.web.controller.version;
 import io.swagger.annotations.ApiOperation;
 import org.lxp.dailylog.util.DateUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@Controller
+@RestController
 public class VersionController {
     @Value("${project.version}")
     private String version;
