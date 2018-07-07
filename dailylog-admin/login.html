@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dailylog Login</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.ico">
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="inputUserName">User Name</label>
+                    <input class="form-control" id="inputUserName" type="text" placeholder="Enter user name"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input class="form-control" id="inputPassword" type="password" placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputVerifyCode">Verify Code</label>
+                    <div class="input-group">
+                        <input class="form-control" id="inputVerifyCode" type="text" placeholder="Enter verify code"/>
+                        <span class="input-group-btn" style="cursor: pointer" id="verifyCode">
+                            <img alt="Verify Code" title="Click to switch"/>
+                        </span>
+                    </div>
+                </div>
+                <a class="btn btn-primary btn-block" href="javascript:;">Login</a>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(document).on('click', '#verifyCode', function(){
+        $(this).find('img').attr('src', v.apiHost+'verifyCode.json?r='+Math.random());
+    });
+    $('#verifyCode').click();
+});
+</script>
+</body>
+
+</html>
