@@ -27,6 +27,8 @@ public class AccountBase {
     @ApiModelProperty(value = "registration date")
     private Date joinDate;
 
+    private Boolean isActive;
+
     @ApiModelProperty(value = "record creation time")
     private Date createTime;
 
@@ -94,6 +96,14 @@ public class AccountBase {
         this.joinDate = joinDate;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -116,6 +126,7 @@ public class AccountBase {
         sb.append(", productName=").append(productName);
         sb.append(", productUrl=").append(productUrl);
         sb.append(", joinDate=").append(joinDate);
+        sb.append(", isActive=").append(isActive);
         sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();

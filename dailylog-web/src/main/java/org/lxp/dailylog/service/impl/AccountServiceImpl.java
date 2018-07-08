@@ -30,6 +30,7 @@ public class AccountServiceImpl implements AccountService {
         account.setProductName(productName);
         account.setProductUrl(productUrl);
         account.setJoinDate(DateUtil.localDateToDate(joinDate));
+        account.setIsActive(true);
         account.setCreateTime(DateUtil.now());
         accountBaseMapper.insertSelective(account);
         LOG.info("add accountId={}", account.getId());

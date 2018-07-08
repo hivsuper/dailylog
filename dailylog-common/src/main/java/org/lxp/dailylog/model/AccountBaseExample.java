@@ -665,6 +665,66 @@ public class AccountBaseExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsActiveIsNull() {
+            addCriterion("account.is_active is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveIsNotNull() {
+            addCriterion("account.is_active is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveEqualTo(Boolean value) {
+            addCriterion("account.is_active =", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotEqualTo(Boolean value) {
+            addCriterion("account.is_active <>", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveGreaterThan(Boolean value) {
+            addCriterion("account.is_active >", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("account.is_active >=", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveLessThan(Boolean value) {
+            addCriterion("account.is_active <", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveLessThanOrEqualTo(Boolean value) {
+            addCriterion("account.is_active <=", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveIn(List<Boolean> values) {
+            addCriterion("account.is_active in", values, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotIn(List<Boolean> values) {
+            addCriterion("account.is_active not in", values, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveBetween(Boolean value1, Boolean value2) {
+            addCriterion("account.is_active between", value1, value2, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("account.is_active not between", value1, value2, "isActive");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("account.create_time is null");
             return (Criteria) this;

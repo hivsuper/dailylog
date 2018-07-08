@@ -7,19 +7,10 @@ CREATE TABLE IF NOT EXISTS `account` (
   `product_name` varchar(100) NOT NULL COMMENT 'product name',
   `product_url` varchar(500) DEFAULT NULL COMMENT 'product url',
   `join_date` datetime DEFAULT NULL COMMENT 'registration date',
+  `is_active` TINYINT(4) NOT NULL,
   `create_time` datetime NOT NULL COMMENT 'record creation time',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_product_name_unique_key` (`email`,`product_name`)
-) ENGINE=InnoDB;;
-
-CREATE TABLE IF NOT EXISTS `navigator` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL COMMENT 'site name',
-  `url` varchar(100) NOT NULL COMMENT 'site link',
-  `title` varchar(100) DEFAULT '' COMMENT 'site title used for a label',
-  `create_time` datetime NOT NULL COMMENT 'record creation time',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `url_unique_key` (`url`)
 ) ENGINE=InnoDB;;
 
 CREATE TABLE IF NOT EXISTS `user` (

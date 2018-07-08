@@ -31,9 +31,7 @@
 
     <table tableName="account" domainObjectName="AccountBase" alias="account">
       <generatedKey column="id" sqlStatement="MySql" identity="true" />
-    </table>
-    <table tableName="navigator" domainObjectName="NavigatorBase" alias="navigator">
-      <generatedKey column="id" sqlStatement="MySql" identity="true" />
+      <columnOverride property="isActive" column="is_active" javaType="java.lang.Boolean" />
     </table>
     <table tableName="user" domainObjectName="UserBase" alias="user">
       <generatedKey column="id" sqlStatement="MySql" identity="true" />

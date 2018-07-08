@@ -10,6 +10,7 @@
     <result column="account_product_name" property="productName" jdbcType="VARCHAR" />
     <result column="account_product_url" property="productUrl" jdbcType="VARCHAR" />
     <result column="account_join_date" property="joinDate" jdbcType="TIMESTAMP" />
+    <result column="account_is_active" property="isActive" jdbcType="TINYINT" />
     <result column="account_create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -74,7 +75,7 @@
     account.id as account_id, account.username as account_username, account.email as account_email, 
     account.forget_password_email as account_forget_password_email, account.phone as account_phone, 
     account.product_name as account_product_name, account.product_url as account_product_url, 
-    account.join_date as account_join_date, account.create_time as account_create_time
+    account.join_date as account_join_date, account.is_active as account_is_active, account.create_time as account_create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.lxp.dailylog.model.AccountBaseExample" >
     select
@@ -120,10 +121,12 @@
     </selectKey>
     insert into account (username, email, forget_password_email, 
       phone, product_name, product_url, 
-      join_date, create_time)
+      join_date, is_active, create_time
+      )
     values (#{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{forgetPasswordEmail,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, 
-      #{joinDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+      #{joinDate,jdbcType=TIMESTAMP}, #{isActive,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.lxp.dailylog.model.AccountBase" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -152,6 +155,9 @@
       <if test="joinDate != null" >
         join_date,
       </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -177,6 +183,9 @@
       </if>
       <if test="joinDate != null" >
         #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=TINYINT},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -216,6 +225,9 @@
       <if test="record.joinDate != null" >
         account.join_date = #{record.joinDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.isActive != null" >
+        account.is_active = #{record.isActive,jdbcType=TINYINT},
+      </if>
       <if test="record.createTime != null" >
         account.create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -234,6 +246,7 @@
       account.product_name = #{record.productName,jdbcType=VARCHAR},
       account.product_url = #{record.productUrl,jdbcType=VARCHAR},
       account.join_date = #{record.joinDate,jdbcType=TIMESTAMP},
+      account.is_active = #{record.isActive,jdbcType=TINYINT},
       account.create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -263,6 +276,9 @@
       <if test="joinDate != null" >
         join_date = #{joinDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -278,6 +294,7 @@
       product_name = #{productName,jdbcType=VARCHAR},
       product_url = #{productUrl,jdbcType=VARCHAR},
       join_date = #{joinDate,jdbcType=TIMESTAMP},
+      is_active = #{isActive,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
