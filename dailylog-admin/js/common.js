@@ -107,3 +107,12 @@ if($('#logoutModal')){
 if($('footer.sticky-footer')){
     $('footer.sticky-footer').html('<div class="container"><div class="text-center"><small>Copyright © Your Website 2018</small></div></div>');
 }
+if($('#mainNav')){
+    $('#mainNav').html('<a class="navbar-brand" href="index.html">Dailylog Admin</a>'+
+    '<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
+    '<span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarResponsive"><ul class="navbar-nav navbar-sidenav" id="exampleAccordion">'+
+    '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard"><a class="nav-link" href="index.html"><i class="fa fa-fw fa-table"></i>'+
+    '<span class="nav-link-text">Accounts</span></a></li></ul><ul class="navbar-nav sidenav-toggler"><li class="nav-item"><a class="nav-link text-center" id="sidenavToggler">'+
+    '<i class="fa fa-fw fa-angle-left"></i></a></li></ul><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link" data-toggle="modal" style="cursor:auto">'+
+    'Welcome! <span id="username-span"></span></a></li><li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li></ul></div>');
+}
