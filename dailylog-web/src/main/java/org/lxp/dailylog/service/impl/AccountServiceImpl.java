@@ -1,10 +1,5 @@
 package org.lxp.dailylog.service.impl;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.lxp.dailylog.dao.mapper.AccountBaseMapper;
 import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.model.AccountBaseExample;
@@ -14,6 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
     private static final Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
@@ -21,19 +20,8 @@ public class AccountServiceImpl implements AccountService {
     private AccountBaseMapper accountBaseMapper;
 
     @Override
-    public AccountBase addAccount(AccountBase account, boolean rollback) {
-        account.setCreatetime(DateUtil.now());
-        accountBaseMapper.insertSelective(account);
-        LOG.info("add accountId={}", account.getSeqid());
-        if (rollback) {
-            throw new IllegalArgumentException();
-        }
-        return account;
-    }
-
-    @Override
     public AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
-            String productUrl, LocalDate joinDate) {
+                                  String productUrl, LocalDate joinDate) {
         AccountBase account = new AccountBase();
         account.setUsername(userName);
         account.setRemail(rEmail);

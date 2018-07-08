@@ -1,14 +1,12 @@
 package org.lxp.dailylog.service;
 
-import java.time.LocalDate;
-
 import org.lxp.dailylog.model.AccountBase;
 
-public interface AccountService {
-    AccountBase addAccount(AccountBase account, boolean rollback);
+import java.time.LocalDate;
 
+public interface AccountService {
     AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
-            String productUrl, LocalDate joinDate);
+                           String productUrl, LocalDate joinDate);
 
     AccountBase queryOneLike(String keyword);
 }
