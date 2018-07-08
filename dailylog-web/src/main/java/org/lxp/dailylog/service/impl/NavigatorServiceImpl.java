@@ -20,9 +20,9 @@ public class NavigatorServiceImpl implements NavigatorService {
 
     @Override
     public NavigatorBase addNavigator(NavigatorBase navigator) {
-        navigator.setCreatetime(DateUtil.now());
+        navigator.setCreateTime(DateUtil.now());
         navigatorBaseMapper.insertSelective(navigator);
-        LOGGER.info("add navigator id={}", navigator.getSeqid());
+        LOGGER.info("add navigator id={}", navigator.getId());
         return navigator;
     }
 

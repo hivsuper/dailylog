@@ -50,7 +50,7 @@ public class LoginController {
             SessionHelper.addUser(session, user);
             jsonVo = JsonVo.success(user);
             SessionHelper.removeVerify(session);
-            LOG.info("{} login successfully.", user.getSeqid());
+            LOG.info("{} login successfully.", user.getId());
         }
         return jsonVo;
     }

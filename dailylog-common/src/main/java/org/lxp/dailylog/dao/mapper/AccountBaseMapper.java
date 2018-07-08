@@ -10,7 +10,7 @@ public interface AccountBaseMapper {
 
     int deleteByExample(AccountBaseExample example);
 
-    int deleteByPrimaryKey(Long seqid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(AccountBase record);
 
@@ -18,7 +18,7 @@ public interface AccountBaseMapper {
 
     List<AccountBase> selectByExample(AccountBaseExample example);
 
-    AccountBase selectByPrimaryKey(Long seqid);
+    AccountBase selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") AccountBase record, @Param("example") AccountBaseExample example);
 

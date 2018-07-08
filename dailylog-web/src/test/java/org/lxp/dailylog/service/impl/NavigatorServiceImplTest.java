@@ -30,17 +30,17 @@ public class NavigatorServiceImplTest {
         navigator.setTitle("3333");
         navigator.setUrl("http://33.com");
         LocalDateTime localDateTime = LocalDateTime.of(2018, 6, 24, 0, 0, 0);
-        navigator.setCreatetime(Date.from(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant()));
+        navigator.setCreateTime(Date.from(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant()));
         navigator = navigatorService.addNavigator(navigator);
         assertTrue(JsonHelper.toString(navigator)
-                .startsWith("{\"seqid\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\""));
+                .startsWith("{\"id\":2,\"name\":\"333\",\"url\":\"http://33.com\",\"title\":\"3333\""));
     }
 
     @Test
     public void testQueryNavigatorPage() {
         NavigatorBase navigator = navigatorService.queryNavigatorPage("222", 0, 10).getObjs().get(0);
-        navigator.setCreatetime(null);
-        assertEquals("{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\"}",
+        navigator.setCreateTime(null);
+        assertEquals("{\"id\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\"}",
                 JsonHelper.toString(navigator));
     }
 }

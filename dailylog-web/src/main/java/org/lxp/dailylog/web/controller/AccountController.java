@@ -22,8 +22,8 @@ public class AccountController {
     @ApiOperation(value = "添加帐号")
     public JsonVo<AccountBase> add(@RequestHeader String sessionId,
                                    @ModelAttribute AccountDto accountDto) {
-        return JsonVo.success(accountService.addAccount(accountDto.getUsername(), accountDto.getRemail(),
-                accountDto.getFpemail(), accountDto.getPhone(), accountDto.getProductname(), accountDto.getProducturl(),
-                accountDto.getJoindate()));
+        return JsonVo.success(accountService.addAccount(accountDto.getUsername(), accountDto.getEmail(),
+                accountDto.getForgetPasswordEmail(), accountDto.getPhone(), accountDto.getProductName(), accountDto.getProductUrl(),
+                accountDto.getJoinDate()));
     }
 }

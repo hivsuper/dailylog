@@ -1,24 +1,25 @@
 package org.lxp.dailylog.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 public class UserBase {
-    private Long seqid;
+    private Long id;
 
     private String username;
 
     private String password;
 
-    private Date lastlogintime;
+    private Date lastLoginTime;
 
-    private Date createtime;
+    private Date createTime;
 
-    public Long getSeqid() {
-        return seqid;
+    public Long getId() {
+        return id;
     }
 
-    public void setSeqid(Long seqid) {
-        this.seqid = seqid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -37,20 +38,20 @@ public class UserBase {
         this.password = password == null ? null : password.trim();
     }
 
-    public Date getLastlogintime() {
-        return lastlogintime;
+    public Date getLastLoginTime() {
+        return lastLoginTime;
     }
 
-    public void setLastlogintime(Date lastlogintime) {
-        this.lastlogintime = lastlogintime;
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -59,11 +60,11 @@ public class UserBase {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", seqid=").append(seqid);
+        sb.append(", id=").append(id);
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
-        sb.append(", lastlogintime=").append(lastlogintime);
-        sb.append(", createtime=").append(createtime);
+        sb.append(", lastLoginTime=").append(lastLoginTime);
+        sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();
     }

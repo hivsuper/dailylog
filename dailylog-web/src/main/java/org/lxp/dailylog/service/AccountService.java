@@ -6,7 +6,7 @@ import org.lxp.dailylog.util.Page;
 import java.time.LocalDate;
 
 public interface AccountService {
-    AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
+    AccountBase addAccount(String username, String rEmail, String fpEmail, String phone, String productName,
                            String productUrl, LocalDate joinDate);
 
     Page<AccountBase> queryAccountPage(String keyword, int currentPage, int pageSize);

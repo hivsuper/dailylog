@@ -20,19 +20,19 @@ public class AccountServiceImpl implements AccountService {
     private AccountBaseMapper accountBaseMapper;
 
     @Override
-    public AccountBase addAccount(String userName, String rEmail, String fpEmail, String phone, String productName,
+    public AccountBase addAccount(String username, String rEmail, String fpEmail, String phone, String productName,
                                   String productUrl, LocalDate joinDate) {
         AccountBase account = new AccountBase();
-        account.setUsername(userName);
-        account.setRemail(rEmail);
-        account.setFpemail(fpEmail);
+        account.setUsername(username);
+        account.setEmail(rEmail);
+        account.setForgetPasswordEmail(fpEmail);
         account.setPhone(phone);
-        account.setProductname(productName);
-        account.setProducturl(productUrl);
-        account.setJoindate(DateUtil.localDateToDate(joinDate));
-        account.setCreatetime(DateUtil.now());
+        account.setProductName(productName);
+        account.setProductUrl(productUrl);
+        account.setJoinDate(DateUtil.localDateToDate(joinDate));
+        account.setCreateTime(DateUtil.now());
         accountBaseMapper.insertSelective(account);
-        LOG.info("add accountId={}", account.getSeqid());
+        LOG.info("add accountId={}", account.getId());
         return account;
     }
 
@@ -41,10 +41,10 @@ public class AccountServiceImpl implements AccountService {
         AccountBaseExample example = new AccountBaseExample();
         keyword = String.format("%%%s%%", keyword);
         example.createCriteria().andUsernameLike(keyword);
-        example.or(example.createCriteria().andRemailLike(keyword));
-        example.or(example.createCriteria().andFpemailLike(keyword));
-        example.or(example.createCriteria().andProductnameLike(keyword));
-        example.or(example.createCriteria().andProducturlLike(keyword));
+        example.or(example.createCriteria().andEmailLike(keyword));
+        example.or(example.createCriteria().andForgetPasswordEmailLike(keyword));
+        example.or(example.createCriteria().andProductNameLike(keyword));
+        example.or(example.createCriteria().andProductUrlLike(keyword));
 
         Page<AccountBase> page = new Page<>(currentPage, pageSize);
         example.setOffset(page.getOffset());

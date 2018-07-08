@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.lxp.dailylog.dao.mapper.AccountBaseMapper" >
   <resultMap id="BaseResultMap" type="org.lxp.dailylog.model.AccountBase" >
-    <id column="account_seqid" property="seqid" jdbcType="BIGINT" />
+    <id column="account_id" property="id" jdbcType="BIGINT" />
     <result column="account_username" property="username" jdbcType="VARCHAR" />
-    <result column="account_remail" property="remail" jdbcType="VARCHAR" />
-    <result column="account_fpemail" property="fpemail" jdbcType="VARCHAR" />
+    <result column="account_email" property="email" jdbcType="VARCHAR" />
+    <result column="account_forget_password_email" property="forgetPasswordEmail" jdbcType="VARCHAR" />
     <result column="account_phone" property="phone" jdbcType="VARCHAR" />
-    <result column="account_productname" property="productname" jdbcType="VARCHAR" />
-    <result column="account_producturl" property="producturl" jdbcType="VARCHAR" />
-    <result column="account_joindate" property="joindate" jdbcType="TIMESTAMP" />
-    <result column="account_createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="account_product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="account_product_url" property="productUrl" jdbcType="VARCHAR" />
+    <result column="account_join_date" property="joinDate" jdbcType="TIMESTAMP" />
+    <result column="account_create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,9 +71,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    account.seqid as account_seqid, account.username as account_username, account.remail as account_remail, 
-    account.fpemail as account_fpemail, account.phone as account_phone, account.productname as account_productname, 
-    account.producturl as account_producturl, account.joindate as account_joindate, account.createtime as account_createtime
+    account.id as account_id, account.username as account_username, account.email as account_email, 
+    account.forget_password_email as account_forget_password_email, account.phone as account_phone, 
+    account.product_name as account_product_name, account.product_url as account_product_url, 
+    account.join_date as account_join_date, account.create_time as account_create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.lxp.dailylog.model.AccountBaseExample" >
     select
@@ -101,11 +102,11 @@
     select 
     <include refid="Base_Column_List" />
     from account account
-    where account.seqid = #{seqid,jdbcType=BIGINT}
+    where account.id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from account
-    where seqid = #{seqid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="org.lxp.dailylog.model.AccountBaseExample" >
     delete from account account
@@ -114,18 +115,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.lxp.dailylog.model.AccountBase" >
-    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into account (username, remail, fpemail, 
-      phone, productname, producturl, 
-      joindate, createtime)
-    values (#{username,jdbcType=VARCHAR}, #{remail,jdbcType=VARCHAR}, #{fpemail,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, #{producturl,jdbcType=VARCHAR}, 
-      #{joindate,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
+    insert into account (username, email, forget_password_email, 
+      phone, product_name, product_url, 
+      join_date, create_time)
+    values (#{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{forgetPasswordEmail,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, 
+      #{joinDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.lxp.dailylog.model.AccountBase" >
-    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into account
@@ -133,52 +134,52 @@
       <if test="username != null" >
         username,
       </if>
-      <if test="remail != null" >
-        remail,
+      <if test="email != null" >
+        email,
       </if>
-      <if test="fpemail != null" >
-        fpemail,
+      <if test="forgetPasswordEmail != null" >
+        forget_password_email,
       </if>
       <if test="phone != null" >
         phone,
       </if>
-      <if test="productname != null" >
-        productname,
+      <if test="productName != null" >
+        product_name,
       </if>
-      <if test="producturl != null" >
-        producturl,
+      <if test="productUrl != null" >
+        product_url,
       </if>
-      <if test="joindate != null" >
-        joindate,
+      <if test="joinDate != null" >
+        join_date,
       </if>
-      <if test="createtime != null" >
-        createtime,
+      <if test="createTime != null" >
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="remail != null" >
-        #{remail,jdbcType=VARCHAR},
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
       </if>
-      <if test="fpemail != null" >
-        #{fpemail,jdbcType=VARCHAR},
+      <if test="forgetPasswordEmail != null" >
+        #{forgetPasswordEmail,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="productname != null" >
-        #{productname,jdbcType=VARCHAR},
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="producturl != null" >
-        #{producturl,jdbcType=VARCHAR},
+      <if test="productUrl != null" >
+        #{productUrl,jdbcType=VARCHAR},
       </if>
-      <if test="joindate != null" >
-        #{joindate,jdbcType=TIMESTAMP},
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -191,32 +192,32 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update account account
     <set >
-      <if test="record.seqid != null" >
-        account.seqid = #{record.seqid,jdbcType=BIGINT},
+      <if test="record.id != null" >
+        account.id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.username != null" >
         account.username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.remail != null" >
-        account.remail = #{record.remail,jdbcType=VARCHAR},
+      <if test="record.email != null" >
+        account.email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.fpemail != null" >
-        account.fpemail = #{record.fpemail,jdbcType=VARCHAR},
+      <if test="record.forgetPasswordEmail != null" >
+        account.forget_password_email = #{record.forgetPasswordEmail,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         account.phone = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.productname != null" >
-        account.productname = #{record.productname,jdbcType=VARCHAR},
+      <if test="record.productName != null" >
+        account.product_name = #{record.productName,jdbcType=VARCHAR},
       </if>
-      <if test="record.producturl != null" >
-        account.producturl = #{record.producturl,jdbcType=VARCHAR},
+      <if test="record.productUrl != null" >
+        account.product_url = #{record.productUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.joindate != null" >
-        account.joindate = #{record.joindate,jdbcType=TIMESTAMP},
+      <if test="record.joinDate != null" >
+        account.join_date = #{record.joinDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createtime != null" >
-        account.createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null" >
+        account.create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -225,15 +226,15 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update account account
-    set account.seqid = #{record.seqid,jdbcType=BIGINT},
+    set account.id = #{record.id,jdbcType=BIGINT},
       account.username = #{record.username,jdbcType=VARCHAR},
-      account.remail = #{record.remail,jdbcType=VARCHAR},
-      account.fpemail = #{record.fpemail,jdbcType=VARCHAR},
+      account.email = #{record.email,jdbcType=VARCHAR},
+      account.forget_password_email = #{record.forgetPasswordEmail,jdbcType=VARCHAR},
       account.phone = #{record.phone,jdbcType=VARCHAR},
-      account.productname = #{record.productname,jdbcType=VARCHAR},
-      account.producturl = #{record.producturl,jdbcType=VARCHAR},
-      account.joindate = #{record.joindate,jdbcType=TIMESTAMP},
-      account.createtime = #{record.createtime,jdbcType=TIMESTAMP}
+      account.product_name = #{record.productName,jdbcType=VARCHAR},
+      account.product_url = #{record.productUrl,jdbcType=VARCHAR},
+      account.join_date = #{record.joinDate,jdbcType=TIMESTAMP},
+      account.create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -244,40 +245,40 @@
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="remail != null" >
-        remail = #{remail,jdbcType=VARCHAR},
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="fpemail != null" >
-        fpemail = #{fpemail,jdbcType=VARCHAR},
+      <if test="forgetPasswordEmail != null" >
+        forget_password_email = #{forgetPasswordEmail,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="productname != null" >
-        productname = #{productname,jdbcType=VARCHAR},
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="producturl != null" >
-        producturl = #{producturl,jdbcType=VARCHAR},
+      <if test="productUrl != null" >
+        product_url = #{productUrl,jdbcType=VARCHAR},
       </if>
-      <if test="joindate != null" >
-        joindate = #{joindate,jdbcType=TIMESTAMP},
+      <if test="joinDate != null" >
+        join_date = #{joinDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where seqid = #{seqid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.lxp.dailylog.model.AccountBase" >
     update account
     set username = #{username,jdbcType=VARCHAR},
-      remail = #{remail,jdbcType=VARCHAR},
-      fpemail = #{fpemail,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      forget_password_email = #{forgetPasswordEmail,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      productname = #{productname,jdbcType=VARCHAR},
-      producturl = #{producturl,jdbcType=VARCHAR},
-      joindate = #{joindate,jdbcType=TIMESTAMP},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where seqid = #{seqid,jdbcType=BIGINT}
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_url = #{productUrl,jdbcType=VARCHAR},
+      join_date = #{joinDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

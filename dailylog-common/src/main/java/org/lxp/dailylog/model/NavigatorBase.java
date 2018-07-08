@@ -1,11 +1,10 @@
 package org.lxp.dailylog.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Date;
 
 public class NavigatorBase {
-    private Long seqid;
+    private Long id;
 
     @ApiModelProperty(value = "site name")
     private String name;
@@ -17,14 +16,14 @@ public class NavigatorBase {
     private String title;
 
     @ApiModelProperty(value = "record creation time")
-    private Date createtime;
+    private Date createTime;
 
-    public Long getSeqid() {
-        return seqid;
+    public Long getId() {
+        return id;
     }
 
-    public void setSeqid(Long seqid) {
-        this.seqid = seqid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,12 +50,12 @@ public class NavigatorBase {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -65,11 +64,11 @@ public class NavigatorBase {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", seqid=").append(seqid);
+        sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", url=").append(url);
         sb.append(", title=").append(title);
-        sb.append(", createtime=").append(createtime);
+        sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();
     }

@@ -1,42 +1,41 @@
 package org.lxp.dailylog.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Date;
 
 public class AccountBase {
-    private Long seqid;
+    private Long id;
 
     @ApiModelProperty(value = "user logon name")
     private String username;
 
-    @ApiModelProperty(value = "email Address on Account")
-    private String remail;
+    @ApiModelProperty(value = "email Address of the Account")
+    private String email;
 
     @ApiModelProperty(value = "forget password email")
-    private String fpemail;
+    private String forgetPasswordEmail;
 
     @ApiModelProperty(value = "phone number")
     private String phone;
 
     @ApiModelProperty(value = "product name")
-    private String productname;
+    private String productName;
 
     @ApiModelProperty(value = "product url")
-    private String producturl;
+    private String productUrl;
 
     @ApiModelProperty(value = "registration date")
-    private Date joindate;
+    private Date joinDate;
 
     @ApiModelProperty(value = "record creation time")
-    private Date createtime;
+    private Date createTime;
 
-    public Long getSeqid() {
-        return seqid;
+    public Long getId() {
+        return id;
     }
 
-    public void setSeqid(Long seqid) {
-        this.seqid = seqid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -47,20 +46,20 @@ public class AccountBase {
         this.username = username == null ? null : username.trim();
     }
 
-    public String getRemail() {
-        return remail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRemail(String remail) {
-        this.remail = remail == null ? null : remail.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
-    public String getFpemail() {
-        return fpemail;
+    public String getForgetPasswordEmail() {
+        return forgetPasswordEmail;
     }
 
-    public void setFpemail(String fpemail) {
-        this.fpemail = fpemail == null ? null : fpemail.trim();
+    public void setForgetPasswordEmail(String forgetPasswordEmail) {
+        this.forgetPasswordEmail = forgetPasswordEmail == null ? null : forgetPasswordEmail.trim();
     }
 
     public String getPhone() {
@@ -71,36 +70,36 @@ public class AccountBase {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getProductname() {
-        return productname;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getProducturl() {
-        return producturl;
+    public String getProductUrl() {
+        return productUrl;
     }
 
-    public void setProducturl(String producturl) {
-        this.producturl = producturl == null ? null : producturl.trim();
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl == null ? null : productUrl.trim();
     }
 
-    public Date getJoindate() {
-        return joindate;
+    public Date getJoinDate() {
+        return joinDate;
     }
 
-    public void setJoindate(Date joindate) {
-        this.joindate = joindate;
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -109,15 +108,15 @@ public class AccountBase {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", seqid=").append(seqid);
+        sb.append(", id=").append(id);
         sb.append(", username=").append(username);
-        sb.append(", remail=").append(remail);
-        sb.append(", fpemail=").append(fpemail);
+        sb.append(", email=").append(email);
+        sb.append(", forgetPasswordEmail=").append(forgetPasswordEmail);
         sb.append(", phone=").append(phone);
-        sb.append(", productname=").append(productname);
-        sb.append(", producturl=").append(producturl);
-        sb.append(", joindate=").append(joindate);
-        sb.append(", createtime=").append(createtime);
+        sb.append(", productName=").append(productName);
+        sb.append(", productUrl=").append(productUrl);
+        sb.append(", joinDate=").append(joinDate);
+        sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();
     }

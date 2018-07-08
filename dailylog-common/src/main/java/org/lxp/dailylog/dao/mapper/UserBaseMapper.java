@@ -10,7 +10,7 @@ public interface UserBaseMapper {
 
     int deleteByExample(UserBaseExample example);
 
-    int deleteByPrimaryKey(Long seqid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(UserBase record);
 
@@ -18,7 +18,7 @@ public interface UserBaseMapper {
 
     List<UserBase> selectByExample(UserBaseExample example);
 
-    UserBase selectByPrimaryKey(Long seqid);
+    UserBase selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") UserBase record, @Param("example") UserBaseExample example);
 

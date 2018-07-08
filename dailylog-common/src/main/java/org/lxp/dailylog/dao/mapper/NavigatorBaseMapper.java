@@ -10,7 +10,7 @@ public interface NavigatorBaseMapper {
 
     int deleteByExample(NavigatorBaseExample example);
 
-    int deleteByPrimaryKey(Long seqid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(NavigatorBase record);
 
@@ -18,7 +18,7 @@ public interface NavigatorBaseMapper {
 
     List<NavigatorBase> selectByExample(NavigatorBaseExample example);
 
-    NavigatorBase selectByPrimaryKey(Long seqid);
+    NavigatorBase selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") NavigatorBase record, @Param("example") NavigatorBaseExample example);
 

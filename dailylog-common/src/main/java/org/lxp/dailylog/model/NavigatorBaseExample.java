@@ -125,63 +125,63 @@ public class NavigatorBaseExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andSeqidIsNull() {
-            addCriterion("navigator.seqid is null");
+        public Criteria andIdIsNull() {
+            addCriterion("navigator.id is null");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidIsNotNull() {
-            addCriterion("navigator.seqid is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("navigator.id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidEqualTo(Long value) {
-            addCriterion("navigator.seqid =", value, "seqid");
+        public Criteria andIdEqualTo(Long value) {
+            addCriterion("navigator.id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotEqualTo(Long value) {
-            addCriterion("navigator.seqid <>", value, "seqid");
+        public Criteria andIdNotEqualTo(Long value) {
+            addCriterion("navigator.id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidGreaterThan(Long value) {
-            addCriterion("navigator.seqid >", value, "seqid");
+        public Criteria andIdGreaterThan(Long value) {
+            addCriterion("navigator.id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidGreaterThanOrEqualTo(Long value) {
-            addCriterion("navigator.seqid >=", value, "seqid");
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("navigator.id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidLessThan(Long value) {
-            addCriterion("navigator.seqid <", value, "seqid");
+        public Criteria andIdLessThan(Long value) {
+            addCriterion("navigator.id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidLessThanOrEqualTo(Long value) {
-            addCriterion("navigator.seqid <=", value, "seqid");
+        public Criteria andIdLessThanOrEqualTo(Long value) {
+            addCriterion("navigator.id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidIn(List<Long> values) {
-            addCriterion("navigator.seqid in", values, "seqid");
+        public Criteria andIdIn(List<Long> values) {
+            addCriterion("navigator.id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotIn(List<Long> values) {
-            addCriterion("navigator.seqid not in", values, "seqid");
+        public Criteria andIdNotIn(List<Long> values) {
+            addCriterion("navigator.id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidBetween(Long value1, Long value2) {
-            addCriterion("navigator.seqid between", value1, value2, "seqid");
+        public Criteria andIdBetween(Long value1, Long value2) {
+            addCriterion("navigator.id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotBetween(Long value1, Long value2) {
-            addCriterion("navigator.seqid not between", value1, value2, "seqid");
+        public Criteria andIdNotBetween(Long value1, Long value2) {
+            addCriterion("navigator.id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
@@ -395,63 +395,63 @@ public class NavigatorBaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNull() {
-            addCriterion("navigator.createtime is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("navigator.create_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNotNull() {
-            addCriterion("navigator.createtime is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("navigator.create_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Date value) {
-            addCriterion("navigator.createtime =", value, "createtime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("navigator.create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Date value) {
-            addCriterion("navigator.createtime <>", value, "createtime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("navigator.create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Date value) {
-            addCriterion("navigator.createtime >", value, "createtime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("navigator.create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("navigator.createtime >=", value, "createtime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("navigator.create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Date value) {
-            addCriterion("navigator.createtime <", value, "createtime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("navigator.create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
-            addCriterion("navigator.createtime <=", value, "createtime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("navigator.create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Date> values) {
-            addCriterion("navigator.createtime in", values, "createtime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("navigator.create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Date> values) {
-            addCriterion("navigator.createtime not in", values, "createtime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("navigator.create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Date value1, Date value2) {
-            addCriterion("navigator.createtime between", value1, value2, "createtime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("navigator.create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
-            addCriterion("navigator.createtime not between", value1, value2, "createtime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("navigator.create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

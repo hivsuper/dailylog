@@ -12,8 +12,8 @@
       <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
       <property name="suppressAllComments" value="true" />
     </commentGenerator>
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.86.17.154:3306/dailylog?characterEncoding=UTF-8"
-      userId="test" password="test" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.21:3306/dailylog?characterEncoding=UTF-8"
+      userId="dev" password="dev" />
     <javaTypeResolver>
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
@@ -30,13 +30,13 @@
     </javaClientGenerator>
 
     <table tableName="account" domainObjectName="AccountBase" alias="account">
-      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
     <table tableName="navigator" domainObjectName="NavigatorBase" alias="navigator">
-      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
     <table tableName="user" domainObjectName="UserBase" alias="user">
-      <generatedKey column="seqid" sqlStatement="MySql" identity="true" />
+      <generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
   </context>
 </generatorConfiguration>

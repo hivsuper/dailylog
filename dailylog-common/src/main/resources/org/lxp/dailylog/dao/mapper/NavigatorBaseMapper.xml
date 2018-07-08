@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.lxp.dailylog.dao.mapper.NavigatorBaseMapper" >
   <resultMap id="BaseResultMap" type="org.lxp.dailylog.model.NavigatorBase" >
-    <id column="navigator_seqid" property="seqid" jdbcType="BIGINT" />
+    <id column="navigator_id" property="id" jdbcType="BIGINT" />
     <result column="navigator_name" property="name" jdbcType="VARCHAR" />
     <result column="navigator_url" property="url" jdbcType="VARCHAR" />
     <result column="navigator_title" property="title" jdbcType="VARCHAR" />
-    <result column="navigator_createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="navigator_create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,8 +67,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    navigator.seqid as navigator_seqid, navigator.name as navigator_name, navigator.url as navigator_url, 
-    navigator.title as navigator_title, navigator.createtime as navigator_createtime
+    navigator.id as navigator_id, navigator.name as navigator_name, navigator.url as navigator_url, 
+    navigator.title as navigator_title, navigator.create_time as navigator_create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" >
     select
@@ -96,11 +96,11 @@
     select 
     <include refid="Base_Column_List" />
     from navigator navigator
-    where navigator.seqid = #{seqid,jdbcType=BIGINT}
+    where navigator.id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from navigator
-    where seqid = #{seqid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="org.lxp.dailylog.model.NavigatorBaseExample" >
     delete from navigator navigator
@@ -109,16 +109,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.lxp.dailylog.model.NavigatorBase" >
-    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into navigator (name, url, title, 
-      createtime)
+      create_time)
     values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP})
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.lxp.dailylog.model.NavigatorBase" >
-    <selectKey resultType="java.lang.Long" keyProperty="seqid" order="AFTER" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into navigator
@@ -132,8 +132,8 @@
       <if test="title != null" >
         title,
       </if>
-      <if test="createtime != null" >
-        createtime,
+      <if test="createTime != null" >
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -146,8 +146,8 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -160,8 +160,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update navigator navigator
     <set >
-      <if test="record.seqid != null" >
-        navigator.seqid = #{record.seqid,jdbcType=BIGINT},
+      <if test="record.id != null" >
+        navigator.id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.name != null" >
         navigator.name = #{record.name,jdbcType=VARCHAR},
@@ -172,8 +172,8 @@
       <if test="record.title != null" >
         navigator.title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null" >
-        navigator.createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null" >
+        navigator.create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -182,11 +182,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update navigator navigator
-    set navigator.seqid = #{record.seqid,jdbcType=BIGINT},
+    set navigator.id = #{record.id,jdbcType=BIGINT},
       navigator.name = #{record.name,jdbcType=VARCHAR},
       navigator.url = #{record.url,jdbcType=VARCHAR},
       navigator.title = #{record.title,jdbcType=VARCHAR},
-      navigator.createtime = #{record.createtime,jdbcType=TIMESTAMP}
+      navigator.create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -203,18 +203,18 @@
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where seqid = #{seqid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.lxp.dailylog.model.NavigatorBase" >
     update navigator
     set name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where seqid = #{seqid,jdbcType=BIGINT}
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

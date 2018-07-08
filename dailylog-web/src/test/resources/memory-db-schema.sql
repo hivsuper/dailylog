@@ -1,39 +1,33 @@
-create table account
-(
-   seqid                bigint(20) not null auto_increment,
-   username             varchar(50) not null comment 'user logon name',
-   remail               varchar(100) comment 'email Address on Account',
-   fpemail              varchar(100) comment 'forget password email',
-   phone                varchar(15) comment 'phone number',
-   productname          varchar(100) not null comment 'product name',
-   producturl           varchar(500) comment 'product url',
-   joindate             datetime comment 'registration date',
-   createtime           datetime not null comment 'record creation time',
-   primary key (seqid),
-   unique key remail_productname_unique_key (remail, productname)
-)
-ENGINE = InnoDB;;
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL COMMENT 'user logon name',
+  `email` varchar(100) DEFAULT NULL COMMENT 'email Address of the Account',
+  `forget_password_email` varchar(100) DEFAULT NULL COMMENT 'forget password email',
+  `phone` varchar(15) DEFAULT NULL COMMENT 'phone number',
+  `product_name` varchar(100) NOT NULL COMMENT 'product name',
+  `product_url` varchar(500) DEFAULT NULL COMMENT 'product url',
+  `join_date` datetime DEFAULT NULL COMMENT 'registration date',
+  `create_time` datetime NOT NULL COMMENT 'record creation time',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_product_name_unique_key` (`email`,`product_name`)
+) ENGINE=InnoDB;;
 
-create table navigator
-(
-   seqid                bigint(20) not null auto_increment,
-   name                 varchar(20) not null comment 'site name',
-   url                  varchar(100) not null comment 'site link',
-   title                varchar(100) default '' comment 'site title used for a label',
-   createtime           datetime not null comment 'record creation time',
-   primary key (seqid),
-   unique key url_unique_key (url)
-)
-ENGINE = InnoDB;;
+CREATE TABLE IF NOT EXISTS `navigator` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL COMMENT 'site name',
+  `url` varchar(100) NOT NULL COMMENT 'site link',
+  `title` varchar(100) DEFAULT '' COMMENT 'site title used for a label',
+  `create_time` datetime NOT NULL COMMENT 'record creation time',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `url_unique_key` (`url`)
+) ENGINE=InnoDB;;
 
-create table user
-(
-   seqId                bigint(20) not null auto_increment,
-   username             varchar(100) not null,
-   password             varchar(50) not null,
-   lastlogintime        datetime,
-   createtime           datetime not null,
-   primary key (seqId),
-   unique key username_unique_key (username)
-)
-ENGINE = InnoDB;;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `last_login_time` datetime DEFAULT NULL,
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_unique_key` (`username`)
+) ENGINE=InnoDB;;

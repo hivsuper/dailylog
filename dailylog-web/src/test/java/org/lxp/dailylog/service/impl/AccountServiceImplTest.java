@@ -24,13 +24,13 @@ public class AccountServiceImplTest {
     public void testAddAccount() {
         AccountBase account = accountService.addAccount("33", "33@33.com", "333@33.com", "33333", "aaaa",
                 "http://33.com", LocalDate.now());
-        assertTrue(account.getSeqid() > 0);
+        assertTrue(account.getId() > 0);
     }
 
     @Test
     public void testQueryAccountPage() {
         AccountBase account = accountService.queryAccountPage("11", 0, 10).getObjs().get(0);
-        assertThat(account.getSeqid(), Matchers.is(1L));
+        assertThat(account.getId(), Matchers.is(1L));
     }
 
 }

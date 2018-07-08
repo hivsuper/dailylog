@@ -20,7 +20,7 @@ public class SessionHelper {
 
     public static long getUserId(HttpSession session) {
         UserVo user = getUser(session);
-        return user == null ? 0 : user.getSeqid();
+        return user == null ? 0 : user.getId();
     }
 
     public static UserVo getUser(HttpSession session) {

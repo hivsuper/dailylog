@@ -26,8 +26,8 @@ public class LoginServiceImpl implements LoginService {
             throw new CredentialNotMatchException(String.format("%s%s", account, "用户名或密码不正确"));
         }
         UserBase tmp = new UserBase();
-        tmp.setSeqid(user.getSeqid());
-        tmp.setLastlogintime(DateUtil.now());
+        tmp.setId(user.getId());
+        tmp.setLastLoginTime(DateUtil.now());
         userBaseMapper.updateByPrimaryKeySelective(tmp);
         return user;
     }

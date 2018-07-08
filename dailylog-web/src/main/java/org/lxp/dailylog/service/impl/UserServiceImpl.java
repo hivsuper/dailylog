@@ -1,9 +1,5 @@
 package org.lxp.dailylog.service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.lxp.dailylog.dao.mapper.UserBaseMapper;
 import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.model.UserBaseExample;
@@ -13,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -21,9 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserBase add(UserBase user) {
-        user.setCreatetime(DateUtil.now());
+        user.setCreateTime(DateUtil.now());
         userBaseMapper.insertSelective(user);
-        LOGGER.info("add userId={}", user.getSeqid());
+        LOGGER.info("add userId={}", user.getId());
         return user;
     }
 

@@ -125,63 +125,63 @@ public class UserBaseExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andSeqidIsNull() {
-            addCriterion("user.seqId is null");
+        public Criteria andIdIsNull() {
+            addCriterion("user.id is null");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidIsNotNull() {
-            addCriterion("user.seqId is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("user.id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidEqualTo(Long value) {
-            addCriterion("user.seqId =", value, "seqid");
+        public Criteria andIdEqualTo(Long value) {
+            addCriterion("user.id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotEqualTo(Long value) {
-            addCriterion("user.seqId <>", value, "seqid");
+        public Criteria andIdNotEqualTo(Long value) {
+            addCriterion("user.id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidGreaterThan(Long value) {
-            addCriterion("user.seqId >", value, "seqid");
+        public Criteria andIdGreaterThan(Long value) {
+            addCriterion("user.id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidGreaterThanOrEqualTo(Long value) {
-            addCriterion("user.seqId >=", value, "seqid");
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user.id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidLessThan(Long value) {
-            addCriterion("user.seqId <", value, "seqid");
+        public Criteria andIdLessThan(Long value) {
+            addCriterion("user.id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidLessThanOrEqualTo(Long value) {
-            addCriterion("user.seqId <=", value, "seqid");
+        public Criteria andIdLessThanOrEqualTo(Long value) {
+            addCriterion("user.id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidIn(List<Long> values) {
-            addCriterion("user.seqId in", values, "seqid");
+        public Criteria andIdIn(List<Long> values) {
+            addCriterion("user.id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotIn(List<Long> values) {
-            addCriterion("user.seqId not in", values, "seqid");
+        public Criteria andIdNotIn(List<Long> values) {
+            addCriterion("user.id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidBetween(Long value1, Long value2) {
-            addCriterion("user.seqId between", value1, value2, "seqid");
+        public Criteria andIdBetween(Long value1, Long value2) {
+            addCriterion("user.id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andSeqidNotBetween(Long value1, Long value2) {
-            addCriterion("user.seqId not between", value1, value2, "seqid");
+        public Criteria andIdNotBetween(Long value1, Long value2) {
+            addCriterion("user.id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
@@ -325,123 +325,123 @@ public class UserBaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeIsNull() {
-            addCriterion("user.lastlogintime is null");
+        public Criteria andLastLoginTimeIsNull() {
+            addCriterion("user.last_login_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeIsNotNull() {
-            addCriterion("user.lastlogintime is not null");
+        public Criteria andLastLoginTimeIsNotNull() {
+            addCriterion("user.last_login_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeEqualTo(Date value) {
-            addCriterion("user.lastlogintime =", value, "lastlogintime");
+        public Criteria andLastLoginTimeEqualTo(Date value) {
+            addCriterion("user.last_login_time =", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeNotEqualTo(Date value) {
-            addCriterion("user.lastlogintime <>", value, "lastlogintime");
+        public Criteria andLastLoginTimeNotEqualTo(Date value) {
+            addCriterion("user.last_login_time <>", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeGreaterThan(Date value) {
-            addCriterion("user.lastlogintime >", value, "lastlogintime");
+        public Criteria andLastLoginTimeGreaterThan(Date value) {
+            addCriterion("user.last_login_time >", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("user.lastlogintime >=", value, "lastlogintime");
+        public Criteria andLastLoginTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("user.last_login_time >=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeLessThan(Date value) {
-            addCriterion("user.lastlogintime <", value, "lastlogintime");
+        public Criteria andLastLoginTimeLessThan(Date value) {
+            addCriterion("user.last_login_time <", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeLessThanOrEqualTo(Date value) {
-            addCriterion("user.lastlogintime <=", value, "lastlogintime");
+        public Criteria andLastLoginTimeLessThanOrEqualTo(Date value) {
+            addCriterion("user.last_login_time <=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeIn(List<Date> values) {
-            addCriterion("user.lastlogintime in", values, "lastlogintime");
+        public Criteria andLastLoginTimeIn(List<Date> values) {
+            addCriterion("user.last_login_time in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeNotIn(List<Date> values) {
-            addCriterion("user.lastlogintime not in", values, "lastlogintime");
+        public Criteria andLastLoginTimeNotIn(List<Date> values) {
+            addCriterion("user.last_login_time not in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeBetween(Date value1, Date value2) {
-            addCriterion("user.lastlogintime between", value1, value2, "lastlogintime");
+        public Criteria andLastLoginTimeBetween(Date value1, Date value2) {
+            addCriterion("user.last_login_time between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastlogintimeNotBetween(Date value1, Date value2) {
-            addCriterion("user.lastlogintime not between", value1, value2, "lastlogintime");
+        public Criteria andLastLoginTimeNotBetween(Date value1, Date value2) {
+            addCriterion("user.last_login_time not between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNull() {
-            addCriterion("user.createtime is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("user.create_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNotNull() {
-            addCriterion("user.createtime is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("user.create_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Date value) {
-            addCriterion("user.createtime =", value, "createtime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("user.create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Date value) {
-            addCriterion("user.createtime <>", value, "createtime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("user.create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Date value) {
-            addCriterion("user.createtime >", value, "createtime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("user.create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("user.createtime >=", value, "createtime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("user.create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Date value) {
-            addCriterion("user.createtime <", value, "createtime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("user.create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
-            addCriterion("user.createtime <=", value, "createtime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("user.create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Date> values) {
-            addCriterion("user.createtime in", values, "createtime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("user.create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Date> values) {
-            addCriterion("user.createtime not in", values, "createtime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("user.create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Date value1, Date value2) {
-            addCriterion("user.createtime between", value1, value2, "createtime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("user.create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
-            addCriterion("user.createtime not between", value1, value2, "createtime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("user.create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

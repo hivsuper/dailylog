@@ -1,56 +1,55 @@
 package org.lxp.dailylog.dto;
 
-import java.time.LocalDate;
-
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import io.swagger.annotations.ApiModelProperty;
+import java.time.LocalDate;
 
 public class AccountDto {
     @ApiModelProperty(value = "user logon name", required = true)
     private String username;
 
-    @ApiModelProperty(value = "email Address on Account", required = true)
-    private String remail;
+    @ApiModelProperty(value = "email Address of the Account", required = true)
+    private String email;
 
     @ApiModelProperty(value = "forget password email")
-    private String fpemail;
+    private String forgetPasswordEmail;
 
     @ApiModelProperty(value = "phone number")
     private String phone;
 
     @ApiModelProperty(value = "product name")
-    private String productname;
+    private String productName;
 
     @ApiModelProperty(value = "product url", required = true)
-    private String producturl;
+    private String productUrl;
 
     @ApiModelProperty(value = "registration date", required = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate joindate;
+    private LocalDate joinDate;
 
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
-    public String getRemail() {
-        return remail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRemail(String remail) {
-        this.remail = remail == null ? null : remail.trim();
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getFpemail() {
-        return fpemail;
+    public String getForgetPasswordEmail() {
+        return forgetPasswordEmail;
     }
 
-    public void setFpemail(String fpemail) {
-        this.fpemail = fpemail == null ? null : fpemail.trim();
+    public void setForgetPasswordEmail(String forgetPasswordEmail) {
+        this.forgetPasswordEmail = forgetPasswordEmail;
     }
 
     public String getPhone() {
@@ -58,37 +57,44 @@ public class AccountDto {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
 
-    public String getProductname() {
-        return productname;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getProducturl() {
-        return producturl;
+    public String getProductUrl() {
+        return productUrl;
     }
 
-    public void setProducturl(String producturl) {
-        this.producturl = producturl == null ? null : producturl.trim();
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
     }
 
-    public LocalDate getJoindate() {
-        return joindate;
+    public LocalDate getJoinDate() {
+        return joinDate;
     }
 
-    public void setJoindate(LocalDate joindate) {
-        this.joindate = joindate;
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "AccountDto [username=%s, remail=%s, fpemail=%s, phone=%s, productname=%s, producturl=%s, joindate=%s]",
-                username, remail, fpemail, phone, productname, producturl, joindate);
+        final StringBuilder sb = new StringBuilder("AccountDto{");
+        sb.append("username='").append(username).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", forgetPasswordEmail='").append(forgetPasswordEmail).append('\'');
+        sb.append(", phone='").append(phone).append('\'');
+        sb.append(", productName='").append(productName).append('\'');
+        sb.append(", productUrl='").append(productUrl).append('\'');
+        sb.append(", joinDate=").append(joinDate);
+        sb.append('}');
+        return sb.toString();
     }
 }
