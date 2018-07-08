@@ -53,7 +53,7 @@ public class AccountControllerTest {
         action.andExpect(jsonPath("$.content.phone").value(Matchers.is("4")));
         action.andExpect(jsonPath("$.content.productname").value(Matchers.is("5")));
         action.andExpect(jsonPath("$.content.producturl").value(Matchers.is("6")));
-        action.andExpect(jsonPath("$.content.joindate").value(Matchers.is("2018-06-24 00:00")));
+        action.andExpect(jsonPath("$.content.joindate").value(Matchers.is("2018-06-24 00:00:00")));
     }
 
 }
