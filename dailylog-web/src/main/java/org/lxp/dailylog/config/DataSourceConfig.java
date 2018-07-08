@@ -64,6 +64,7 @@ public class DataSourceConfig {
     public TransactionInterceptor transactionInterceptor(@Qualifier(TRANSACTION_MANAGER) PlatformTransactionManager transactionManager) {
         Properties attributes = new Properties();
         attributes.setProperty("add*", "PROPAGATION_REQUIRED,ISOLATION_DEFAULT");
+        attributes.setProperty("login*", "PROPAGATION_REQUIRED,ISOLATION_DEFAULT");
         attributes.setProperty("update*", "PROPAGATION_REQUIRED,ISOLATION_DEFAULT");
         attributes.setProperty("delete*", "PROPAGATION_REQUIRED,ISOLATION_DEFAULT");
         attributes.setProperty("query*", "PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly");
