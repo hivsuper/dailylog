@@ -17,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.Resource;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,6 +55,28 @@ public class AccountControllerTest {
         action.andExpect(jsonPath("$.content.productName").value(Matchers.is("5")));
         action.andExpect(jsonPath("$.content.productUrl").value(Matchers.is("6")));
         action.andExpect(jsonPath("$.content.joinDate").value(Matchers.is("2018-06-24 00:00:00")));
+    }
+
+    @Test
+    public void testList() throws Exception {
+        // given
+        MockHttpSession session = new MockHttpSession();
+        session.putValue(SessionHelper.USER_KEY, new UserVo());
+        // execute
+        ResultActions action = mockMvc.perform(get("/account/list.json").header("sessionId", "1111")
+                .param("keyword", "aaaa").session(session));
+
+        // verify
+        action.andExpect(status().isOk());
+        action.andExpect(jsonPath("$.code").value(Matchers.is(200)));
+        action.andExpect(jsonPath("$.content").exists());
+        action.andExpect(jsonPath("$.content.objs[0].username").value(Matchers.is("11")));
+        action.andExpect(jsonPath("$.content.objs[0].email").value(Matchers.is("11@11.com")));
+        action.andExpect(jsonPath("$.content.objs[0].forgetPasswordEmail").value(Matchers.is("111@11.com")));
+        action.andExpect(jsonPath("$.content.objs[0].phone").value(Matchers.is("11111")));
+        action.andExpect(jsonPath("$.content.objs[0].productName").value(Matchers.is("aaaa")));
+        action.andExpect(jsonPath("$.content.objs[0].productUrl").value(Matchers.is("http://11.com")));
+        action.andExpect(jsonPath("$.content.objs[0].joinDate").value(Matchers.is("2018-05-30 00:00:00")));
     }
 
 }

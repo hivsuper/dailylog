@@ -1,9 +1,7 @@
 package org.lxp.dailylog.web.controller;
 
-import static org.lxp.dailylog.exception.CodeEnum.INTERNAL_SERVER_ERROR;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.lxp.dailylog.exception.CodeEnum;
 import org.lxp.dailylog.exception.DailylogException;
 import org.lxp.dailylog.web.util.JsonVo;
@@ -19,8 +17,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.lxp.dailylog.exception.CodeEnum.INTERNAL_SERVER_ERROR;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RestControllerAdvice
@@ -28,12 +27,13 @@ public class ExceptionHandlerController implements ErrorController {
     private static final Logger LOG = LoggerFactory.getLogger(ExceptionHandlerController.class);
     private static final String ERROR_PATH = "/error";
     private static final ObjectMapper MAPPER = new ObjectMapper();
+
     static {
         MAPPER.setSerializationInclusion(Include.NON_NULL);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = ERROR_PATH, method = { GET, POST })
+    @RequestMapping(value = ERROR_PATH, method = {GET, POST})
     public ModelAndView handleError() {
         CodeEnum codeEnum = CodeEnum.PAGE_NOT_FOUND;
         return resolveException(codeEnum);

@@ -9,6 +9,7 @@ import org.lxp.dailylog.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -40,13 +41,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Page<AccountBase> queryAccountPage(String keyword, int currentPage, int pageSize) {
         AccountBaseExample example = new AccountBaseExample();
-        keyword = String.format("%%%s%%", keyword);
-        example.createCriteria().andUsernameLike(keyword);
-        example.or(example.createCriteria().andEmailLike(keyword));
-        example.or(example.createCriteria().andForgetPasswordEmailLike(keyword));
-        example.or(example.createCriteria().andProductNameLike(keyword));
-        example.or(example.createCriteria().andProductUrlLike(keyword));
-
+        if (StringUtils.hasText(keyword)) {
+            keyword = String.format("%%%s%%", keyword);
+            example.createCriteria().andUsernameLike(keyword);
+            example.or(example.createCriteria().andEmailLike(keyword));
+            example.or(example.createCriteria().andForgetPasswordEmailLike(keyword));
+            example.or(example.createCriteria().andProductNameLike(keyword));
+            example.or(example.createCriteria().andProductUrlLike(keyword));
+        }
         Page<AccountBase> page = new Page<>(currentPage, pageSize);
         example.setOffset(page.getOffset());
         example.setLimit(page.getPageSize());

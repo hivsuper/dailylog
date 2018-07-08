@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 import org.lxp.dailylog.config.MemoryDBTest;
 import org.lxp.dailylog.model.UserBase;
 import org.lxp.dailylog.service.UserService;
+import org.lxp.dailylog.util.DateUtil;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.Calendar;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -26,7 +26,7 @@ public class UserServiceImplTest {
         UserBase user = new UserBase();
         user.setUsername("super@2.com");
         user.setPassword(encode("727dfbdc1a4ee249f3f08c247a5669d5"));
-        user.setLastLoginTime(Calendar.getInstance().getTime());
+        user.setLastLoginTime(DateUtil.now());
         user = userService.add(user);
         assertTrue(user.getId() > 0);
     }
