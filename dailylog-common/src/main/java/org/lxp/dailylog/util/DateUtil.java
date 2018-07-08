@@ -12,7 +12,7 @@ public class DateUtil {
     private static final ZoneId DEFAULT_ZONEID = ZoneId.of(TIMEZONE);
 
     public static Date now() {
-        return localDateToDate(LocalDate.now());
+        return localDateTimeToDate(LocalDateTime.now());
     }
 
     public static String zonedDateTimeToString(ZonedDateTime zonedDateTime) {
