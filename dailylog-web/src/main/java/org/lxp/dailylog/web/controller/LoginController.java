@@ -44,7 +44,7 @@ public class LoginController {
             throws VerificationCodeNotMatchException, CredentialNotMatchException {
         JsonVo<UserVo> jsonVo;
         if (hasText(verifyCode) && !verifyCode.equals(SessionHelper.getVerify(session))) {
-            throw new VerificationCodeNotMatchException(verifyCode);
+            throw new VerificationCodeNotMatchException();
         } else {
             UserVo user = new UserVo(loginService.login(account, password));
             SessionHelper.addUser(session, user);
@@ -55,11 +55,11 @@ public class LoginController {
         return jsonVo;
     }
 
-    @RequestMapping(value = "/logout", method = GET)
+    @RequestMapping(value = "/logout.json", method = GET)
     @ApiOperation(value = "登出")
-    public String logout() {
+    public JsonVo<Void> logout() {
         SessionHelper.removeUser(session);
-        return "redirect:/";
+        return JsonVo.success();
     }
 
     @ResponseBody
@@ -69,5 +69,10 @@ public class LoginController {
         Verify verify = VerifyCodeUtils.generateVerify();
         SessionHelper.setVerify(session, verify);
         VerifyCodeUtils.outputImage(120, 40, response.getOutputStream(), verify.getCode());
+    }
+
+    @RequestMapping(value = "/heartBeat.json", method = GET)
+    public JsonVo<Void> heartBeat() {
+        return JsonVo.success();
     }
 }

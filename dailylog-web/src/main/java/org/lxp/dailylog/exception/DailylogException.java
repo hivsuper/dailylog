@@ -9,6 +9,11 @@ public abstract class DailylogException extends Exception {
         this.codeEnum = codeEnum;
     }
 
+    public DailylogException(CodeEnum codeEnum) {
+        super(codeEnum.getMessage());
+        this.codeEnum = codeEnum;
+    }
+
     public CodeEnum getCodeEnum() {
         return codeEnum;
     }
