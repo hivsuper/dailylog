@@ -41,7 +41,7 @@
                         </span>
                     </div>
                 </div>
-                <a class="btn btn-primary btn-block" href="javascript:;">Login</a>
+                <a class="btn btn-primary btn-block" href="javascript:;" id="login-btn">Login</a>
             </form>
         </div>
     </div>
@@ -52,12 +52,44 @@
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/jquery.md5.js"></script>
 <script type="text/javascript">
 $(function(){
     $(document).on('click', '#verifyCode', function(){
         $(this).find('img').attr('src', v.apiHost+'verifyCode.json?r='+Math.random());
     });
     $('#verifyCode').click();
+    $('#login-btn').on('click', function() {
+        var userNameEl = $('#inputUserName');
+        var userName = $.trim(userNameEl.val());
+        if(v.isEmpty(userName)){
+            layer.tips('User name is empty', userNameEl);
+            return;
+        }
+        var passwordEl = $('#inputPassword');
+        var password = $.trim(passwordEl.val());
+        if(v.isEmpty(password)){
+            layer.tips('Password is empty', passwordEl);
+            return;
+        }
+        var verifyCodeEl = $('#inputVerifyCode');
+        var verifyCode = $.trim(verifyCodeEl.val());
+        if(v.isEmpty(verifyCode)){
+            layer.tips('Password is empty', verifyCodeEl);
+            return;
+        }
+        v.ajaxPostJsonResult(v.apiHost + 'login.json', {account: userName, password: $.md5(password), verifyCode: verifyCode}, function(user){
+            v.setUser(user);
+            v.go('index.html');
+        }, function(code){
+            if(code==1){
+                layer.tips("Credential not match", userNameEl);
+            }else if(code==2){
+                layer.tips("Verify code doesn't match", verifyCodeEl);
+            }
+        });
+    });
 });
 </script>
 </body>
