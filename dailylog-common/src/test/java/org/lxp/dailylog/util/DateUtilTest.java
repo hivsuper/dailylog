@@ -1,14 +1,14 @@
 package org.lxp.dailylog.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DateUtilTest {
     @Test
@@ -18,7 +18,7 @@ public class DateUtilTest {
 
     @Test
     public void testZonedDateTimeToString() {
-        LocalDateTime localDate = LocalDateTime.of(2018, 05, 10, 0, 0, 10);
+        LocalDateTime localDate = LocalDateTime.of(2018, 5, 10, 0, 0, 10);
         assertEquals("2018-05-10T00:00:10+08:00[Asia/Shanghai]",
                 DateUtil.zonedDateTimeToString(ZonedDateTime.of(localDate, ZoneId.of("Asia/Shanghai"))));
     }

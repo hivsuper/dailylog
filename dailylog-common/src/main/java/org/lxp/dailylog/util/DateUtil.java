@@ -7,7 +7,6 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class DateUtil {
-    public static final String yyyyMMddHHmm = "yyyy-MM-dd HH:mm";
     public static final String TIMEZONE = "Asia/Shanghai";
     private static final ZoneId DEFAULT_ZONEID = ZoneId.of(TIMEZONE);
 

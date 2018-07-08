@@ -1,13 +1,8 @@
 package org.lxp.dailylog.model;
 
-import static org.lxp.dailylog.util.DateUtil.TIMEZONE;
-import static org.lxp.dailylog.util.DateUtil.yyyyMMddHHmm;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import io.swagger.annotations.ApiModelProperty;
 
 public class NavigatorBase {
     private Long seqid;
@@ -22,7 +17,6 @@ public class NavigatorBase {
     private String title;
 
     @ApiModelProperty(value = "record creation time")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = yyyyMMddHHmm, timezone = TIMEZONE)
     private Date createtime;
 
     public Long getSeqid() {
