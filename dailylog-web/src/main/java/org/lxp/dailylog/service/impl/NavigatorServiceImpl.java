@@ -1,17 +1,16 @@
 package org.lxp.dailylog.service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.lxp.dailylog.dao.mapper.NavigatorBaseMapper;
 import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.model.NavigatorBaseExample;
 import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.util.DateUtil;
+import org.lxp.dailylog.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 @Service
 public class NavigatorServiceImpl implements NavigatorService {
@@ -28,13 +27,17 @@ public class NavigatorServiceImpl implements NavigatorService {
     }
 
     @Override
-    public NavigatorBase queryOneByLike(String keyword) {
+    public Page<NavigatorBase> queryNavigatorPage(String keyword, int currentPage, int pageSize) {
         NavigatorBaseExample example = new NavigatorBaseExample();
         keyword = String.format("%%%s%%", keyword);
         example.createCriteria().andNameLike(keyword);
         example.or(example.createCriteria().andUrlLike(keyword));
         example.or(example.createCriteria().andTitleLike(keyword));
-        List<NavigatorBase> list = navigatorBaseMapper.selectByExample(example);
-        return (list != null && !list.isEmpty()) ? list.get(0) : null;
+
+        Page<NavigatorBase> page = new Page<>(currentPage, pageSize);
+        example.setOffset(page.getOffset());
+        example.setLimit(page.getPageSize());
+        page.setObjs(navigatorBaseMapper.selectByExample(example));
+        return page;
     }
 }

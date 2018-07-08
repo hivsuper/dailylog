@@ -5,13 +5,13 @@ import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.model.AccountBaseExample;
 import org.lxp.dailylog.service.AccountService;
 import org.lxp.dailylog.util.DateUtil;
+import org.lxp.dailylog.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountBase queryOneLike(String keyword) {
+    public Page<AccountBase> queryAccountPage(String keyword, int currentPage, int pageSize) {
         AccountBaseExample example = new AccountBaseExample();
         keyword = String.format("%%%s%%", keyword);
         example.createCriteria().andUsernameLike(keyword);
@@ -45,7 +45,11 @@ public class AccountServiceImpl implements AccountService {
         example.or(example.createCriteria().andFpemailLike(keyword));
         example.or(example.createCriteria().andProductnameLike(keyword));
         example.or(example.createCriteria().andProducturlLike(keyword));
-        List<AccountBase> list = accountBaseMapper.selectByExample(example);
-        return (list != null && !list.isEmpty()) ? list.get(0) : null;
+
+        Page<AccountBase> page = new Page<>(currentPage, pageSize);
+        example.setOffset(page.getOffset());
+        example.setLimit(page.getPageSize());
+        page.setObjs(accountBaseMapper.selectByExample(example));
+        return page;
     }
 }

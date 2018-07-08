@@ -28,8 +28,8 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testQueryOneLike() {
-        AccountBase account = accountService.queryOneLike("11");
+    public void testQueryAccountPage() {
+        AccountBase account = accountService.queryAccountPage("11", 0, 10).getObjs().get(0);
         assertThat(account.getSeqid(), Matchers.is(1L));
     }
 

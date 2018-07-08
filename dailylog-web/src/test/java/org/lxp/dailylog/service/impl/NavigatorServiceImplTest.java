@@ -1,15 +1,5 @@
 package org.lxp.dailylog.service.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Date;
-
-import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lxp.dailylog.config.MemoryDBTest;
@@ -17,6 +7,15 @@ import org.lxp.dailylog.model.NavigatorBase;
 import org.lxp.dailylog.service.NavigatorService;
 import org.lxp.dailylog.web.util.JsonHelper;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @MemoryDBTest
@@ -38,8 +37,8 @@ public class NavigatorServiceImplTest {
     }
 
     @Test
-    public void testQueryOneByLike() {
-        NavigatorBase navigator = navigatorService.queryOneByLike("222");
+    public void testQueryNavigatorPage() {
+        NavigatorBase navigator = navigatorService.queryNavigatorPage("222", 0, 10).getObjs().get(0);
         navigator.setCreatetime(null);
         assertEquals("{\"seqid\":1,\"name\":\"222\",\"url\":\"http://22.com\",\"title\":\"2222\"}",
                 JsonHelper.toString(navigator));
