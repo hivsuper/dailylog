@@ -19,8 +19,15 @@ var v={
     isEmpty : function(str) {
         return $.trim(str).length==0;
     },
-    heartBeat : function() {
-        this.ajaxGetJsonResult(this.apiHost + 'heartBeat.json', undefined, undefined, undefined, false);
+    heartBeat : function(success) {
+        this.ajaxGetJsonResult(this.apiHost + 'heartBeat.json', undefined, success, undefined, false);
+    },
+    logout: function() {
+        var that = this;
+        this.ajaxGetJsonResult(that.apiHost + 'logout.json', undefined, function(){
+            that._delete('dailylog_admin_user');
+            that.go('login.html');
+        }, undefined, false);
     },
     ajaxGetJsonResult: function(url, data, success, error, shade) {
         var option = this.createOption(url, 'get', data, success, error, true, shade);
@@ -76,10 +83,27 @@ var v={
     _getJson: function(key) {
         return localStorage.getItem(key);
     },
+    _delete: function(key) {
+        return localStorage.removeItem(key);
+    },
     getUser: function() {
         return eval("(" + this._getJson('dailylog_admin_user') + ")");
     },
     setUser: function(user) {
         return this._writeJson('dailylog_admin_user', user);
     }
+}
+if($('#logoutModal')){
+    $('#logoutModal').html(
+        '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>'+
+        '<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>'+
+        '<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div><div class="modal-footer">'+
+        '<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button><a class="btn btn-primary" href="javascript:;">Logout</a></div></div></div>'
+    );
+    $('#logoutModal').on('click', '.btn-primary', function(){
+        v.logout();
+    });
+}
+if($('footer.sticky-footer')){
+    $('footer.sticky-footer').html('<div class="container"><div class="text-center"><small>Copyright © Your Website 2018</small></div></div>');
 }
