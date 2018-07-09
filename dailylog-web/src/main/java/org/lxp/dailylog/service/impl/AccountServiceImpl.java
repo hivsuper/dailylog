@@ -50,6 +50,7 @@ public class AccountServiceImpl implements AccountService {
             example.or(example.createCriteria().andProductUrlLike(keyword));
         }
         Page<AccountBase> page = new Page<>(currentPage, pageSize);
+        page.setTotalSize(accountBaseMapper.countByExample(example));
         example.setOffset(page.getOffset());
         example.setLimit(page.getPageSize());
         page.setObjs(accountBaseMapper.selectByExample(example));
