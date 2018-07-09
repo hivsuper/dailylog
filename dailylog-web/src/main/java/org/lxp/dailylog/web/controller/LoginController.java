@@ -12,7 +12,8 @@ import org.lxp.dailylog.web.util.Verify;
 import org.lxp.dailylog.web.util.VerifyCodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,6 @@ import java.io.IOException;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class LoginController {
@@ -36,7 +35,7 @@ public class LoginController {
     private HttpSession session;
 
     @ResponseBody
-    @RequestMapping(value = "/login.json", method = POST, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login.json", produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "登录")
     public JsonVo<UserVo> login(@ApiParam(value = "账号", required = true) @RequestParam String account,
                                 @ApiParam(value = "密码", required = true) @RequestParam String password,
@@ -55,7 +54,7 @@ public class LoginController {
         return jsonVo;
     }
 
-    @RequestMapping(value = "/logout.json", method = GET)
+    @GetMapping(value = "/logout.json")
     @ApiOperation(value = "登出")
     public JsonVo<Void> logout() {
         SessionHelper.removeUser(session);
@@ -63,7 +62,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/verifyCode.json", method = GET)
+    @GetMapping(value = "/verifyCode.json")
     @ApiOperation(value = "生成验证码")
     public void getVerifyCode(HttpServletResponse response) throws IOException {
         Verify verify = VerifyCodeUtils.generateVerify();
@@ -71,7 +70,7 @@ public class LoginController {
         VerifyCodeUtils.outputImage(120, 40, response.getOutputStream(), verify.getCode());
     }
 
-    @RequestMapping(value = "/heartBeat.json", method = GET)
+    @GetMapping(value = "/heartBeat.json")
     public JsonVo<Void> heartBeat() {
         return JsonVo.success();
     }
