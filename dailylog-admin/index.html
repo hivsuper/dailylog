@@ -39,33 +39,31 @@ modal-content
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Forget Password Email</th>
+                            <th>Phone</th>
+                            <th>Product Name</th>
+                            <th>Product Url</th>
+                            <th>Join Date</th>
+                            <th>Status</th>
+                            <th>Create Time</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Forget Password Email</th>
+                            <th>Phone</th>
+                            <th>Product Name</th>
+                            <th>Product Url</th>
+                            <th>Join Date</th>
+                            <th>Status</th>
+                            <th>Create Time</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -92,7 +90,7 @@ modal-content
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
     <script src="js/common.js"></script>
     <script src="js/layer.js"></script>
 </div>
@@ -101,6 +99,31 @@ $(function(){
     v.heartBeat(function(){
         $('#page-top').show();
         $('#username-span').text(v.getUser().username);
+        var keyword = $('#dataTable_filter input[type=search]').val();
+        $('#dataTable').DataTable({
+            ajax: function(data, callback, setting) {
+                v.ajaxGetJsonResult(v.apiHost + 'account/list.json', {keyword: keyword}, function(data){
+                    console.log(data);
+                    var returnData = {};
+                    returnData.draw = data.currentPage;
+                    returnData.recordsTotal = data.totalSize;
+                    returnData.recordsFiltered = data.totalSize;
+                    returnData.data = data.objs;
+                    console.log(returnData);
+                    callback(returnData);
+                });
+            }, columns: [
+                { "data": "username" },
+                { "data": "email" },
+                { "data": "forgetPasswordEmail" },
+                { "data": "phone" },
+                { "data": "productName" },
+                { "data": "productUrl" },
+                { "data": "joinDate" },
+                { "data": "isActive" },
+                { "data": "createTime" }
+            ]
+        });
     });
 });
 </script>
