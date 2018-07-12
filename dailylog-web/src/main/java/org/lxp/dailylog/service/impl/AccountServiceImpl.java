@@ -1,5 +1,9 @@
 package org.lxp.dailylog.service.impl;
 
+import java.time.LocalDate;
+
+import javax.annotation.Resource;
+
 import org.lxp.dailylog.dao.mapper.AccountBaseMapper;
 import org.lxp.dailylog.model.AccountBase;
 import org.lxp.dailylog.model.AccountBaseExample;
@@ -11,9 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
-import java.time.LocalDate;
-
 @Service
 public class AccountServiceImpl implements AccountService {
     private static final Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
@@ -22,7 +23,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountBase addAccount(String username, String rEmail, String fpEmail, String phone, String productName,
-                                  String productUrl, LocalDate joinDate) {
+            String productUrl, LocalDate joinDate) {
         AccountBase account = new AccountBase();
         account.setUsername(username);
         account.setEmail(rEmail);
@@ -39,7 +40,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Page<AccountBase> queryAccountPage(String keyword, int currentPage, int pageSize) {
+    public Page<AccountBase> queryAccountPage(String keyword, String draw, int start, int pageSize) {
         AccountBaseExample example = new AccountBaseExample();
         if (StringUtils.hasText(keyword)) {
             keyword = String.format("%%%s%%", keyword);
@@ -49,11 +50,12 @@ public class AccountServiceImpl implements AccountService {
             example.or(example.createCriteria().andProductNameLike(keyword));
             example.or(example.createCriteria().andProductUrlLike(keyword));
         }
-        Page<AccountBase> page = new Page<>(currentPage, pageSize);
-        page.setTotalSize(accountBaseMapper.countByExample(example));
-        example.setOffset(page.getOffset());
-        example.setLimit(page.getPageSize());
-        page.setObjs(accountBaseMapper.selectByExample(example));
+        Page<AccountBase> page = new Page<>(draw, start);
+        page.setRecordsTotal(accountBaseMapper.countByExample(example));
+        example.setOffset(page.getStart());
+        example.setLimit(pageSize);
+        example.setOrderByClause("create_time DESC, id ASC");
+        page.setData(accountBaseMapper.selectByExample(example));
         return page;
     }
 }

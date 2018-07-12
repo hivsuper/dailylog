@@ -1,7 +1,12 @@
 package org.lxp.dailylog.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+
+import org.lxp.dailylog.util.DateUtil;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import io.swagger.annotations.ApiModelProperty;
 
 public class AccountBase {
     private Long id;
@@ -25,6 +30,7 @@ public class AccountBase {
     private String productUrl;
 
     @ApiModelProperty(value = "registration date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateUtil.yyyyMMdd, timezone = DateUtil.TIMEZONE)
     private Date joinDate;
 
     private Boolean isActive;

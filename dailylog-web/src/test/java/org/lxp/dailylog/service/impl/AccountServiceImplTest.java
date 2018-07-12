@@ -29,7 +29,7 @@ public class AccountServiceImplTest {
 
     @Test
     public void testQueryAccountPage() {
-        AccountBase account = accountService.queryAccountPage("11", 0, 10).getObjs().get(0);
+        AccountBase account = accountService.queryAccountPage("11", null, 0, 10).getData().get(0);
         assertThat(account.getId(), Matchers.is(1L));
     }
 

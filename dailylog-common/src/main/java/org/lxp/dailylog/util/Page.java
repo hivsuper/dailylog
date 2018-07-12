@@ -2,108 +2,51 @@ package org.lxp.dailylog.util;
 
 import java.util.List;
 
-/**
- * @author Super.Li
- * @since 2015年7月20日
- */
 public class Page<T> {
-  public static final String DEFAULT_PAGE_SIZE = "10";
-  public static final String DEFAULT_CURRENT_PAGE = "1";
+    public static final String DEFAULT_PAGE_SIZE = "10";
+    public static final String DEFAULT_START = "0";
 
-  private int currentPage = Integer.valueOf(DEFAULT_CURRENT_PAGE);
-  private int totalSize;
-  private int pageSize = Integer.valueOf(DEFAULT_PAGE_SIZE);
+    private String draw;
+    private int start = Integer.valueOf(DEFAULT_START);
+    private int recordsTotal;
+    private int recordsFiltered;
 
-  private List<T> objs;
+    private List<T> data;
 
-  public Page() {
-  }
-
-  public Page(int currentPage) {
-    this.currentPage = currentPage;
-  }
-
-  public Page(int currentPage, int pageSize) {
-    setCurrentPage(currentPage);
-    setPageSize(pageSize);
-  }
-
-  public int getNextPage() {
-    return currentPage == getTotalPage() ? currentPage : currentPage + 1;
-  }
-
-  public int getPrePage() {
-    return currentPage > 1 ? currentPage - 1 : 1;
-  }
-
-  public int getOffset() {
-    return getCurPageFirstRecNum() - 1;
-  }
-
-  public int getCurPageFirstRecNum() {
-    return (getCurrentPage() - 1) * pageSize + 1;
-  }
-
-  public int getCurPageLastRecNum() {
-    return getCurrentPage() * pageSize;
-  }
-
-  public int getTotalPage() {
-    int t = totalSize % pageSize > 0 ? totalSize / pageSize + 1 : totalSize / pageSize;
-    if (t <= 0) {
-      t = 1;
+    public Page(String draw, int start) {
+        this.start = start;
     }
-    return t;
-  }
 
-  public void setObjs(List<T> objs) {
-    this.objs = objs;
-  }
-
-  public List<T> getObjs() {
-    return objs;
-  }
-
-  public int getCurrentPage() {
-    if (currentPage > getTotalPage()) {
-      currentPage = getTotalPage();
+    public String getDraw() {
+        return draw;
     }
-    if (currentPage <= 0) {
-      currentPage = 1;
+
+    public void setDraw(String draw) {
+        this.draw = draw;
     }
-    return currentPage;
-  }
 
-  public void setCurrentPage(int currentPage) {
-    this.currentPage = currentPage;
-  }
-
-  public int getTotalSize() {
-    return totalSize;
-  }
-
-  public void setTotalSize(int totalSize) {
-    this.totalSize = totalSize;
-  }
-
-  public int getPageSize() {
-    return pageSize;
-  }
-
-  public void setPageSize(int pageSize) {
-    if (pageSize > 0) {
-      this.pageSize = pageSize;
+    public int getStart() {
+        return start;
     }
-  }
 
-  public boolean containData() {
-    return getTotalSize() > 0;
-  }
+    public int getRecordsTotal() {
+        return recordsTotal;
+    }
 
-  @Override
-  public String toString() {
-    return "Page [currentPage=" + currentPage + ", totalSize=" + totalSize + ", pageSize=" + pageSize + ", objs="
-        + objs + "]";
-  }
+    public void setRecordsTotal(int recordsTotal) {
+        this.recordsTotal = recordsTotal;
+        this.recordsFiltered = recordsTotal;
+    }
 
+    public int getRecordsFiltered() {
+        return recordsFiltered;
+    }
+
+    public List<T> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
 }
