@@ -1,6 +1,5 @@
 package org.lxp.dailylog.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 public class UserBase {

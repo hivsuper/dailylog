@@ -65,7 +65,7 @@ public class AccountControllerTest {
         // execute
         ResultActions action = mockMvc.perform(
                 get("/account/list.json").header("sessionId", "1111").param("keyword", "aaaa").session(session));
-        System.out.println(action.andReturn().getResponse().getContentAsString());
+
         // verify
         action.andExpect(status().isOk());
         action.andExpect(jsonPath("$.data").exists());
