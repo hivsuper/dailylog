@@ -99,19 +99,19 @@ $(function(){
     v.heartBeat(function(){
         $('#page-top').show();
         $('#username-span').text(v.getUser().username);
-        var keyword = $('#dataTable_filter input[type=search]').val();
-        $('#dataTable').DataTable({
-            ajax: function(data, callback, setting) {
-                v.ajaxGetJsonResult(v.apiHost + 'account/list.json', {keyword: keyword}, function(data){
-                    console.log(data);
-                    var returnData = {};
-                    returnData.draw = data.currentPage;
-                    returnData.recordsTotal = data.totalSize;
-                    returnData.recordsFiltered = data.totalSize;
-                    returnData.data = data.objs;
-                    console.log(returnData);
-                    callback(returnData);
-                });
+        var table = $('#dataTable').DataTable({
+            serverSide : true,
+            initComplete : function() {
+                $('#dataTable_filter [type=search]').unbind();
+            },
+            ajax: {
+                url : v.apiHost + 'account/list.json',
+                data: function (params) {
+                    var keyword = $('#dataTable_filter input[type=search]').val();
+                    $.extend(params, {keyword : keyword});
+                },
+                dataType : 'jsonp',
+                jsonpCallback : 'getAccounts'
             }, columns: [
                 { "data": "username" },
                 { "data": "email" },
@@ -123,6 +123,9 @@ $(function(){
                 { "data": "isActive" },
                 { "data": "createTime" }
             ]
+        });
+        $("#dataTable_filter").on('change', '[type=search]', function(e) {
+            table.search($(this).val()).draw();
         });
     });
 });
