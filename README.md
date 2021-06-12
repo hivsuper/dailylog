@@ -1,4 +1,8 @@
 # dailylog-backend
+
+This project is built on Java 8 and apache maven 3.3.9
+
+----------------------------------------------------
 *How to run the project?*
 1) Run command `mvn clean install` on dailylog-parent  
 2) Run `org.lxp.dailylog.Bootstrap` in dailylog-web or command `mvn spring-boot:run` on dailylog-web  
